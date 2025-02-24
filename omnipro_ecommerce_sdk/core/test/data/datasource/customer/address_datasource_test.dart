@@ -1,4 +1,3 @@
-import 'package:address/data/datasource/address_datasource.dart';
 import 'package:core/data/dto/customer_address_dto.fr.dart';
 import 'package:core/data/datasource/customer/state_query.dart';
 import 'package:core/data/dto/state_dto.fr.dart';
@@ -9,6 +8,7 @@ import 'package:core/utils/extension.dart';
 import 'package:core/utils/loggers/app_logger.dart';
 import 'package:core/utils/stream_event_change_contract.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:omnipro_ecommerce_sdk/address/lib/data/datasource/address_datasource.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:test/test.dart';
 import 'package:dartz/dartz.dart';

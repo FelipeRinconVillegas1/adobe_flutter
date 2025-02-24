@@ -1,6 +1,5 @@
-import 'package:address/domain/entity/user_who_pickup_in_store_entity.fr.dart';
-
 import '../../data/repository/address_repository.dart';
+import '../entity/user_who_pickup_in_store_entity.fr.dart';
 
 class SaveLocalUserWhoPickUpInStoreUseCase {
   SaveLocalUserWhoPickUpInStoreUseCase(this.addressRepository);

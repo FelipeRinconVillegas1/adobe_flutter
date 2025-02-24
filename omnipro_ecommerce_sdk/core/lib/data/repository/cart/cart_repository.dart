@@ -1,13 +1,11 @@
-import 'package:address/domain/entity/customer_address_entity.dart';
 import 'package:core/domain/entity/cart/add_product_to_cart.dart';
 import 'package:core/domain/entity/cart/cart.fr.dart';
 import 'package:core/domain/entity/cart/enabled_shipping_method.dart';
 import 'package:core/domain/entity/cart/send_tip.dart';
 import 'package:core/domain/entity/cart/update_cart_items.dart';
 import 'package:core/domain/entity/products.dart';
-import 'package:dartz/dartz.dart';
 import 'package:core/utils/error_handler/error_handler.dart';
-
+import 'package:omnipro_ecommerce_sdk/address/lib/domain/entity/customer_address_entity.dart';
 import '../../../domain/entity/cart/add_product_to_cart_oms_options.dart';
 import '../../../domain/entity/cart/appointment_selected_entity.dart';
 import '../../../domain/entity/cart/config_shipping_method.dart';
@@ -15,6 +13,7 @@ import '../../../domain/entity/cart/input_set_payment_method_on_cart_entity.fr.d
 import '../../../domain/entity/cart/set_shipping_address_oms_options.dart';
 import '../../../domain/entity/customer.fr.dart';
 import '../../../domain/entity/stores/warehouse_address_entity.fr.dart';
+import 'package:dartz/dartz.dart';
 
 abstract class CartRepository {
   Future<Either<ErrorHandler, Cart>> addProductToCart(List<AddProductToCart> addProductToCart,

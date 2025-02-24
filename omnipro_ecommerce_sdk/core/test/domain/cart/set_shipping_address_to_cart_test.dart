@@ -1,4 +1,3 @@
-import 'package:address/data/repository/address_mapper.dart';
 import 'package:core/data/dto/cart/cart_dto.fr.dart';
 import 'package:core/data/repository/cart/mapper.dart';
 import 'package:core/domain/entity/cart/set_shipping_address_oms_options.dart';
@@ -12,6 +11,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:core/data/repository/cart/cart_repository.dart';
+import 'package:omnipro_ecommerce_sdk/address/lib/data/repository/address_mapper.dart';
 import '../../data/datasource/cart/cart_fake_data.dart';
 
 class MockCartRepository extends Mock implements CartRepository {}

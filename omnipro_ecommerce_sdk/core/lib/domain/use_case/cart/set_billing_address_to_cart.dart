@@ -1,12 +1,12 @@
-import 'package:address/domain/entity/customer_address_entity.dart';
 import 'package:core/domain/use_case/customer/is_customer_logged_in.dart';
 import 'package:core/utils/error_handler/error_code.dart';
 import 'package:core/utils/error_handler/error_handler.dart';
 import 'package:core/data/repository/cart/cart_repository.dart';
-import 'package:dartz/dartz.dart';
+import 'package:omnipro_ecommerce_sdk/address/lib/domain/entity/customer_address_entity.dart';
 import '../../entity/cart/cart.fr.dart';
 import '../../entity/cart/set_shipping_address_oms_options.dart';
 import 'get_cart_id_use_case.dart';
+import 'package:dartz/dartz.dart';
 
 class SetBillingAddressToCartUseCase {
   SetBillingAddressToCartUseCase(this._cartRepository, this._getCartIdUseCase, this._isCustomerLoggedIn);

@@ -1,19 +1,18 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:address/data/datasource/address_datasource.dart';
-import 'package:address/domain/entity/user_who_pickup_in_store_entity.fr.dart';
 import 'package:core/data/dto/customer_address_dto.fr.dart';
-import 'package:address/data/repository/address_mapper.dart';
-import 'package:address/domain/entity/customer_address_entity.dart';
-import 'package:address/domain/entity/customer_addresses.dart';
 import 'package:core/domain/entity/states_country.dart';
-import 'package:core/domain/entity/stores/warehouse_address_entity.fr.dart';
 import 'package:core/local/data/datasource/secure_storage_datasource.dart';
 import 'package:core/local/key_secure_storage.dart';
 import 'package:core/utils/error_handler/error_code.dart';
 import 'package:core/utils/error_handler/error_handler.dart';
 import 'package:core/utils/stream_event_change_contract.dart';
 import 'package:dartz/dartz.dart';
+import 'package:omnipro_ecommerce_sdk/address/lib/data/repository/address_mapper.dart';
+import '../../domain/entity/customer_address_entity.dart';
+import '../../domain/entity/customer_addresses.dart';
+import '../../domain/entity/user_who_pickup_in_store_entity.fr.dart';
+import '../datasource/address_datasource.dart';
 
 abstract class AddressRepository
     implements StreamEventChangeContract<EventDataChange<List<CustomerAddressEntity>, AddressEvent>> {

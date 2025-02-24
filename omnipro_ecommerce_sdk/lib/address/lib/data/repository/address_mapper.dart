@@ -1,7 +1,6 @@
 import 'package:core/data/dto/cart/set_billing_address_oms_options_dto.fr.dart';
 import 'package:core/data/dto/cart/set_shipping_address_oms_options_dto.fr.dart';
 import 'package:core/data/dto/customer_address_dto.fr.dart';
-import 'package:address/domain/entity/customer_address_entity.dart';
 import 'package:core/data/dto/custom_attribute_dto.fr.dart';
 import 'package:core/data/dto/state_dto.fr.dart';
 import 'package:core/domain/entity/cart/set_shipping_address_oms_options.dart';
@@ -9,6 +8,8 @@ import 'package:core/domain/entity/state_country_entity.dart';
 import 'package:core/domain/entity/states_country.dart';
 import 'package:core/utils/custom_attribute_code.dart';
 import 'package:collection/collection.dart';
+
+import '../../domain/entity/customer_address_entity.dart';
 
 extension MapperListStateDTO on List<StateDTO> {
   StatesCountry toDomain() => StatesCountry(statesCountry: map((e) => e.toDomain()).toList());

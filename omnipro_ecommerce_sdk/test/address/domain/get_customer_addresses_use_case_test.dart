@@ -1,12 +1,12 @@
-import 'package:address/data/repository/address_repository.dart';
-import 'package:address/domain/entity/customer_address_entity.dart';
-import 'package:address/domain/entity/customer_addresses.dart';
-import 'package:address/domain/use_case/get_customer_addresses_use_case.dart';
 import 'package:core/utils/error_handler/error_code.dart';
 import 'package:core/utils/error_handler/error_handler.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:omnipro_ecommerce_sdk/address/lib/data/repository/address_repository.dart';
+import 'package:omnipro_ecommerce_sdk/address/lib/domain/entity/customer_address_entity.dart';
+import 'package:omnipro_ecommerce_sdk/address/lib/domain/entity/customer_addresses.dart';
+import 'package:omnipro_ecommerce_sdk/address/lib/domain/use_case/get_customer_addresses_use_case.dart';
 
 class MockAddressRepository extends Mock implements AddressRepository {}
 

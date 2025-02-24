@@ -1,8 +1,9 @@
-import 'package:address/data/repository/address_repository.dart';
 import 'package:core/domain/entity/states_country.dart';
 import 'package:core/utils/error_handler/error_code.dart';
 import 'package:core/utils/error_handler/error_handler.dart';
 import 'package:dartz/dartz.dart';
+
+import '../../data/repository/address_repository.dart';
 
 class GetStatesByIdCountryUseCase {
   final AddressRepository _repository;

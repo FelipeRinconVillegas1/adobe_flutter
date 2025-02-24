@@ -1,5 +1,4 @@
-import 'package:address/data/datasource/address_query.dart';
-
+import 'package:omnipro_ecommerce_sdk/address/lib/data/datasource/address_query.dart';
 import '../product/share_product_query.dart';
 
 ///░█▀▀█ ░█─░█ ░█▀▀▀ ░█▀▀█ ░█──░█

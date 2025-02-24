@@ -7,7 +7,6 @@ environment:
   sdk: ^3.7.0
   flutter: '>=3.3.0'
 
-
 dependencies:
   flutter:
     sdk: flutter
@@ -26,8 +25,7 @@ dependencies:
     path: feature/profile
   common_services:
     path: feature/common_services
-  address:
-    path: feature/address
+
   dartz: ^0.10.1
   freezed_annotation: ^2.2.0
   json_annotation: ^4.9.0
@@ -44,7 +42,6 @@ dependencies:
   url_launcher: 6.3.0
   firebase_remote_config: ^4.1.0
   permission_handler: ^10.2.0
-
   share_plus: ^7.0.1
   firebase_messaging: ^14.6.7
   firebase_core: ^2.10.0

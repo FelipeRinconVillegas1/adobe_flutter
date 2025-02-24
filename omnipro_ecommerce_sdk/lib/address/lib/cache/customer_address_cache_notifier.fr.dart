@@ -1,9 +1,8 @@
-import 'package:address/data/datasource/address_datasource.dart';
-import 'package:address/data/repository/address_repository.dart';
-import 'package:address/di/di_address.fr.dart';
-import 'package:address/domain/entity/customer_address_entity.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
+import '../data/datasource/address_datasource.dart';
+import '../data/repository/address_repository.dart';
+import '../di/di_address.fr.dart';
+import '../domain/entity/customer_address_entity.dart';
 import 'customer_address_cache_state.fr.dart';
 
 part 'customer_address_cache_notifier.fr.g.dart';

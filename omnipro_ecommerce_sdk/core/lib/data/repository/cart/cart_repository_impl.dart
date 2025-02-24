@@ -1,5 +1,3 @@
-import 'package:address/data/repository/address_mapper.dart';
-import 'package:address/domain/entity/customer_address_entity.dart';
 import 'package:core/data/dto/products_mapper.dart';
 import 'package:core/data/repository/cart/mapper.dart';
 import 'package:core/domain/entity/cart/add_product_to_cart_oms_options.dart';
@@ -12,6 +10,8 @@ import 'package:dartz/dartz.dart';
 import 'package:core/data/datasource/cart/cart_datasource.dart';
 import 'package:core/data/repository/cart/cart_repository.dart';
 import 'package:core/utils/error_handler/error_handler.dart';
+import 'package:omnipro_ecommerce_sdk/address/lib/data/repository/address_mapper.dart';
+import 'package:omnipro_ecommerce_sdk/address/lib/domain/entity/customer_address_entity.dart';
 
 import '../../../domain/entity/cart/add_product_to_cart.dart';
 import '../../../domain/entity/cart/cart.fr.dart';

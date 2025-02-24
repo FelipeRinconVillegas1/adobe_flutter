@@ -1,4 +1,3 @@
-import 'package:address/data/repository/address_mapper.dart';
 import 'package:core/data/datasource/cart/cart_datasource_impl.dart';
 import 'package:core/data/dto/cart/add_to_cart_oms_options_dto.fr.dart';
 import 'package:core/data/dto/cart/cart_dto.fr.dart';
@@ -25,6 +24,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:core/data/dto/cart/add_product_to_cart_dto.fr.dart';
 import 'package:core/data/repository/cart/mapper.dart';
+import 'package:omnipro_ecommerce_sdk/address/lib/data/repository/address_mapper.dart';
 
 import '../../datasource/cart/cart_fake_data.dart';
 

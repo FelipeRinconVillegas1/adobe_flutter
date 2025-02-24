@@ -1,8 +1,8 @@
-import 'package:address/domain/entity/customer_address_entity.dart';
 import 'package:core/domain/entity/custom_attribute.dart';
 import 'package:core/domain/entity/wishlist.fr.dart';
 import 'package:core/utils/custom_attribute_code.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:omnipro_ecommerce_sdk/address/lib/domain/entity/customer_address_entity.dart';
 
 part 'customer.fr.freezed.dart';
 

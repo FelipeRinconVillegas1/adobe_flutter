@@ -1,4 +1,3 @@
-import 'package:address/data/repository/address_mapper.dart';
 import 'package:core/data/dto/available_payment_method_dto.fr.dart';
 import 'package:core/data/dto/custom_attribute_dto.fr.dart';
 import 'package:core/data/dto/dropdown_manager/dropdown_option_dto.fr.dart';
@@ -21,7 +20,7 @@ import 'package:core/domain/entity/purse_info_entity.dart';
 import 'package:core/domain/entity/session_data.dart';
 import 'package:core/domain/entity/user_credential_response.dart';
 import 'package:core/utils/custom_attribute_code.dart';
-
+import 'package:omnipro_ecommerce_sdk/address/lib/data/repository/address_mapper.dart';
 import '../domain/entity/delete_account/delete_customer_input.dart';
 import '../domain/entity/stores/warehouse_address_entity.fr.dart';
 import '../domain/entity/orders/orders_edited_entity.fr.dart';
