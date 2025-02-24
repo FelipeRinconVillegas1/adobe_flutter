@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="360" height="64" viewBox="0 0 360 64">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectángulo_2507" data-name="Rectángulo 2507" width="81.658" height="31.867" fill="#fff"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectángulo_2507-2" data-name="Rectángulo 2507" width="119.115" height="46.484" fill="#ffe07e"/>
+    </clipPath>
+  </defs>
+  <g id="Grupo_199312" data-name="Grupo 199312" transform="translate(-73 -2046)">
+    <rect id="covid-19-delivery-orders-shopping-contactless-paym-F4UH5UQ" width="360" height="64" transform="translate(73 2046)" fill="#ff1335"/>
+    <g id="Grupo_194946" data-name="Grupo 194946" transform="translate(97.724 2063.498)">
+      <g id="Grupo_190000" data-name="Grupo 190000" transform="translate(-0.001)" clip-path="url(#clip-path)">
+        <path id="Trazado_2344" data-name="Trazado 2344" d="M441.8,7.925l-2.6,5.484a2.128,2.128,0,0,1-1.923,1.217h-4.842a.887.887,0,0,1-.8-1.267l2.6-5.484a2.127,2.127,0,0,1,1.923-1.217H441a.887.887,0,0,1,.8,1.267m5.56-7.917H435.24a7.717,7.717,0,0,0-6.977,4.419l-6.288,13.422a2.406,2.406,0,0,0,2.175,3.434h11.242l-.944,2.146a3.149,3.149,0,0,1-2.843,1.794H418.529l-3.265,6.65h17.191a8.929,8.929,0,0,0,8.071-5.108L450.7,5.283A3.694,3.694,0,0,0,447.358.008" transform="translate(-389.845 -0.008)" fill="#fff"/>
+        <path id="Trazado_2345" data-name="Trazado 2345" d="M26.533,7.918l-2.6,5.484a2.127,2.127,0,0,1-1.923,1.217H17.172a.887.887,0,0,1-.8-1.267l2.6-5.485A2.127,2.127,0,0,1,20.889,6.65h4.842a.888.888,0,0,1,.8,1.267M32.093,0H19.975A7.717,7.717,0,0,0,13,4.419L6.711,17.842a2.406,2.406,0,0,0,2.175,3.434H20.128l-.944,2.146a3.149,3.149,0,0,1-2.843,1.794H3.265L0,31.867H17.19a8.929,8.929,0,0,0,8.07-5.108L35.432,5.275A3.694,3.694,0,0,0,32.093,0" fill="#fff"/>
+        <path id="Trazado_2346" data-name="Trazado 2346" d="M907.649,191.963l3.564-7.481h-5.819a1.224,1.224,0,0,0-1.105.7l-3.231,6.783H892.83a1.224,1.224,0,0,0-1.107.7l-2.315,4.91h8.975l-3.564,7.481h5.82a1.224,1.224,0,0,0,1.105-.7l3.231-6.783H913.2a1.224,1.224,0,0,0,1.107-.7l2.315-4.91Z" transform="translate(-834.966 -173.189)" fill="#fff"/>
+      </g>
+    </g>
+    <g id="Grupo_194947" data-name="Grupo 194947" transform="translate(293.885 2052)" opacity="0.3" style="mix-blend-mode: normal;isolation: isolate">
+      <g id="Grupo_190000-2" data-name="Grupo 190000" transform="translate(0.001)" clip-path="url(#clip-path-2)" style="mix-blend-mode: normal;isolation: isolate">
+        <path id="Trazado_2344-2" data-name="Trazado 2344" d="M453.969,11.557l-3.788,8a3.1,3.1,0,0,1-2.8,1.775h-7.063a1.294,1.294,0,0,1-1.17-1.848l3.788-8a3.1,3.1,0,0,1,2.8-1.775H452.8a1.294,1.294,0,0,1,1.17,1.849M462.08.008H444.4a11.257,11.257,0,0,0-10.178,6.446l-9.172,19.579a3.509,3.509,0,0,0,3.173,5.009h16.4l-1.378,3.131A4.594,4.594,0,0,1,439.1,36.79H420.027l-4.763,9.7h25.076a13.025,13.025,0,0,0,11.773-7.451L466.951,7.7A5.389,5.389,0,0,0,462.08.008" transform="translate(-378.185 -0.007)" fill="#ffe07e"/>
+        <path id="Trazado_2345-2" data-name="Trazado 2345" d="M38.7,11.549l-3.788,8a3.1,3.1,0,0,1-2.8,1.775H25.048a1.3,1.3,0,0,1-1.17-1.848l3.788-8a3.1,3.1,0,0,1,2.8-1.775h7.063a1.3,1.3,0,0,1,1.17,1.849M46.814,0H29.138A11.256,11.256,0,0,0,18.961,6.446L9.789,26.026a3.509,3.509,0,0,0,3.172,5.009h16.4l-1.378,3.131a4.594,4.594,0,0,1-4.147,2.617H4.762L0,46.484H25.076a13.025,13.025,0,0,0,11.772-7.451L51.685,7.695A5.389,5.389,0,0,0,46.814,0" fill="#ffe07e"/>
+        <path id="Trazado_2346-2" data-name="Trazado 2346" d="M916.016,195.394l5.2-10.912h-8.489a1.786,1.786,0,0,0-1.612,1.018l-4.714,9.895h-12a1.786,1.786,0,0,0-1.615,1.024l-3.377,7.163H902.5l-5.2,10.912h8.489a1.786,1.786,0,0,0,1.612-1.018l4.714-9.895h12a1.786,1.786,0,0,0,1.615-1.024l3.377-7.162Z" transform="translate(-809.992 -168.01)" fill="#ffe07e"/>
+      </g>
+    </g>
+    <text id="Con_tu_registro_aprovecha_los_siguientes_beneficios:" data-name="Con tu registro aprovecha los siguientes beneficios:" transform="translate(193.276 2061)" fill="#fff" font-size="14" font-family="Rubik-Bold, Rubik" font-weight="700"><tspan x="0" y="13">Con tu registro aprovecha los </tspan><tspan x="0" y="31">siguientes beneficios:</tspan></text>
+  </g>
+</svg>

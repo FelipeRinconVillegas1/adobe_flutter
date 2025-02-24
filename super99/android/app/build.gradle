@@ -1,0 +1,157 @@
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def dartEnvironmentVariables = [
+        GMAPS_ANDROID_API_KEY   : project.hasProperty('GMAPS_ANDROID_API_KEY')
+                ? GMAPS_ANDROID_API_KEY
+                : '',
+        APP_NAME                : project.hasProperty('APP_NAME')
+                ? APP_NAME
+                : ''
+
+];
+
+def flutterRoot = localProperties.getProperty('flutter.sdk')
+if (flutterRoot == null) {
+    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+}
+
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+if (flutterVersionCode == null) {
+    flutterVersionCode = '1'
+}
+
+def flutterVersionName = localProperties.getProperty('flutter.versionName')
+if (flutterVersionName == null) {
+    flutterVersionName = '1.0'
+}
+
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+apply plugin: 'com.android.application'
+// START: FlutterFire Configuration
+apply plugin: 'com.google.gms.google-services'
+// END: FlutterFire Configuration
+apply plugin: 'kotlin-android'
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+
+android {
+    compileSdkVersion 34
+    ndkVersion flutter.ndkVersion
+
+    compileOptions {
+        // Flag to enable support for the new language APIs (local_notifications, for example)
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    defaultConfig {
+        // You can update the following values to match your application needs.
+        // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
+        minSdkVersion 23
+        applicationId "com.super99.app"
+        targetSdkVersion 34
+        compileSdk 34
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
+        resValue "string", "gmaps_api_key", dartEnvironmentVariables.GMAPS_ANDROID_API_KEY
+        resValue "string", "app_name", dartEnvironmentVariables.APP_NAME
+    }
+
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAliasProd']
+            keyPassword keystoreProperties['keyPasswordProd']
+            storeFile keystoreProperties['storeFileProd'] ? file(keystoreProperties['storeFileProd']) : null
+            storePassword keystoreProperties['storePasswordProd']
+        }
+        debug {
+            keyAlias keystoreProperties['keyAliasDev']
+            keyPassword keystoreProperties['keyPasswordDev']
+            storeFile keystoreProperties['storeFileDev'] ? file(keystoreProperties['storeFileDev']) : null
+            storePassword keystoreProperties['storePasswordDev']
+        }
+        qa {
+            keyAlias keystoreProperties['keyAliasQa']
+            keyPassword keystoreProperties['keyPasswordQa']
+            storeFile keystoreProperties['storeFileQa'] ? file(keystoreProperties['storeFileQa']) : null
+            storePassword keystoreProperties['storePasswordQa']
+        }
+    }
+
+    buildTypes {
+        release {
+            debuggable false
+            if (project.hasProperty('dev')) {
+                signingConfig signingConfigs.debug
+            }else if (project.hasProperty('qa')){
+                signingConfig signingConfigs.qa
+            }else {
+                signingConfig signingConfigs.release
+            }
+        }
+        debug {
+            debuggable true
+            if (project.hasProperty('qa')){
+                signingConfig signingConfigs.qa
+            }else if (project.hasProperty('prod')) {
+                signingConfig signingConfigs.release
+            }else {
+                signingConfig signingConfigs.debug
+            }
+        }
+
+    }
+
+
+    flavorDimensions "default"
+    productFlavors {
+        prod {
+            dimension "default"
+        }
+        qa {
+            dimension "default"
+            applicationIdSuffix ".qa"
+        }
+        dev {
+            dimension "default"
+            applicationIdSuffix ".dev"
+        }
+    }
+
+}
+
+flutter {
+    source '../..'
+}
+
+dependencies {
+
+    //Flutter local notifications dependencies
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+    implementation 'androidx.window:window:1.0.0'
+    implementation 'androidx.window:window-java:1.0.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'com.google.firebase:firebase-messaging:24.1.0'
+    implementation("com.squareup.okhttp3:okhttp:4.10.0")
+}

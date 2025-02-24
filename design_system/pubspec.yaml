@@ -1,0 +1,530 @@
+name: design_system
+description: A new Flutter plugin project.
+version: 0.0.1
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  plugin_platform_interface: ^2.0.2
+  flutter_screenutil: ^5.8.4
+  flutter_svg: ^2.0.7
+  shimmer: ^3.0.0
+  loading_animation_widget: ^1.2.0+4
+  cached_network_image: ^3.2.3
+  auto_size_text: ^3.0.0
+  accordion: ^2.5.1
+  dots_indicator: ^3.0.0
+  badges: ^3.1.1
+  flutter_riverpod: ^2.3.1
+  screenshot: ^2.1.0
+  flutter_widget_from_html: ^0.10.3
+  speech_to_text: ^6.1.1
+  equatable: ^2.0.5
+  dropdown_search: ^5.0.6
+  flutter_rating_bar: ^4.0.1
+  pinput: 4.0.0
+  carousel_slider: ^4.2.1
+  lottie: ^3.1.2
+  flutter_slidable: ^3.1.0
+  core:
+    path: ../super99/core
+  skeletonizer: ^0.8.0
+  qr_flutter: ^4.1.0
+  visibility_detector: ^0.4.0+2
+  substring_highlight: ^1.0.33
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+  # This section identifies this Flutter project as a plugin project.
+  # The 'pluginClass' specifies the class (in Java, Kotlin, Swift, Objective-C, etc.)
+  # which should be registered in the plugin registry. This is required for
+  # using method channels.
+  # The Android 'package' specifies package in which the registered class is.
+  # This is required for using method channels on Android.
+  # The 'ffiPlugin' specifies that native code should be built and bundled.
+  # This is required for using `dart:ffi`.
+  # All these are used by the tooling to maintain consistency when
+  # adding or updating assets for this project.
+  uses-material-design: true
+  plugin:
+    platforms:
+      # This plugin project was generated without specifying any
+      # platforms with the `--platform` argument. If you see the `some_platform` map below, remove it and
+      # then add platforms following the instruction here:
+      # https://flutter.dev/docs/development/packages-and-plugins/developing-packages#plugin-platforms
+      # -------------------
+      some_platform:
+        pluginClass: somePluginClass
+    # -------------------
+
+  # To add assets to your plugin package, add an assets section, like this:
+  assets:
+    - packages/design_system/assets/icons/google_current_location.svg
+    - packages/design_system/assets/icons/not_address_yet.svg
+    - packages/design_system/assets/icons/account_selected.svg
+    - packages/design_system/assets/icons/account_wallet.svg
+    - packages/design_system/assets/icons/account.svg
+    - packages/design_system/assets/icons/add_address_success.svg
+    - packages/design_system/assets/icons/add_circle_denim_blue.svg
+    - packages/design_system/assets/icons/add_gray.svg
+    - packages/design_system/assets/icons/add_to_cart_success.svg
+    - packages/design_system/assets/icons/alert.svg
+    - packages/design_system/assets/icons/alert_black.svg
+    - packages/design_system/assets/icons/arrow_back_white.svg
+    - packages/design_system/assets/icons/arrow_down_steel_gray.svg
+    - packages/design_system/assets/icons/arrow_left_denim_blue.svg
+    - packages/design_system/assets/icons/arrow_right_gray.svg
+    - packages/design_system/assets/icons/back_arrow_blue.svg
+    - packages/design_system/assets/icons/back_red_arrow.svg
+    - packages/design_system/assets/icons/barcode_blue.svg
+    - packages/design_system/assets/icons/barcode_for_loyaty.svg
+    - packages/design_system/assets/icons/barcode_grey.svg
+    - packages/design_system/assets/icons/barcode_red.svg
+    - packages/design_system/assets/icons/baseline_calendar.svg
+    - packages/design_system/assets/icons/blue_indicator_left.svg
+    - packages/design_system/assets/icons/blue_indicator_right.svg
+    - packages/design_system/assets/icons/btn_disabled_grey.svg
+    - packages/design_system/assets/icons/calendar_grey.svg
+    - packages/design_system/assets/icons/calendar.svg
+    - packages/design_system/assets/icons/call_normal.svg
+    - packages/design_system/assets/icons/call_number.svg
+    - packages/design_system/assets/icons/cancel_antigen.svg
+    - packages/design_system/assets/icons/cancel_flyer.svg
+    - packages/design_system/assets/icons/card_placeholder.svg
+    - packages/design_system/assets/icons/carnet.svg
+    - packages/design_system/assets/icons/cart_secondary_red.svg
+    - packages/design_system/assets/icons/cart_white.svg
+    - packages/design_system/assets/icons/cart.svg
+    - packages/design_system/assets/icons/catalog_sales.svg
+    - packages/design_system/assets/icons/change_password.svg
+    - packages/design_system/assets/icons/circular_plus_blue.svg
+    - packages/design_system/assets/icons/circular_plus_button.svg
+    - packages/design_system/assets/icons/clear_cart.svg
+    - packages/design_system/assets/icons/clear.svg
+    - packages/design_system/assets/icons/click_and_collect_selected.svg
+    - packages/design_system/assets/icons/click_and_collect.svg
+    - packages/design_system/assets/icons/clip_location.svg
+    - packages/design_system/assets/icons/s99_store_pickup_map.png
+    - packages/design_system/assets/icons/clock_primary.svg
+    - packages/design_system/assets/icons/clock_secondary_red.svg
+    - packages/design_system/assets/icons/clock.svg
+    - packages/design_system/assets/icons/close_blue.svg
+    - packages/design_system/assets/icons/container.svg
+    - packages/design_system/assets/icons/correct_sign_icon.svg
+    - packages/design_system/assets/icons/cross_black.svg
+    - packages/design_system/assets/icons/cross_grey.svg
+    - packages/design_system/assets/icons/cross_red.svg
+    - packages/design_system/assets/icons/cross_rounded.png
+    - packages/design_system/assets/icons/cross.svg
+    - packages/design_system/assets/icons/current_location_normal.svg
+    - packages/design_system/assets/icons/delete_address.svg
+    - packages/design_system/assets/icons/delete_cart.svg
+    - packages/design_system/assets/icons/delete_white.svg
+    - packages/design_system/assets/icons/delivery_boy.svg
+    - packages/design_system/assets/icons/direction_normal.svg
+    - packages/design_system/assets/icons/discount_coupon.svg
+    - packages/design_system/assets/icons/doctor_gray.svg
+    - packages/design_system/assets/icons/doctor_location.svg
+    - packages/design_system/assets/icons/dollor.svg
+    - packages/design_system/assets/icons/down_black.svg
+    - packages/design_system/assets/icons/down_drop_down_arrow.svg
+    - packages/design_system/assets/icons/down.svg
+    - packages/design_system/assets/icons/edit_blue.svg
+    - packages/design_system/assets/icons/edit.svg
+    - packages/design_system/assets/icons/email_invoice.svg
+    - packages/design_system/assets/icons/entertainment.svg
+    - packages/design_system/assets/icons/exlymentry.svg
+    - packages/design_system/assets/icons/eye_visibility_off_normal.svg
+    - packages/design_system/assets/icons/eye_visibility_on_normal.svg
+    - packages/design_system/assets/icons/failed_alert.svg
+    - packages/design_system/assets/icons/fast_forward_red.svg
+    - packages/design_system/assets/icons/fast_forward.svg
+    - packages/design_system/assets/icons/favorite.svg
+    - packages/design_system/assets/icons/favourites.svg
+    - packages/design_system/assets/icons/fill_recipe.svg
+    - packages/design_system/assets/icons/fill_recipe2.svg
+    - packages/design_system/assets/icons/fill_recipe3.svg
+    - packages/design_system/assets/icons/filter_blue_normal.svg
+    - packages/design_system/assets/icons/filter_selected.svg
+    - packages/design_system/assets/icons/filter.svg
+    - packages/design_system/assets/icons/forward_arrow_grey.svg
+    - packages/design_system/assets/icons/free_product.svg
+    - packages/design_system/assets/icons/gratis.svg
+    - packages/design_system/assets/icons/grey_forward_arrow.svg
+    - packages/design_system/assets/icons/grid_grey.svg
+    - packages/design_system/assets/icons/grid_white.svg
+    - packages/design_system/assets/icons/grid.svg
+    - packages/design_system/assets/icons/heart_selected.svg
+    - packages/design_system/assets/icons/heart_unselected.svg
+    - packages/design_system/assets/icons/help.svg
+    - packages/design_system/assets/icons/home_delivery_selected.svg
+    - packages/design_system/assets/icons/home_delivery.svg
+    - packages/design_system/assets/icons/home_selected.svg
+    - packages/design_system/assets/icons/home.svg
+    - packages/design_system/assets/icons/hsbc_card.svg
+    - packages/design_system/assets/icons/ic_blue_next_arrow.svg
+    - packages/design_system/assets/icons/ic_danger.svg
+    - packages/design_system/assets/icons/ic_delete_from_cart.svg
+    - packages/design_system/assets/icons/ic_delete.svg
+    - packages/design_system/assets/icons/ic_emoji_2.svg
+    - packages/design_system/assets/icons/ic_emoji_3.svg
+    - packages/design_system/assets/icons/ic_emoji_4.svg
+    - packages/design_system/assets/icons/ic_emoji_5.svg
+    - packages/design_system/assets/icons/ic_emoji_crying.svg
+    - packages/design_system/assets/icons/ic_emoji.svg
+    - packages/design_system/assets/icons/ic_exclusive_onilne_list_bg.svg
+    - packages/design_system/assets/icons/ic_exclusive_online_big_bar_bg.svg
+    - packages/design_system/assets/icons/ic_exclusive_online_grid_bg.svg
+    - packages/design_system/assets/icons/ic_exclusive_online_small_bar_bg.svg
+    - packages/design_system/assets/icons/ic_fast_delivery.svg
+    - packages/design_system/assets/icons/ic_favorite.svg
+    - packages/design_system/assets/icons/ic_gray_oval.svg
+    - packages/design_system/assets/icons/ic_new_current_location.svg
+    - packages/design_system/assets/icons/ic_tab_selector.svg
+    - packages/design_system/assets/icons/ic_tab_selector2.svg
+    - packages/design_system/assets/icons/ic_timer.svg
+    - packages/design_system/assets/icons/ic_whatsapp.svg
+    - packages/design_system/assets/icons/info.svg
+    - packages/design_system/assets/icons/left_arrow.svg
+    - packages/design_system/assets/icons/list_grey.svg
+    - packages/design_system/assets/icons/list_white.svg
+    - packages/design_system/assets/icons/location_pin_white.svg
+    - packages/design_system/assets/icons/logout_red.svg
+    - packages/design_system/assets/icons/logout.svg
+    - packages/design_system/assets/icons/loyalty_card_selected.svg
+    - packages/design_system/assets/icons/loyalty_card_unselected.svg
+    - packages/design_system/assets/icons/loyalty.svg
+    - packages/design_system/assets/icons/manage_address.svg
+    - packages/design_system/assets/icons/map_direction_normal.svg
+    - packages/design_system/assets/icons/map_list.svg
+    - packages/design_system/assets/icons/map_view.svg
+    - packages/design_system/assets/icons/map_pin_a.svg
+    - packages/design_system/assets/icons/map_pin_a.png
+    - packages/design_system/assets/icons/map_pin_dark_grayish_blue.svg
+    - packages/design_system/assets/icons/map_pin_new.svg
+    - packages/design_system/assets/icons/map_pin.svg
+    - packages/design_system/assets/icons/master_card.svg
+    - packages/design_system/assets/icons/microphone.svg
+    - packages/design_system/assets/icons/minus_denim_blue.svg
+    - packages/design_system/assets/icons/minus_gray.svg
+    - packages/design_system/assets/icons/minus_sign_blue.svg
+    - packages/design_system/assets/icons/minus_sign_circular_button.svg
+    - packages/design_system/assets/icons/monedero_del_ahorro.svg
+    - packages/design_system/assets/icons/my_addresses.svg
+    - packages/design_system/assets/icons/my_location.svg
+    - packages/design_system/assets/icons/my_orders.svg
+    - packages/design_system/assets/icons/my_subscriptions.svg
+    - packages/design_system/assets/icons/next_arrow_denim_blue.svg
+    - packages/design_system/assets/icons/next_down.svg
+    - packages/design_system/assets/icons/next_red_arrow.svg
+    - packages/design_system/assets/icons/next_up.svg
+    - packages/design_system/assets/icons/next.svg
+    - packages/design_system/assets/icons/no_notification.svg
+    - packages/design_system/assets/icons/notification.svg
+    - packages/design_system/assets/icons/offer_loyalty.svg
+    - packages/design_system/assets/icons/offer_promotion.svg
+    - packages/design_system/assets/icons/offer_purchase.svg
+    - packages/design_system/assets/icons/offer.svg
+    - packages/design_system/assets/icons/order_placed.svg
+    - packages/design_system/assets/icons/order.svg
+    - packages/design_system/assets/icons/other_address_denim_blue.svg
+    - packages/design_system/assets/icons/other_medicine.svg
+    - packages/design_system/assets/icons/page_selected.svg
+    - packages/design_system/assets/icons/page_unselected.svg
+    - packages/design_system/assets/icons/payment.svg
+    - packages/design_system/assets/icons/pending_reminder.svg
+    - packages/design_system/assets/icons/person_default.svg
+    - packages/design_system/assets/icons/pick_image.svg
+    - packages/design_system/assets/icons/place_holder_product_details.svg
+    - packages/design_system/assets/icons/place_holder_subcategory.svg
+    - packages/design_system/assets/icons/place_pin.svg
+    - packages/design_system/assets/icons/pramotion_place_holder.svg
+    - packages/design_system/assets/icons/prescription_placeholder.svg
+    - packages/design_system/assets/icons/prescription.svg
+    - packages/design_system/assets/icons/product_card_placeholder.svg
+    - packages/design_system/assets/icons/product_detail_placeholder.svg
+    - packages/design_system/assets/icons/location_with_house.svg
+    - packages/design_system/assets/icons/product_grid_placeholder.svg
+    - packages/design_system/assets/icons/product_list_placeholder.svg
+    - packages/design_system/assets/icons/radio_blue_selected.svg
+    - packages/design_system/assets/icons/radio_blue_unselected.svg
+    - packages/design_system/assets/icons/rate_app.svg
+    - packages/design_system/assets/icons/rating_new.svg
+    - packages/design_system/assets/icons/rb_blue_selected.svg
+    - packages/design_system/assets/icons/rb_green_selected.svg
+    - packages/design_system/assets/icons/rb_red_selected.svg
+    - packages/design_system/assets/icons/rb_without_selection.svg
+    - packages/design_system/assets/icons/real_money.svg
+    - packages/design_system/assets/icons/recurring_subscriptions.svg
+    - packages/design_system/assets/icons/reminder_fab.svg
+    - packages/design_system/assets/icons/reminders_selected.svg
+    - packages/design_system/assets/icons/reminders.svg
+    - packages/design_system/assets/icons/reverse.svg
+    - packages/design_system/assets/icons/right_arrow_blue.svg
+    - packages/design_system/assets/icons/right_arrow_on_map.svg
+    - packages/design_system/assets/icons/rounded_rect_blue.svg
+    - packages/design_system/assets/icons/rx_blue.svg
+    - packages/design_system/assets/icons/rx.svg
+    - packages/design_system/assets/icons/scan_prescription_required.svg
+    - packages/design_system/assets/icons/scan.svg
+    - packages/design_system/assets/icons/scooter.svg
+    - packages/design_system/assets/icons/search_new.svg
+    - packages/design_system/assets/icons/search.svg
+    - packages/design_system/assets/icons/search_subcategory.svg
+    - packages/design_system/assets/icons/select_current_location_denim_blue.svg
+    - packages/design_system/assets/icons/sending_money.svg
+    - packages/design_system/assets/icons/services_pay.svg
+    - packages/design_system/assets/icons/setting_gear.svg
+    - packages/design_system/assets/icons/setting.svg
+    - packages/design_system/assets/icons/share.svg
+    - packages/design_system/assets/icons/snooz.svg
+    - packages/design_system/assets/icons/squre_check_selected_normal.svg
+    - packages/design_system/assets/icons/star_rating_grey.svg
+    - packages/design_system/assets/icons/star_ratings_yellow.svg
+    - packages/design_system/assets/icons/step_map_pin.svg
+    - packages/design_system/assets/icons/store_map_pin.svg
+    - packages/design_system/assets/icons/store_selected.svg
+    - packages/design_system/assets/icons/store.svg
+    - packages/design_system/assets/icons/subscription.svg
+    - packages/design_system/assets/icons/subscriptions_selected.svg
+    - packages/design_system/assets/icons/sucsess.svg
+    - packages/design_system/assets/icons/switch_active.svg
+    - packages/design_system/assets/icons/switch_inactive.svg
+    - packages/design_system/assets/icons/syringe.svg
+    - packages/design_system/assets/icons/syrup.svg
+    - packages/design_system/assets/icons/tab_account_selected.svg
+    - packages/design_system/assets/icons/tab_account.svg
+    - packages/design_system/assets/icons/tab_free_products_selected.svg
+    - packages/design_system/assets/icons/tab_free_products.svg
+    - packages/design_system/assets/icons/tab_promotions_selected.svg
+    - packages/design_system/assets/icons/tab_promotions.svg
+    - packages/design_system/assets/icons/tab_subscriptions_selected.svg
+    - packages/design_system/assets/icons/tab_subscriptions.svg
+    - packages/design_system/assets/icons/taken.svg
+    - packages/design_system/assets/icons/tbd_amex.svg
+    - packages/design_system/assets/icons/transfer_balance.svg
+    - packages/design_system/assets/icons/up_arrow_white.svg
+    - packages/design_system/assets/icons/up_arrow.svg
+    - packages/design_system/assets/icons/update_profile.svg
+    - packages/design_system/assets/icons/user_location_on_map.svg
+    - packages/design_system/assets/icons/user_location_on_map.png
+    - packages/design_system/assets/icons/verified.svg
+    - packages/design_system/assets/icons/visa.svg
+    - packages/design_system/assets/icons/wallet_white.svg
+    - packages/design_system/assets/icons/wallet.svg
+    - packages/design_system/assets/icons/watch.svg
+    - packages/design_system/assets/icons/web_view.svg
+    - packages/design_system/assets/icons/s99_cart_empty.svg
+    - packages/design_system/assets/icons/s99_label.svg
+    - packages/design_system/assets/icons/s99_message_bubble.svg
+    - packages/design_system/assets/icons/s99_money_reload.svg
+    - packages/design_system/assets/icons/s99_delete.svg
+    - packages/design_system/assets/icons/s99_house_place.svg
+    - packages/design_system/assets/icons/s99_pen_paper_edit.svg
+    - packages/design_system/assets/icons/s99_options.svg
+    - packages/design_system/assets/icons/s99_person_default.svg
+    - packages/design_system/assets/icons/s99_pickup_store.svg
+    - packages/design_system/assets/icons/s99_pickup_store_2.svg
+    - packages/design_system/assets/icons/s99_pickup_store_3.svg
+    - packages/design_system/assets/icons/s99_pin_storepickup_map.png
+    - packages/design_system/assets/icons/s99_no_shipping_method.svg
+    - packages/design_system/assets/icons/s99_pin_house_map.png
+    - packages/design_system/assets/icons/s99_plus_cart_bottom.png
+    - packages/design_system/assets/icons/s99_location_house_inside.svg
+    - packages/design_system/assets/icons/yes.svg
+    - packages/design_system/assets/icons/zoom_out.svg
+    - packages/design_system/assets/icons/wishlist.svg
+    - packages/design_system/assets/icons/add_rounded.svg
+    - packages/design_system/assets/icons/check_green.svg
+    - packages/design_system/assets/icons/product_not_found.webp
+    - packages/design_system/assets/animations/animation_circle_red.json
+    - packages/design_system/assets/animations/animation_check_ok.json
+    - packages/design_system/assets/animations/animation_check_ok_green.json
+    - packages/design_system/assets/animations/animation_cart_jumping.json
+    - packages/design_system/assets/animations/animation_check_serpentines.json
+    - packages/design_system/assets/animations/animation_checkout_creating_order.json
+    - packages/design_system/assets/animations/animation_circle_check_red_yellow_loader.json
+    - packages/design_system/assets/animations/animation_circle_check_splash.json
+    - packages/design_system/assets/animations/animation_checkout_processing_payment.json
+    - packages/design_system/assets/animations/progress_bar.json
+    - packages/design_system/assets/animations/animation_benefits_plant_enter.json
+    - packages/design_system/assets/animations/animation_gradient_background_1.json
+    - packages/design_system/assets/animations/animation_delivery_tracking_status_1.json
+    - packages/design_system/assets/animations/animation_delivery_tracking_status_2.json
+    - packages/design_system/assets/animations/animation_delivery_tracking_status_3.json
+    - packages/design_system/assets/animations/animation_delivery_tracking_status_4.json
+    - packages/design_system/assets/animations/animation_init_app.json
+    - packages/design_system/assets/animations/animation_delivery_tracking_on_the_way.json
+    - packages/design_system/assets/animations/animation_delivery_tracking_status_cancel.json
+    - packages/design_system/assets/animations/animation_delivery_tracking_status_accepted.json
+    - packages/design_system/assets/animations/animation_delivery_tracking_packing.json
+    - packages/design_system/assets/animations/animation_delivery_tracking_status_creating.json
+    - packages/design_system/assets/icons/logo_google.svg
+    - packages/design_system/assets/icons/facebook.webp
+    - packages/design_system/assets/icons/twitter.webp
+    - packages/design_system/assets/icons/instagram.webp
+    - packages/design_system/assets/icons/youtube.webp
+    - packages/design_system/assets/icons/tik_tok.webp
+    - packages/design_system/assets/icons/pinterest.webp
+    - packages/design_system/assets/icons/send_email.webp
+    - packages/design_system/assets/icons/no_product_found.webp
+    - packages/design_system/assets/icons/location_outline.svg
+    - packages/design_system/assets/icons/profile_not_yet_placeholder.webp
+    - packages/design_system/assets/icons/ic_dialog_alert.png
+    - packages/design_system/assets/icons/legal.svg
+    - packages/design_system/assets/icons/edit_button.svg
+    - packages/design_system/assets/icons/exclusive_online_label.png
+    - packages/design_system/assets/icons/apple_wallet.svg
+    - packages/design_system/assets/icons/ic_copy.svg
+    - packages/design_system/assets/images/99.png
+    - packages/design_system/assets/images/99background_red.png
+    - packages/design_system/assets/images/behance.png
+    - packages/design_system/assets/images/s99_bag.png
+    - packages/design_system/assets/images/s99_group_cards.png
+    - packages/design_system/assets/images/s99_men_box.png
+    - packages/design_system/assets/images/s99_wallet.png
+    - packages/design_system/assets/images/s99_ae.png
+    - packages/design_system/assets/images/s99_dinners.png
+    - packages/design_system/assets/images/s99_mc.png
+    - packages/design_system/assets/images/s99_visa.png
+    - packages/design_system/assets/images/s99_user_bag.svg
+    - packages/design_system/assets/images/s99_percent_star.png
+    - packages/design_system/assets/images/s99_trash_red.png
+    - packages/design_system/assets/images/s99_welcome_background.png
+    - packages/design_system/assets/images/s99_cart_super_offers.png
+    - packages/design_system/assets/icons/category/hogar.png
+    - packages/design_system/assets/icons/category/ofertas.png
+    - packages/design_system/assets/icons/success_s99.svg
+    - packages/design_system/assets/icons/s99_digits_red.svg
+    - packages/design_system/assets/icons/s99_notifications_colored.svg
+    - packages/design_system/assets/icons/s99_help_question.svg
+    - packages/design_system/assets/images/s99_only_9.png
+    - packages/design_system/assets/images/s99_placeholder.png
+    - packages/design_system/assets/icons/s99_logo_big.svg
+    - packages/design_system/assets/icons/s99_plus.svg
+    - packages/design_system/assets/icons/error_s99.svg
+    - packages/design_system/assets/icons/logo_s99.svg
+    - packages/design_system/assets/icons/icon_empty_address.svg
+    - flags/
+    - packages/design_system/assets/icons/home_outline.svg
+    - packages/design_system/assets/icons/s99_benefits_icon.svg
+    - packages/design_system/assets/icons/s99_benefit_99_plus.svg
+    - packages/design_system/assets/icons/s99_error.svg
+    - packages/design_system/assets/icons/s99_success.svg
+    - packages/design_system/assets/icons/s99_truck_home_delivery.svg
+    - packages/design_system/assets/icons/s99_user_welcome.svg
+    - packages/design_system/assets/icons/s99_user_register_welcome.svg
+    - packages/design_system/assets/icons/s99_cart_success.svg
+    - packages/design_system/assets/icons/s99_cart_error.svg
+    - packages/design_system/assets/icons/money_s99.svg
+    - packages/design_system/assets/icons/user_s99.svg
+    - packages/design_system/assets/icons/help_s99.svg
+    - packages/design_system/assets/icons/clock_s99.svg
+    - packages/design_system/assets/icons/s99_delivery.svg
+    - packages/design_system/assets/icons/s99_edit_address.svg
+    - packages/design_system/assets/icons/s99_empty_orders.svg
+    - packages/design_system/assets/icons/s99_delete_address.svg
+    - packages/design_system/assets/icons/s99_shop.svg
+    - packages/design_system/assets/icons/s99_status_order_cancel.svg
+    - packages/design_system/assets/icons/s99_status_order_packing.svg
+    - packages/design_system/assets/icons/s99_status_order_picking.svg
+    - packages/design_system/assets/icons/s99_status_order_delivered.svg
+    - packages/design_system/assets/icons/s99_status_order_accepted_and_active.svg
+    - packages/design_system/assets/icons/s99_status_order_ready_to_be_shipped.svg
+    - packages/design_system/assets/icons/s99_status_order_on_this_way.svg
+    - packages/design_system/assets/images/backgroun_item_menu.svg
+    - packages/design_system/assets/icons/s99_plus_icon.svg
+    - packages/design_system/assets/icons/s99_9_giant_red.svg
+    - packages/design_system/assets/icons/s99_9_giant_yellow.svg
+    - packages/design_system/assets/icons/s99_plus_red.svg
+    - packages/design_system/assets/icons/addresses_icon.svg
+    - packages/design_system/assets/icons/whatsapp.svg
+    - packages/design_system/assets/icons/card_99.svg
+    - packages/design_system/assets/icons/help_outline.svg
+    - packages/design_system/assets/icons/your_code_outline.svg
+    - packages/design_system/assets/icons/user_outline.svg
+    - packages/design_system/assets/icons/menu_address.svg
+    - packages/design_system/assets/icons/menu_payment_method.svg
+    - packages/design_system/assets/icons/menu_order_history.svg
+    - packages/design_system/assets/icons/menu_my_list.svg
+    - packages/design_system/assets/icons/menu_notifications.svg
+    - packages/design_system/assets/icons/menu_bell.svg
+    - packages/design_system/assets/icons/s99_cronometer.svg
+    - packages/design_system/assets/icons/s99_loyalty_plan.svg
+    - packages/design_system/assets/icons/s99_mc.svg
+    - packages/design_system/assets/icons/s99_visa.svg
+    - packages/design_system/assets/icons/s99_checkout_big_check.svg
+    - packages/design_system/assets/icons/s99_cash_payment.svg
+    - packages/design_system/assets/icons/s99_child.svg
+    - packages/design_system/assets/icons/s99_pets.svg
+    - packages/design_system/assets/icons/s99_card_chip.svg
+    - packages/design_system/assets/icons/s99_superoffers_menu.svg
+    - packages/design_system/assets/icons/s99_banner_99.svg
+    - packages/design_system/assets/icons/s99_tune.svg
+    - packages/design_system/assets/icons/99_plus_white_circle.svg
+    - packages/design_system/assets/icons/99_plus.svg
+    - packages/design_system/assets/icons/99_plus_white_circle.png
+    - packages/design_system/assets/icons/99_plus.png
+    - packages/design_system/assets/icons/personal_information.svg
+    - packages/design_system/assets/icons/order_bag.svg
+    - packages/design_system/assets/icons/payment_card.svg
+    - packages/design_system/assets/icons/terms_conditions.svg
+    - packages/design_system/assets/icons/privacy_policies.svg
+    - packages/design_system/assets/icons/personal_data.svg
+    
+  #
+  # For details regarding assets in packages, see
+  # https://flutter.dev/assets-and-images/#from-packages
+  #
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware
+
+  # To add custom fonts to your plugin package, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  # fonts:
+  #   - family: OpenSans
+  #     fonts:
+  #       - asset: packages/design_system/fonts/Open_Sans/OpenSans-Bold.ttf
+  #       - asset: packages/design_system/fonts/Open_Sans/OpenSans-BoldItalic.ttf
+  #       - asset: packages/design_system/fonts/Open_Sans/OpenSans-ExtraBold.ttf
+  #       - asset: packages/design_system/fonts/Open_Sans/OpenSans-ExtraBoldItalic.ttf
+  #       - asset: packages/design_system/fonts/Open_Sans/OpenSans-Italic.ttf
+  #       - asset: packages/design_system/fonts/Open_Sans/OpenSans-Light.ttf
+  #       - asset: packages/design_system/fonts/Open_Sans/OpenSans-LightItalic.ttf
+  #       - asset: packages/design_system/fonts/Open_Sans/OpenSans-Medium.ttf
+  #       - asset: packages/design_system/fonts/Open_Sans/OpenSans-MediumItalic.ttf
+  #       - asset: packages/design_system/fonts/Open_Sans/OpenSans-Regular.ttf
+  #       - asset: packages/design_system/fonts/Open_Sans/OpenSans-SemiBold.ttf
+  #       - asset: packages/design_system/fonts/Open_Sans/OpenSans-SemiBoldItalic.ttf
+  #   - family: Manrope
+  #     fonts:
+  #       - asset: packages/design_system/fonts/Manrope/Manrope-Bold.ttf
+  #       - asset: packages/design_system/fonts/Manrope/Manrope-ExtraBold.ttf
+  #       - asset: packages/design_system/fonts/Manrope/Manrope-ExtraLight.ttf
+  #       - asset: packages/design_system/fonts/Manrope/Manrope-Light.ttf
+  #       - asset: packages/design_system/fonts/Manrope/Manrope-Medium.ttf
+  #       - asset: packages/design_system/fonts/Manrope/Manrope-Regular.ttf
+  #       - asset: packages/design_system/fonts/Manrope/Manrope-SemiBold.ttf
+  #   - family: Fasthand
+  #     fonts:
+  #       - asset: packages/design_system/fonts/Fasthand-Regular.ttf
+  #         style: normal
+  #
+  # For details regarding fonts in packages, see
+  # https://flutter.dev/custom-fonts/#from-packages

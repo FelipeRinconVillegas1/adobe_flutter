@@ -1,0 +1,294 @@
+name: base_project
+
+## Descomentar linea siguiente si se usa FVM,
+## no es requerido, los comandos de melos con flutter ya aputan al fvm
+## sdkPath: .fvm/flutter_sdk
+
+
+packages:
+  - core
+  - ../design_system
+  - feature/auth
+  - feature/store
+  - feature/map
+  - feature/profile
+  - feature/common_services
+  - feature/address
+
+scripts:
+
+  ## RELEASE SCRIPTS
+  #dev
+  dev-ipa: flutter build ipa --flavor dev -t lib/main.dart --release --dart-define-from-file=./config_dev.json --no-tree-shake-icons
+  dev-apk: flutter build apk --flavor dev -t lib/main.dart --release --dart-define-from-file=./config_dev.json --android-project-arg=dev --no-tree-shake-icons
+  dev-aab: flutter build appbundle --flavor dev -t lib/main.dart --release --dart-define-from-file=./config_dev.json --android-project-arg=dev --no-tree-shake-icons
+
+  #dev Obfuscated
+  dev-ipa-obfuscated: |
+    VERSION=$(grep '^version:' pubspec.yaml | sed 's/version: //')
+    flutter build ipa --flavor dev -t lib/main.dart --release --obfuscate --split-debug-info=./obfuscated/dev/ios/$VERSION/ --dart-define-from-file=./config_dev.json --no-tree-shake-icons
+  dev-apk-obfuscated: |
+    VERSION=$(grep '^version:' pubspec.yaml | sed 's/version: //')
+    flutter build apk --flavor dev -t lib/main.dart --release --obfuscate --split-debug-info=./obfuscated/dev/android/apk/$VERSION/ --dart-define-from-file=./config_dev.json --android-project-arg=dev --no-tree-shake-icons
+  dev-aab-obfuscated: |
+    VERSION=$(grep '^version:' pubspec.yaml | sed 's/version: //')
+    flutter build appbundle --flavor dev -t lib/main.dart --release --obfuscate --split-debug-info=./obfuscated/dev/android/aab/$VERSION/ --dart-define-from-file=./config_dev.json --android-project-arg=dev --no-tree-shake-icons
+
+  #prod
+  prod-ipa: |
+    VERSION=$(grep '^version:' pubspec.yaml | sed 's/version: //')
+    flutter build ipa --flavor prod -t lib/main.dart --release --obfuscate --split-debug-info=./obfuscated/prod/ios/$VERSION/ --dart-define-from-file=./config_prod.json --no-tree-shake-icons
+  prod-aab: |
+    VERSION=$(grep '^version:' pubspec.yaml | sed 's/version: //')
+    flutter build appbundle --flavor prod -t lib/main.dart --release --obfuscate --split-debug-info=./obfuscated/prod/android/aab/$VERSION/ --dart-define-from-file=./config_prod.json --no-tree-shake-icons
+
+
+  ##
+  ## GENERAL SCRIPTS WITH FVM
+  ##
+
+  f-bs: melos --sdk-path .fvm/flutter_sdk bootstrap
+
+  f-init-app: melos --sdk-path .fvm/flutter_sdk f-clean-all && melos f-get && melos f-gen && melos f-gen-l10n && melos f-l10n && melos f-gen-lib
+
+  f-add:
+    run: melos exec --sdk-path .fvm/flutter_sdk -- fvm flutter pub add '$PACKAGE'
+    description: Add a package to all packages
+
+  f-remove-package:
+    run: melos exec --sdk-path .fvm/flutter_sdk -- fvm flutter pub remove '$PACKAGE'
+    description: Remove a package to all packages
+
+  f-gen:
+    run: melos exec --ignore="design_system" --sdk-path .fvm/flutter_sdk fvm dart run build_runner build --delete-conflicting-outputs
+    description: Generate all files with build_runner
+
+  f-gen-lib:
+    run: melos exec --sdk-path .fvm/flutter_sdk fvm dart run build_runner build --delete-conflicting-outputs
+    description: Generate all files with build_runner and delete source versions in lib
+
+  f-gen-conflicts:
+    run: melos exec --ignore="design_system" --sdk-path .fvm/flutter_sdk fvm dart run build_runner build --delete-conflicting-outputs
+    description: Generate all files with build_runner and delete conflicting outputs
+
+  f-clean-all:
+    run: melos exec --ignore="design_system" --sdk-path .fvm/flutter_sdk fvm flutter clean
+    description: Clean all packages
+
+  f-get:
+    run: melos exec --sdk-path .fvm/flutter_sdk -- fvm flutter pub get
+    description: Run `flutter pub get` in all packages.
+
+  f-analyze:
+    run: melos exec --sdk-path .fvm/flutter_sdk -- fvm flutter analyze .
+    description: Run `dart analyze` in all packages.
+
+  f-gen-l10n: melos f-l10n && melos f-gen-features-l10n && melos f-gen-core-l10n
+
+  f-l10n:
+    run: fvm flutter gen-l10n --arb-dir=lib/l10n/arb --template-arb-file=intl_es.arb --output-localization-file=localization.dart --output-dir=lib/l10n --no-synthetic-package
+
+  ## CORE SCRIPTS
+  f-gen-core: melos exec --scope="core" --sdk-path .fvm/flutter_sdk fvm dart run build_runner build --delete-conflicting-outputs
+
+  f-get-core: melos exec --scope="core" --sdk-path .fvm/flutter_sdk fvm flutter pub get
+
+  f-gen-core-l10n: melos exec --scope="core" --sdk-path .fvm/flutter_sdk -- fvm flutter gen-l10n --arb-dir=lib/l10n/arb --template-arb-file=intl_es.arb --output-localization-file=localization.dart --output-dir=lib/l10n --no-synthetic-package
+  f-test-core: melos gen-core-coverage
+
+  f-gen-core-coverage:
+    run: melos exec --scope="core" --sdk-path .fvm/flutter_sdk fvm flutter test --coverage
+    description: Run tests in auth with coverage.
+
+  ## FEATURES SCRIPTS
+  f-gen-features-l10n:
+    run: melos exec --depends-on="design_system" --sdk-path .fvm/flutter_sdk fvm flutter gen-l10n --arb-dir=lib/l10n/arb --template-arb-file=intl_es.arb --output-localization-file=localization.dart --output-dir=lib/l10n --no-synthetic-package
+
+  f-add-features:
+    run: melos exec --depends-on="design_system" --sdk-path .fvm/flutter_sdk fvm flutter pub add '$PACKAGE'
+    env:
+      PACKAGE: 'package_name'
+    description: Add a package to all packages
+
+  ## AUTH SCRIPTS
+  f-gen-auth:
+    run: melos exec --scope="auth" --sdk-path .fvm/flutter_sdk -- fvm dart run build_runner build --delete-conflicting-outputs
+    description: Generate files with build_runner in feature/auth
+
+  f-gen-l10n-auth:
+    run: melos exec --scope="auth" --sdk-path .fvm/flutter_sdk -- fvm flutter gen-l10n --arb-dir=lib/l10n/arb --template-arb-file=intl_es.arb --output-localization-file=localization.dart --output-dir=lib/l10n --no-synthetic-package
+    description: Generate l10n files in feature/auth
+
+  f-get-auth:
+    run: melos exec --scope="auth" --sdk-path .fvm/flutter_sdk -- fvm flutter pub get
+    description: Run `flutter pub get` in feature/auth.
+
+  f-auth-test: melos f-gen-auth-coverage && melos f-gen-auth-html-coverage && melos f-auth-open-coverage
+
+  f-gen-auth-coverage:
+    run: melos exec --scope="auth" --sdk-path .fvm/flutter_sdk fvm flutter test --coverage
+    description: Run tests in auth with coverage.
+
+  f-gen-auth-html-coverage:
+    run: melos exec --scope="auth" --sdk-path .fvm/flutter_sdk -- genhtml coverage/lcov.info
+    description: Generate html coverage in auth.
+
+  f-auth-open-coverage:
+    run: melos exec --scope="auth" --sdk-path .fvm/flutter_sdk -- open coverage/html/index.html
+    description: Open html coverage in auth.
+
+  ## STORE SCRIPTS
+  f-gen-store: melos exec --scope="store" --sdk-path .fvm/flutter_sdk fvm dart run build_runner build --delete-conflicting-outputs
+  f-get-store: melos exec --scope="store" --sdk-path .fvm/flutter_sdk fvm flutter pub get
+
+
+  ## MAP SCRIPTS
+  f-gen-map: melos exec --scope="map" --sdk-path .fvm/flutter_sdk fvm dart run build_runner build --delete-conflicting-outputs
+  f-get-map: melos exec --scope="map" --sdk-path .fvm/flutter_sdk fvm flutter pub get
+
+
+  ## PROFILE SCRIPTS
+  f-gen-profile: melos exec --scope="profile" --sdk-path .fvm/flutter_sdk fvm dart run build_runner build --delete-conflicting-outputs
+  f-get-profile: melos exec --scope="profile" --sdk-path .fvm/flutter_sdk fvm flutter pub get
+
+  ## ADDRESS SCRIPTS
+  f-gen-address: melos exec --scope="address" --sdk-path .fvm/flutter_sdk fvm dart run build_runner build --delete-conflicting-outputs
+  f-get-address: melos exec --scope="address" --sdk-path .fvm/flutter_sdk fvm flutter pub get
+
+  ## PAYMENTS SCRIPTS
+  f-gen-payments: melos exec --scope="payments" --sdk-path .fvm/flutter_sdk fvm dart run build_runner build --delete-conflicting-outputs
+  f-get-payments: melos exec --scope="payments" --sdk-path .fvm/flutter_sdk fvm flutter pub get
+
+  ## LOYALTY SCRIPTS
+  f-gen-common_services: melos exec --scope="common_services" --sdk-path .fvm/flutter_sdk fvm dart run build_runner build --delete-conflicting-outputs
+  f-get-common_services: melos exec --scope="common_services" --sdk-path .fvm/flutter_sdk fvm flutter pub get
+
+  ## LOYALTY SCRIPTS
+  f-gen-loyalty: melos exec --scope="loyalty" --sdk-path .fvm/flutter_sdk fvm dart run build_runner build --delete-conflicting-outputs
+  f-get-loyalty: melos exec --scope="loyalty" --sdk-path .fvm/flutter_sdk fvm flutter pub get
+
+  f-gen-l10n-loyalty:
+    run: melos exec --scope="loyalty" --sdk-path .fvm/flutter_sdk -- fvm flutter gen-l10n --arb-dir=lib/l10n/arb --template-arb-file=intl_es.arb --output-localization-file=localization.dart --output-dir=lib/l10n --no-synthetic-package
+
+
+  ##
+  ## GENERAL SCRIPTS WITHOUT FVM
+  ##
+  init-app: melos clean-all && melos get && melos gen && melos gen-l10n && melos l10n && melos gen-lib
+
+  add:
+    run: melos exec -- flutter pub add '$PACKAGE'
+    env:
+      PACKAGE: 'flutter_inappwebview'
+    description: Add a package to all packages
+
+  remove-package:
+    run: melos exec -- flutter pub remove '$PACKAGE'
+    env:
+      PACKAGE: 'flutter_inappwebview'
+    description: Remove a package to all packages
+
+  gen:
+    run: melos exec --ignore="design_system" dart run build_runner build --delete-conflicting-outputs
+    description: Generate all files with build_runner
+
+  gen-lib:
+    run: dart run build_runner build --delete-conflicting-outputs
+    description: Generate all files with build_runner and delete source versions in lib
+
+  gen-conflicts:
+    run: melos exec --ignore="design_system" dart run build_runner build --delete-conflicting-outputs
+    description: Generate all files with build_runner and delete conflicting outputs
+
+  clean-all:
+    run: melos exec --ignore="design_system" flutter clean
+    description: Clean all packages
+
+  get:
+    run: melos exec -- flutter pub get
+    description: Run `flutter pub get` in all packages.
+
+  analyze:
+    run: melos exec -- flutter analyze .
+    description: Run `dart analyze` in all packages.
+
+  
+  gen-l10n: melos l10n && melos gen-features-l10n && melos gen-core-l10n
+
+  l10n:
+    run: flutter gen-l10n --arb-dir=lib/l10n/arb --template-arb-file=intl_es.arb --output-localization-file=localization.dart --output-dir=lib/l10n --no-synthetic-package
+
+  ## CORE SCRIPTS
+  gen-core: melos exec --scope="core" dart run build_runner build --delete-conflicting-outputs
+
+  get-core: melos exec --scope="core" flutter pub get
+
+  gen-core-l10n: melos exec --scope="core" -- flutter gen-l10n --arb-dir=lib/l10n/arb --template-arb-file=intl_es.arb --output-localization-file=localization.dart --output-dir=lib/l10n --no-synthetic-package
+  test-core: melos gen-core-coverage
+
+  gen-core-coverage:
+    run: melos exec --scope="core" flutter test --coverage
+    description: Run tests in auth with coverage.
+
+  ## FEATURES SCRIPTS
+  gen-features-l10n:
+    run: melos exec --depends-on="design_system" flutter gen-l10n --arb-dir=lib/l10n/arb --template-arb-file=intl_es.arb --output-localization-file=localization.dart --output-dir=lib/l10n --no-synthetic-package
+
+  add-features:
+    run: melos exec --depends-on="design_system" flutter pub add '$PACKAGE'
+    env:
+      PACKAGE: 'package_name'
+    description: Add a package to all packages
+
+  ## AUTH SCRIPTS
+  gen-auth:
+    run: melos exec --scope="auth" -- dart run build_runner build --delete-conflicting-outputs
+    description: Generate files with build_runner in feature/auth
+
+  gen-l10n-auth:
+    run: melos exec --scope="auth" -- flutter gen-l10n --arb-dir=lib/l10n/arb --template-arb-file=intl_es.arb --output-localization-file=localization.dart --output-dir=lib/l10n --no-synthetic-package
+    description: Generate l10n files in feature/auth
+
+  get-auth:
+    run: melos exec --scope="auth" -- flutter pub get
+    description: Run `flutter pub get` in feature/auth.
+
+  auth-test: melos gen-auth-coverage && melos gen-auth-html-coverage && melos auth-open-coverage
+
+  gen-auth-coverage:
+    run: melos exec --scope="auth" flutter test --coverage
+    description: Run tests in auth with coverage.
+
+  gen-auth-html-coverage:
+    run: melos exec --scope="auth" -- genhtml coverage/lcov.info
+    description: Generate html coverage in auth.
+
+  auth-open-coverage:
+    run: melos exec --scope="auth" -- open coverage/html/index.html
+    description: Open html coverage in auth.
+
+  ## STORE SCRIPTS
+  gen-store: melos exec --scope="store" dart run build_runner build --delete-conflicting-outputs
+
+  ## MAP SCRIPTS
+  gen-map: melos exec --scope="map" dart run build_runner build --delete-conflicting-outputs
+
+  ## PROFILE SCRIPTS
+  gen-profile: melos exec --scope="profile" dart run build_runner build --delete-conflicting-outputs
+
+  ## COMMON SERVICES SCRIPTS
+  gen-common-services: melos exec --scope="common_services" dart run build_runner build --delete-conflicting-outputs
+
+  ## ADDRESS SCRIPTS 
+  gen-address: melos exec --scope="address" dart run build_runner build --delete-conflicting-outputs
+
+  ## PAYMENTS SCRIPTS
+  gen-payments: melos exec --scope="payments" dart run build_runner build --delete-conflicting-outputs
+
+  ## LOYALTY SCRIPTS
+  gen-loyalty: melos exec --scope="loyalty" dart run build_runner build --delete-conflicting-outputs
+
+  get-loyalty: melos exec --scope="loyalty" flutter pub get
+
+  gen-l10n-loyalty:
+    run: melos exec --scope="loyalty" -- flutter gen-l10n --arb-dir=lib/l10n/arb --template-arb-file=intl_es.arb --output-localization-file=localization.dart --output-dir=lib/l10n --no-synthetic-package

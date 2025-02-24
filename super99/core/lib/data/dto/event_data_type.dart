@@ -1,0 +1,4 @@
+enum EventDataType {
+  delete,
+  save,
+}
