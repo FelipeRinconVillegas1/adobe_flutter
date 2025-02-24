@@ -1,0 +1,86 @@
+name: store
+publish_to: none
+description: A new Flutter plugin project.
+version: 0.0.1
+
+environment:
+  sdk: ">=2.19.6 <3.0.0"
+  flutter: ">=3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  plugin_platform_interface: ^2.0.2
+  flutter_localizations:
+    sdk: flutter
+  ## CORE MODULES
+  core:
+    path: ../../core
+
+  map:
+    path: ../map
+  common_services:
+    path: ../common_services
+  address:
+    path: ../address
+
+
+
+  ## EXTERNAL PACKAGES
+  dartz: ^0.10.1
+  flutter_riverpod: ^2.3.4
+  go_router: ^12.0.1
+  
+  freezed_annotation: ^2.2.0
+  riverpod_annotation: ^2.0.1
+  json_annotation: ^4.8.1
+  mocktail: ^0.3.0
+  cached_network_image: ^3.2.3
+  speech_to_text: ^6.1.1
+  mockito: ^5.4.1
+  equatable: ^2.0.5
+  matcher: ^0.12.15
+  barcode: ^2.2.4
+  flutter_svg: ^2.0.6
+  mobile_scanner: ^3.3.0
+  flutter_screenutil: ^5.8.4
+  url_launcher: ^6.1.12
+  collection: ^1.17.1
+  numberpicker: ^2.1.2
+  auto_size_text: ^3.0.0
+  flutter_aepassurance: ^4.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  build_runner: ^2.4.6
+  freezed: ^2.3.2
+  json_serializable: ^6.7.1
+  riverpod_generator: ^2.4.0
+  riverpod_lint: ^2.3.10
+  copy_with_extension_gen: ^5.0.3
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+  plugin:
+    platforms:
+      # This plugin project was generated without specifying any
+      # platforms with the `--platform` argument. If you see the `some_platform` map below, remove it and
+      # then add platforms following the instruction here:
+      # https://flutter.dev/docs/development/packages-and-plugins/developing-packages#plugin-platforms
+      # -------------------
+      some_platform:
+        pluginClass: somePluginClass
+    # -------------------
+
+targets:
+  $default:
+    builders:
+      freezed:freezed:
+        generate_for:
+          include:
+            - lib/**.fr.dart

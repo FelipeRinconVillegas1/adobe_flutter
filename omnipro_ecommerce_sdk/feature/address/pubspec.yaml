@@ -1,0 +1,84 @@
+name: address
+description: "A new Flutter plugin project."
+version: 0.0.1
+homepage:
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+environment:
+  sdk: ">=3.7.0 <4.0.0"
+  flutter: ">=3.29.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  plugin_platform_interface: ^2.0.2
+  ## CORE MODULES
+  core:
+    path: ../../core
+
+  common_services:
+    path: ../common_services
+  map:
+    path: ../map
+  
+  ## EXTERNAL PACKAGES
+  freezed_annotation: ^2.2.0
+  json_annotation: ^4.8.0
+  formz: ^0.6.0
+  riverpod_annotation: ^2.0.1
+  flutter_riverpod: ^2.3.1
+  dartz: ^0.10.1
+  equatable: ^2.0.5
+  mocktail: ^0.3.0
+  google_maps_flutter: ^2.5.3
+  geocoding: ^2.1.0
+  flutter_screenutil: ^5.8.4
+
+  go_router: ^12.0.1
+  auto_size_text: ^3.0.0
+  geolocator: ^9.0.2
+  collection: ^1.17.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  build_runner: ^2.3.3
+  freezed: ^2.5.8
+  json_serializable: ^6.7.1
+  riverpod_generator: ^2.4.0
+  riverpod_lint: ^2.6.4
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+  # This section identifies this Flutter project as a plugin project.
+  # The 'pluginClass' specifies the class (in Java, Kotlin, Swift, Objective-C, etc.)
+  # which should be registered in the plugin registry. This is required for
+  # using method channels.
+  # The Android 'package' specifies package in which the registered class is.
+  # This is required for using method channels on Android.
+  # The 'ffiPlugin' specifies that native code should be built and bundled.
+  # This is required for using `dart:ffi`.
+  # All these are used by the tooling to maintain consistency when
+  # adding or updating assets for this project.
+  plugin:
+    platforms:
+    # This plugin project was generated without specifying any
+    # platforms with the `--platform` argument. If you see the `some_platform` map below, remove it and
+    # then add platforms following the instruction here:
+    # https://flutter.dev/docs/development/packages-and-plugins/developing-packages#plugin-platforms
+    # -------------------
+      some_platform:
+        pluginClass: somePluginClass
+    # -------------------
+
+targets:
+  $default:
+    builders:
+      freezed:freezed:
+        generate_for:
+          include:
+            - lib/**.fr.dart
