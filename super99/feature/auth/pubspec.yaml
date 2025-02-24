@@ -16,8 +16,7 @@ dependencies:
   ## CORE MODULES
   core:
     path: ../../core
-  design_system:
-    path: ../../../design_system
+
   common_services:
     path: ../common_services
   address:

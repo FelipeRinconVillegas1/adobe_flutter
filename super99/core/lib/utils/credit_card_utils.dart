@@ -1,29 +1,8 @@
 import 'dart:ui';
 
-import 'package:design_system/foundations/images.dart';
-import 'package:design_system/foundations/icons.dart';
-
 enum TypeCard {
-  visa(
-    "001",
-    "VI",
-    "Visa",
-    [const Color(0xFF243F92), const Color(0xFF1C3071)],
-    "Crédito",
-    "Credit",
-    ImagesOmni.s99visa,
-    OmniIcons.s99Visa,
-  ),
-  mastercard(
-    "002",
-    "MC",
-    "Mastercard",
-    [const Color(0xFF404040), const Color(0xFF323232)],
-    "Crédito",
-    "Credit",
-    ImagesOmni.s99masterCard,
-    OmniIcons.s99Mastercard,
-  ),
+  visa("001", "VI", "Visa", [const Color(0xFF243F92), const Color(0xFF1C3071)], "Crédito", "Credit"),
+  mastercard("002", "MC", "Mastercard", [const Color(0xFF404040), const Color(0xFF323232)], "Crédito", "Credit"),
   americanExpress(
     "003",
     "AE",
@@ -31,33 +10,10 @@ enum TypeCard {
     [const Color(0xFFb9d9c3), const Color(0xFF788d7f)],
     "Crédito",
     "Credit",
-    ImagesOmni.s99americanExpress,
   ),
-  discover(
-    "004",
-    "DI",
-    "Discover",
-    [const Color(0xFFf1f1f1), const Color(0xFFfe6400)],
-    "Crédito",
-    "Credit",
-  ),
-  dinersClub(
-    "005",
-    "DN",
-    "Diners Club",
-    [const Color(0xFFbecbd1), const Color(0xFF8ca2ad)],
-    "Crédito",
-    "Credit",
-    ImagesOmni.s99dinnersClub,
-  ),
-  jcb(
-    "007",
-    "JCB",
-    "JCB",
-    [const Color(0xFFF5F5F5), const Color(0xFFEAEAEA)],
-    "Crédito",
-    "Credit",
-  ),
+  discover("004", "DI", "Discover", [const Color(0xFFf1f1f1), const Color(0xFFfe6400)], "Crédito", "Credit"),
+  dinersClub("005", "DN", "Diners Club", [const Color(0xFFbecbd1), const Color(0xFF8ca2ad)], "Crédito", "Credit"),
+  jcb("007", "JCB", "JCB", [const Color(0xFFF5F5F5), const Color(0xFFEAEAEA)], "Crédito", "Credit"),
   maestroI(
     "042",
     "MI",
@@ -74,31 +30,14 @@ enum TypeCard {
     "Crédito",
     "Credit",
   ),
-  enRoute(
-    "014",
-    "ER",
-    "Enroute",
-    [const Color(0xFFF5F5F5), const Color(0xFFEAEAEA)],
-    "Crédito",
-    "Credit",
-  ),
-  unknown(
-    "",
-    "",
-    "",
-    [const Color(0xFFF5F5F5), const Color(0xFFEAEAEA)],
-    "",
-    "",
-  );
+  enRoute("014", "ER", "Enroute", [const Color(0xFFF5F5F5), const Color(0xFFEAEAEA)], "Crédito", "Credit"),
+  unknown("", "", "", [const Color(0xFFF5F5F5), const Color(0xFFEAEAEA)], "", "");
 
-  const TypeCard(this.code, this.shortLabel, this.label, this.colors, this.typeEs, this.typeEn,
-      [this.image, this.icon]);
+  const TypeCard(this.code, this.shortLabel, this.label, this.colors, this.typeEs, this.typeEn);
 
   final String shortLabel;
   final String label;
   final String code;
-  final ImagesOmni? image;
-  final OmniIcons? icon;
   final List<Color> colors;
   final String typeEn;
   final String typeEs;
@@ -211,8 +150,9 @@ TypeCard determineCardType(String creditCardNumber) {
 
 bool cardNumberValidation(String cardNumber) {
   RegExp visaRegex = RegExp(r'^4[0-9]{12}(?:[0-9]{3})?$');
-  RegExp mastercardRegex =
-      RegExp(r'^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$');
+  RegExp mastercardRegex = RegExp(
+    r'^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$',
+  );
   RegExp amexRegex = RegExp(r'^3[47][0-9]{13}$');
   RegExp discoverRegex = RegExp(r'^6(?:011|5[0-9]{2})[0-9]{12}$');
   RegExp dinnersClubRegex = RegExp(r'^3(?:0[0-5]|[68][0-9])[0-9]{11}$');

@@ -1,10 +1,8 @@
 import 'order_item_entity.dart';
-import 'order_status_entity.dart';
 
 class ProductsOfYourOrderProfileParams {
-  ProductsOfYourOrderProfileParams({required this.state, required this.orderItem});
+  ProductsOfYourOrderProfileParams({required this.orderItem});
 
-  final OrderStatusEntity state;
   final OrderItemEntity orderItem;
 }
 
@@ -18,7 +16,7 @@ class ItemProductOfYourOrder {
     required this.priceUnd,
     this.discount = '',
     required this.tax,
-    this.salesUnitOfMeasure
+    this.salesUnitOfMeasure,
   });
 
   final String sku;
