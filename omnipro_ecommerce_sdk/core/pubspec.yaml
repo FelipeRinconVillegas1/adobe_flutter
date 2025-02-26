@@ -1,5 +1,5 @@
 name: core
-publish_to: "none"
+publish_to: none
 description: A starting point for Dart libraries or applications.
 version: 1.0.0
 

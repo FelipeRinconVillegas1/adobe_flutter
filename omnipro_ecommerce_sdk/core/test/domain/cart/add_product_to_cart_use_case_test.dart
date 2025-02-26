@@ -1,5 +1,4 @@
 import 'package:core/data/dto/cart/cart_dto.fr.dart';
-import 'package:core/domain/entity/cart/add_product_to_cart_oms_options.dart';
 import 'package:core/domain/entity/cart/cart.fr.dart';
 import 'package:core/domain/entity/cart/cart_item_input.dart';
 import 'package:core/domain/entity/products.dart';
@@ -53,8 +52,7 @@ void main() {
             id: 1,
             minSaleQty: 1),
         cartId: 'test',
-        cartItem: CartItemInput(quantity: 1, price: 1, sku: "1"),
-        omsOptions: AddToCartOmsOptions(omsCid: '1', omsCode: '1', omsShippingMethod: '1'));
+        cartItem: CartItemInput(quantity: 1, price: 1, sku: "1"),);
   });
 
   group('addToCart', () {

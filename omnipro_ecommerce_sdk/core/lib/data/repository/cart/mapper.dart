@@ -1,13 +1,9 @@
 import 'package:core/data/dto/cart/send_tip_dto.dart';
-import 'package:core/data/dto/cart/set_appointment_information_on_cart_dto.fr.dart';
 import 'package:core/data/dto/products_dto.fr.dart';
 import 'package:core/data/dto/cart/add_product_to_cart_dto.fr.dart';
 import 'package:core/data/dto/products_mapper.dart';
 import 'package:core/data/mapper.dart';
-
 import '../../../domain/entity/cart/add_product_to_cart.dart';
-import '../../../domain/entity/cart/add_product_to_cart_oms_options.dart';
-import '../../../domain/entity/cart/appointment_selected_entity.dart';
 import '../../../domain/entity/cart/cart.fr.dart';
 import '../../../domain/entity/cart/cart_item_input.dart';
 import '../../../domain/entity/cart/config_shipping_method.dart';
@@ -19,7 +15,6 @@ import '../../../domain/entity/cart/shipping_address_on_cart.dart';
 import '../../../domain/entity/cart/shipping_addresses_on_cart.dart';
 import '../../../domain/entity/cart/shipping_method.dart';
 import '../../../domain/entity/cart/update_cart_items.dart';
-import '../../dto/cart/add_to_cart_oms_options_dto.fr.dart';
 import '../../dto/cart/cart_dto.fr.dart';
 import '../../dto/cart/cart_item_input_dto.fr.dart';
 import '../../dto/cart/config_shipping_method_dto.fr.dart';
@@ -53,21 +48,10 @@ extension MapperCartItemInputDTO on CartItemInput {
       );
 }
 
-extension OmsOptionsMapper on AddToCartOmsOptions {
-  AddToCartOmsOptionsDTO toDTO() => AddToCartOmsOptionsDTO(
-        omsCid: omsCid,
-        omsCode: omsCode,
-        omsNotes: omsNotes ?? '',
-        omsShippingMethod: omsShippingMethod,
-        omsStoreName: omsStoreName ?? '',
-      );
-}
-
 extension MapperAddProductToCart on AddProductToCart {
   AddProductToCartDTO toDTO() => AddProductToCartDTO(
         cartId: cartId,
         cartItems: cartItem.toDTO(),
-        omsOptions: omsOptions?.toDTO(),
       );
 }
 
@@ -177,7 +161,6 @@ extension MapperCartPricesGrandTotalDTO on CartPricesDTO {
         subtotalExcludingTax: subtotalExcludingTaxDTO.toDomain(),
         discounts: discountsDTO.map((e) => e.toDomain()).toList(),
         appliedTaxes: appliedTaxesDTO.map((e) => e.toDomain()).toList(),
-        refundableFee: refundableFeeDTO.toDomain(),
         catalogDiscountAmount: catalogDiscountAmountDTO.toDomain(),
       );
 }
@@ -188,7 +171,6 @@ extension MapperCartPrices on CartPrices {
         subtotalExcludingTaxDTO: subtotalExcludingTax.toDTO(),
         discountsDTO: discounts.map((e) => e.toDTO()).toList(),
         appliedTaxesDTO: appliedTaxes.map((e) => e.toDTO()).toList(),
-        refundableFeeDTO: refundableFee.toDTO(),
         catalogDiscountAmountDTO: catalogDiscountAmount.toDTO(),
       );
 }
@@ -407,22 +389,4 @@ extension ConfigShippingMethodMapper on ConfigShippingMethod {
       methodCode: methodCode,
     );
   }
-}
-
-extension MapperSetShippingMethodOnCart on AppointmentSelectedEntity {
-  SetAppointmentOnCartDTO toDTO() => SetAppointmentOnCartDTO(
-      cartId: cartId,
-      omsAppointmentId: omsAppointmentId,
-      omsShippingDate: omsShippingDate,
-      omsShippingTime: omsShippingTime,
-      omsDeliveryPrice: omsDeliveryPrice);
-}
-
-extension MapperSetShippingMethodOnCartDomain on SetAppointmentOnCartDTO {
-  AppointmentSelectedEntity toDomain() => AppointmentSelectedEntity(
-      cartId: cartId,
-      omsAppointmentId: omsAppointmentId,
-      omsShippingDate: omsShippingDate,
-      omsShippingTime: omsShippingTime,
-      omsDeliveryPrice: omsDeliveryPrice);
 }

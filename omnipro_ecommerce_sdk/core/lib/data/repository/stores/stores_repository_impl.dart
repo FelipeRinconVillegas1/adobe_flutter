@@ -1,6 +1,5 @@
 import 'package:core/data/dto/cart/warehouse_address_dto.fr.dart';
 import 'package:core/data/repository/stores/stores_repository.dart';
-import 'package:core/domain/entity/stores/last_store_in_compute_entity.fr.dart';
 import 'package:core/domain/entity/stores/warehouse_address_entity.fr.dart';
 import 'package:core/utils/error_handler/error_handler.dart';
 import 'package:dartz/dartz.dart';
@@ -21,16 +20,6 @@ class StoresRepositoryImpl implements StoresRepository {
       required Map<String, dynamic> sortStores}) {
     return _storesDatasource.getStoresDatasource(
         filters: filters, pageSize: pageSize, currentPage: currentPage, sortStores: sortStores);
-  }
-
-  @override
-  Future<Either<ErrorHandler, LastStoreInComputeEntity?>> getLastStoreInCompute() {
-    return _storesDatasource.getLastStoreInCompute();
-  }
-
-  @override
-  Future<void> saveLastStoreInCompute(LastStoreInComputeEntity lastStoreInComputeEntity) {
-    return _storesDatasource.saveLastStoreInCompute(lastStoreInComputeEntity);
   }
 
   @override

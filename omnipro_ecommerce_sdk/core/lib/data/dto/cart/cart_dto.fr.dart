@@ -4,10 +4,7 @@ import 'package:core/data/dto/localization_item_dto.fr.dart';
 import 'package:core/data/dto/money_info_dto.fr.dart';
 import 'package:core/data/dto/products_dto.fr.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 import 'package:core/data/dto/money_dto.fr.dart';
-
-import 'refundable_fee_dto.fr.dart';
 part 'cart_dto.fr.freezed.dart';
 part 'cart_dto.fr.g.dart';
 
@@ -42,7 +39,6 @@ class AppliedCouponDTO with _$AppliedCouponDTO {
 class CartPricesDTO with _$CartPricesDTO {
   const factory CartPricesDTO({
     @JsonKey(name: 'grand_total') required MoneyDTO grandTotalDTO,
-    @JsonKey(name: 'refundable_fee') required RefundableFeeDTO refundableFeeDTO,
     @JsonKey(name: 'catalog_discount_amount') required CatalogDiscountAmountDTO catalogDiscountAmountDTO,
     @JsonKey(name: 'subtotal_excluding_tax') required MoneyDTO subtotalExcludingTaxDTO,
     @JsonKey(name: 'discounts') @Default([]) List<MoneyInfoDTO> discountsDTO,

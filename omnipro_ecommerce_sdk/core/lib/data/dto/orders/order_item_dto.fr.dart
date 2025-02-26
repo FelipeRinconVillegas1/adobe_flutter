@@ -61,19 +61,9 @@ class OrderItemTotalDTO with _$OrderItemTotalDTO {
     @JsonKey(name: 'subtotal') required MoneyDTO subTotal,
     @JsonKey(name: 'shipping_handling') required OrderItemShippingHandlingDTO shippingHandling,
     required List<MoneyInfoDTO> discounts,
-    @JsonKey(name: 'refundable_fee') required RefundableFeeDTO refundableFee,
   }) = _OrderItemTotalDTO;
 
   factory OrderItemTotalDTO.fromJson(Map<String, Object?> json) => _$OrderItemTotalDTOFromJson(json);
-}
-
-@freezed
-class RefundableFeeDTO with _$RefundableFeeDTO {
-  const factory RefundableFeeDTO({
-    required double value,
-  }) = _RefundableFeeDTO;
-
-  factory RefundableFeeDTO.fromJson(Map<String, Object?> json) => _$RefundableFeeDTOFromJson(json);
 }
 
 @freezed

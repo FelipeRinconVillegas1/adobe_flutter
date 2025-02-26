@@ -36,8 +36,4 @@ class PriceUtil {
 
     return ((regularPrice - finalPrice) / regularPrice) * 100;
   }
-
-  static double getTotalPrice({required CartPrices price}) {
-    return price.grandTotal.value - price.refundableFee.value;
-  }
 }

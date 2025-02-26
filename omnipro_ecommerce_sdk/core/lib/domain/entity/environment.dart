@@ -29,7 +29,6 @@ enum Environment {
         return 'prod';
       case Environment.qa:
         return 'qa';
-        break;
     }
   }
 

@@ -550,8 +550,6 @@ abstract class _Cart implements Cart {
 mixin _$CartPrices {
   @JsonKey(name: 'grand_total')
   Money get grandTotal => throw _privateConstructorUsedError;
-  @JsonKey(name: 'refundable_fee')
-  RefundableFeeEntity get refundableFee => throw _privateConstructorUsedError;
   @JsonKey(name: 'catalog_discount_amount')
   CatalogDiscountAmount get catalogDiscountAmount =>
       throw _privateConstructorUsedError;
@@ -579,7 +577,6 @@ abstract class $CartPricesCopyWith<$Res> {
   @useResult
   $Res call({
     @JsonKey(name: 'grand_total') Money grandTotal,
-    @JsonKey(name: 'refundable_fee') RefundableFeeEntity refundableFee,
     @JsonKey(name: 'catalog_discount_amount')
     CatalogDiscountAmount catalogDiscountAmount,
     Money subtotalExcludingTax,
@@ -607,7 +604,6 @@ class _$CartPricesCopyWithImpl<$Res, $Val extends CartPrices>
   @override
   $Res call({
     Object? grandTotal = null,
-    Object? refundableFee = null,
     Object? catalogDiscountAmount = null,
     Object? subtotalExcludingTax = null,
     Object? discounts = null,
@@ -621,11 +617,6 @@ class _$CartPricesCopyWithImpl<$Res, $Val extends CartPrices>
                     ? _value.grandTotal
                     : grandTotal // ignore: cast_nullable_to_non_nullable
                         as Money,
-            refundableFee:
-                null == refundableFee
-                    ? _value.refundableFee
-                    : refundableFee // ignore: cast_nullable_to_non_nullable
-                        as RefundableFeeEntity,
             catalogDiscountAmount:
                 null == catalogDiscountAmount
                     ? _value.catalogDiscountAmount
@@ -680,7 +671,6 @@ abstract class _$$CartPricesImplCopyWith<$Res>
   @useResult
   $Res call({
     @JsonKey(name: 'grand_total') Money grandTotal,
-    @JsonKey(name: 'refundable_fee') RefundableFeeEntity refundableFee,
     @JsonKey(name: 'catalog_discount_amount')
     CatalogDiscountAmount catalogDiscountAmount,
     Money subtotalExcludingTax,
@@ -708,7 +698,6 @@ class __$$CartPricesImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? grandTotal = null,
-    Object? refundableFee = null,
     Object? catalogDiscountAmount = null,
     Object? subtotalExcludingTax = null,
     Object? discounts = null,
@@ -722,11 +711,6 @@ class __$$CartPricesImplCopyWithImpl<$Res>
                 ? _value.grandTotal
                 : grandTotal // ignore: cast_nullable_to_non_nullable
                     as Money,
-        refundableFee:
-            null == refundableFee
-                ? _value.refundableFee
-                : refundableFee // ignore: cast_nullable_to_non_nullable
-                    as RefundableFeeEntity,
         catalogDiscountAmount:
             null == catalogDiscountAmount
                 ? _value.catalogDiscountAmount
@@ -762,7 +746,6 @@ class __$$CartPricesImplCopyWithImpl<$Res>
 class _$CartPricesImpl implements _CartPrices {
   const _$CartPricesImpl({
     @JsonKey(name: 'grand_total') required this.grandTotal,
-    @JsonKey(name: 'refundable_fee') required this.refundableFee,
     @JsonKey(name: 'catalog_discount_amount')
     required this.catalogDiscountAmount,
     required this.subtotalExcludingTax,
@@ -777,9 +760,6 @@ class _$CartPricesImpl implements _CartPrices {
   @override
   @JsonKey(name: 'grand_total')
   final Money grandTotal;
-  @override
-  @JsonKey(name: 'refundable_fee')
-  final RefundableFeeEntity refundableFee;
   @override
   @JsonKey(name: 'catalog_discount_amount')
   final CatalogDiscountAmount catalogDiscountAmount;
@@ -809,7 +789,7 @@ class _$CartPricesImpl implements _CartPrices {
 
   @override
   String toString() {
-    return 'CartPrices(grandTotal: $grandTotal, refundableFee: $refundableFee, catalogDiscountAmount: $catalogDiscountAmount, subtotalExcludingTax: $subtotalExcludingTax, discounts: $discounts, appliedTaxes: $appliedTaxes, amountSaved: $amountSaved)';
+    return 'CartPrices(grandTotal: $grandTotal, catalogDiscountAmount: $catalogDiscountAmount, subtotalExcludingTax: $subtotalExcludingTax, discounts: $discounts, appliedTaxes: $appliedTaxes, amountSaved: $amountSaved)';
   }
 
   @override
@@ -819,8 +799,6 @@ class _$CartPricesImpl implements _CartPrices {
             other is _$CartPricesImpl &&
             (identical(other.grandTotal, grandTotal) ||
                 other.grandTotal == grandTotal) &&
-            (identical(other.refundableFee, refundableFee) ||
-                other.refundableFee == refundableFee) &&
             (identical(other.catalogDiscountAmount, catalogDiscountAmount) ||
                 other.catalogDiscountAmount == catalogDiscountAmount) &&
             (identical(other.subtotalExcludingTax, subtotalExcludingTax) ||
@@ -841,7 +819,6 @@ class _$CartPricesImpl implements _CartPrices {
   int get hashCode => Object.hash(
     runtimeType,
     grandTotal,
-    refundableFee,
     catalogDiscountAmount,
     subtotalExcludingTax,
     const DeepCollectionEquality().hash(_discounts),
@@ -861,8 +838,6 @@ class _$CartPricesImpl implements _CartPrices {
 abstract class _CartPrices implements CartPrices {
   const factory _CartPrices({
     @JsonKey(name: 'grand_total') required final Money grandTotal,
-    @JsonKey(name: 'refundable_fee')
-    required final RefundableFeeEntity refundableFee,
     @JsonKey(name: 'catalog_discount_amount')
     required final CatalogDiscountAmount catalogDiscountAmount,
     required final Money subtotalExcludingTax,
@@ -874,9 +849,6 @@ abstract class _CartPrices implements CartPrices {
   @override
   @JsonKey(name: 'grand_total')
   Money get grandTotal;
-  @override
-  @JsonKey(name: 'refundable_fee')
-  RefundableFeeEntity get refundableFee;
   @override
   @JsonKey(name: 'catalog_discount_amount')
   CatalogDiscountAmount get catalogDiscountAmount;

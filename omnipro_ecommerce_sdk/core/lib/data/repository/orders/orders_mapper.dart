@@ -43,7 +43,6 @@ extension MapperOrderItemTotalDTO on OrderItemTotalDTO {
   OrderItemTotalEntity toDomain() => OrderItemTotalEntity(
       discounts: discounts.map((e) => e.toDomain()).toList(),
       grandTotal: grandTotal.toDomain(),
-      refundableFee: refundableFee.toDomain(),
       totalTax: totalTax.toDomain(),
       subTotal: subTotal.toDomain(),
       shippingHandling: shippingHandling.toDomain());
@@ -59,10 +58,6 @@ extension MapperShippingHandlingDTO on OrderItemShippingHandlingDTO {
 
 extension MapperProductTaxPriceDTO on ProductTaxPriceDTO {
   ProductTaxPriceEntity toDomain() => ProductTaxPriceEntity(value: value, currency: currency);
-}
-
-extension MapperRefundableFeeDTO on RefundableFeeDTO {
-  RefundableFeeEntity toDomain() => RefundableFeeEntity(value: value);
 }
 
 extension MapperOrderItemGrandTotalDTO on OrderItemGrandTotalDTO {

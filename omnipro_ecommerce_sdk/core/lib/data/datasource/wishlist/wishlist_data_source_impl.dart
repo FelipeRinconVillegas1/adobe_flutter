@@ -3,7 +3,6 @@ import 'package:core/data/dto/wishlist_dto.fr.dart';
 import 'package:core/network/graphql/graphql_service.dart';
 import 'package:core/utils/error_handler/error_handler.dart';
 import 'package:dartz/dartz.dart';
-
 import '../../../domain/entity/wishlist/wishlist_product_entity.dart';
 import 'wishlist_data_source.dart';
 import 'wishlist_query.dart';

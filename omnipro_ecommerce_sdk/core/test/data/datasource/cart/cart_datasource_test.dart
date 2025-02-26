@@ -1,4 +1,3 @@
-import 'package:core/data/dto/cart/add_to_cart_oms_options_dto.fr.dart';
 import 'package:core/data/dto/cart/cart_item_input_dto.fr.dart';
 import 'package:core/data/dto/customer_address_dto.fr.dart';
 import 'package:core/data/datasource/cart/cart_datasource_impl.dart';
@@ -8,7 +7,6 @@ import 'package:core/data/dto/cart/enabled_shipping_method_dto.fr.dart';
 import 'package:core/data/dto/cart/send_tip_dto.dart';
 import 'package:core/data/dto/cart/update_cart_items_dto.fr.dart';
 import 'package:core/domain/entity/cart/input_set_payment_method_on_cart_entity.fr.dart';
-import 'package:core/domain/entity/cart/set_shipping_address_oms_options.dart';
 import 'package:core/network/graphql/graphql_service.dart';
 import 'package:core/network/graphql_helper_test.dart';
 import 'package:core/utils/error_handler/error_handler.dart';
@@ -20,7 +18,6 @@ import 'package:graphql/client.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:core/data/dto/cart/add_product_to_cart_dto.fr.dart';
 import 'package:omnipro_ecommerce_sdk/address/lib/data/repository/address_mapper.dart';
-
 import 'cart_fake_data.dart';
 
 class MockGraphQLService extends Mock implements GraphQLService {}
@@ -34,20 +31,6 @@ void main() {
   late MockGraphQLClient mockGraphQLClient;
   late AddProductToCartDTO addProductToCartDTO;
   final mockCartDTO = CartDTO.fromJson(CartFakeData.cartSuccessFakeData);
-  final setShippingOmsOptions = SetShippingAddressOmsOptions(
-    cityCustom: "08",
-    stateCustom: "87",
-    zoneCustom: "097",
-    latitude: "1234",
-    longitude: "12324",
-  );
-  final addressOmsOptions = AddressOmsOptions(
-    cityCustom: "08",
-    stateCustom: "87",
-    zoneCustom: "097",
-    latitude: "1234",
-    longitude: "12324",
-  );
 
   setUp(() async {
     await LoggerApp().init(isDebug: false, isTest: true);
@@ -55,43 +38,31 @@ void main() {
     mockGraphQLServiceNoAuthenticated = MockGraphQLServiceNoAuthenticated();
     mockGraphQLService = MockGraphQLService();
     cartDataSourceImpl = CartDatasourceImpl(mockGraphQLService, mockGraphQLServiceNoAuthenticated);
-    addProductToCartDTO = const AddProductToCartDTO(
-      cartId: 'test',
-      cartItems: CartItemInputDTO(quantity: 1, sku: '1'),
-      omsOptions: AddToCartOmsOptionsDTO(omsCid: '1', omsCode: '1', omsShippingMethod: '1'),
-    );
+    addProductToCartDTO = const AddProductToCartDTO(cartId: 'test', cartItems: CartItemInputDTO(quantity: 1, sku: '1'));
   });
 
   group('addProductCart', () {
-    test(
-      'addProductCart returns CartDTO when the server call is successful',
-      () async {
-        final resultQuery = generateMockQuery<CartDTO>(
-          mockGraphQLClient,
-          response: CartFakeData.successfulAddCartData,
-        );
-        final resultCartDto = CartDTO.fromJson(CartFakeData.successfulAddCartData['addProductsToCart']['cart']);
+    test('addProductCart returns CartDTO when the server call is successful', () async {
+      final resultQuery = generateMockQuery<CartDTO>(mockGraphQLClient, response: CartFakeData.successfulAddCartData);
+      final resultCartDto = CartDTO.fromJson(CartFakeData.successfulAddCartData['addProductsToCart']['cart']);
 
-        when(() => mockGraphQLService.mutation(any())).thenAnswer((invocation) async => Right(resultQuery));
+      when(() => mockGraphQLService.mutation(any())).thenAnswer((invocation) async => Right(resultQuery));
 
-        // act
-        final result = await cartDataSourceImpl.addProductToCart([addProductToCartDTO]);
+      // act
+      final result = await cartDataSourceImpl.addProductToCart([addProductToCartDTO]);
 
-        // assert
-        verify(() => mockGraphQLService.mutation(any())).called(1);
-        expect(result.isRight(), true);
-        expect(result.fold((l) => null, (r) => r), resultCartDto);
-      },
-    );
+      // assert
+      verify(() => mockGraphQLService.mutation(any())).called(1);
+      expect(result.isRight(), true);
+      expect(result.fold((l) => null, (r) => r), resultCartDto);
+    });
 
     test('returns ErrorHandler when the server call fails', () async {
       // arrange
-      final expected = left(ErrorHandlerInternal(
-        errorMessage: 'Server error',
-      ));
-      when(() => mockGraphQLService.mutation(any())).thenAnswer((_) async => Left(ErrorHandlerInternal(
-            errorMessage: 'Server error',
-          )));
+      final expected = left(ErrorHandlerInternal(errorMessage: 'Server error'));
+      when(
+        () => mockGraphQLService.mutation(any()),
+      ).thenAnswer((_) async => Left(ErrorHandlerInternal(errorMessage: 'Server error')));
 
       // act
       final result = await cartDataSourceImpl.addProductToCart([addProductToCartDTO]);
@@ -103,10 +74,7 @@ void main() {
 
     test('return ErrorHandler when the data is wrong', () async {
       //arrange
-      final resultQuery = generateMockMutation<CartDTO>(
-        mockGraphQLClient,
-        response: CartFakeData.wrongAddCartData,
-      );
+      final resultQuery = generateMockMutation<CartDTO>(mockGraphQLClient, response: CartFakeData.wrongAddCartData);
 
       when(() => mockGraphQLService.mutation(any())).thenAnswer((invocation) async => Right(resultQuery));
       //act
@@ -120,10 +88,7 @@ void main() {
 
     test('returns ErrorHandler when the data has a cast error', () async {
       //arrange
-      final resultQuery = generateMockMutation<CartDTO>(
-        mockGraphQLClient,
-        response: CartFakeData.wrongTypeAddCartData,
-      );
+      final resultQuery = generateMockMutation<CartDTO>(mockGraphQLClient, response: CartFakeData.wrongTypeAddCartData);
 
       when(() => mockGraphQLService.mutation(any())).thenAnswer((invocation) async => Right(resultQuery));
       //act
@@ -142,16 +107,16 @@ void main() {
       cartItems: [CartItemUpdateInputDTO(cartItemUid: 'UID', quantity: 1, price: 123.893, sku: 'sku')],
     );
     test('returns CartDTO on successful server call', () async {
-      final resultMutation = mockMutation<CartDTO>(
-        response: CartFakeData.successUpdateItemCart,
-      );
+      final resultMutation = mockMutation<CartDTO>(response: CartFakeData.successUpdateItemCart);
       // Arrange
 
       when(() => mockGraphQLService.mutation(any())).thenAnswer((_) async => Right(resultMutation));
 
       // Act
       final result = await cartDataSourceImpl.updateCartItems(
-          updateCartItemsInputDTO: updateCartItemsInputDTO, isGuestUser: false);
+        updateCartItemsInputDTO: updateCartItemsInputDTO,
+        isGuestUser: false,
+      );
 
       // Assert
       verify(() => mockGraphQLService.mutation(any())).called(1);
@@ -168,7 +133,9 @@ void main() {
 
       // Act
       final result = await cartDataSourceImpl.updateCartItems(
-          updateCartItemsInputDTO: updateCartItemsInputDTO, isGuestUser: false);
+        updateCartItemsInputDTO: updateCartItemsInputDTO,
+        isGuestUser: false,
+      );
 
       // Assert
       verify(() => mockGraphQLService.mutation(any())).called(1);
@@ -179,9 +146,7 @@ void main() {
 
   group('Remove product  to cart', () {
     test('Success remove item from cart', () async {
-      final resultQuery = mockMutation<CartDTO>(
-        response: CartFakeData.successRemoveItemFromCart,
-      );
+      final resultQuery = mockMutation<CartDTO>(response: CartFakeData.successRemoveItemFromCart);
       final resultCartDto = CartDTO.fromJson(CartFakeData.successRemoveItemFromCart['removeItemFromCart']['cart']);
 
       when(() => mockGraphQLService.mutation(any())).thenAnswer((invocation) async => Right(resultQuery));
@@ -197,12 +162,10 @@ void main() {
 
     test('returns ErrorHandler when the server call fails', () async {
       // arrange
-      final expected = left(ErrorHandlerInternal(
-        errorMessage: 'Server error',
-      ));
-      when(() => mockGraphQLService.mutation(any())).thenAnswer((_) async => Left(ErrorHandlerInternal(
-            errorMessage: 'Server error',
-          )));
+      final expected = left(ErrorHandlerInternal(errorMessage: 'Server error'));
+      when(
+        () => mockGraphQLService.mutation(any()),
+      ).thenAnswer((_) async => Left(ErrorHandlerInternal(errorMessage: 'Server error')));
 
       // act
       final result = await cartDataSourceImpl.removeProductFromCart(cartId: '1', cartItemId: '2', isGuestUser: false);
@@ -214,36 +177,28 @@ void main() {
   });
 
   group('getCartInfo', () {
-    test(
-      'returns CartDTO when the server call is successful',
-      () async {
-        // arrange
-        final resultQuery = generateMockQuery<CartDTO>(
-          mockGraphQLClient,
-          response: CartFakeData.successFullGetCartData,
-        );
-        final resultCartDto = CartDTO.fromJson(CartFakeData.successFullGetCartData['cart']);
+    test('returns CartDTO when the server call is successful', () async {
+      // arrange
+      final resultQuery = generateMockQuery<CartDTO>(mockGraphQLClient, response: CartFakeData.successFullGetCartData);
+      final resultCartDto = CartDTO.fromJson(CartFakeData.successFullGetCartData['cart']);
 
-        when(() => mockGraphQLService.query(any())).thenAnswer((invocation) async => Right(resultQuery));
+      when(() => mockGraphQLService.query(any())).thenAnswer((invocation) async => Right(resultQuery));
 
-        // act
-        final result = await cartDataSourceImpl.getCartInfo('test', isGuestUser: false);
+      // act
+      final result = await cartDataSourceImpl.getCartInfo('test', isGuestUser: false);
 
-        // assert
-        verify(() => mockGraphQLService.query(any())).called(1);
-        expect(result.isRight(), true);
-        expect(result..fold((l) => null, (r) => r), Right(resultCartDto));
-      },
-    );
+      // assert
+      verify(() => mockGraphQLService.query(any())).called(1);
+      expect(result.isRight(), true);
+      expect(result..fold((l) => null, (r) => r), Right(resultCartDto));
+    });
 
     test('returns ErrorHandler when the server call fails', () async {
       // arrange
-      final expected = left(ErrorHandlerInternal(
-        errorMessage: 'Server error',
-      ));
-      when(() => mockGraphQLService.query(any())).thenAnswer((_) async => Left(ErrorHandlerInternal(
-            errorMessage: 'Server error',
-          )));
+      final expected = left(ErrorHandlerInternal(errorMessage: 'Server error'));
+      when(
+        () => mockGraphQLService.query(any()),
+      ).thenAnswer((_) async => Left(ErrorHandlerInternal(errorMessage: 'Server error')));
 
       // act
       final result = await cartDataSourceImpl.getCartInfo('test', isGuestUser: false);
@@ -255,10 +210,7 @@ void main() {
 
     test('return ErrorHandler when the data is wrong', () async {
       //arrange
-      final resultQuery = generateMockQuery<CartDTO>(
-        mockGraphQLClient,
-        response: CartFakeData.wrongGetCartData,
-      );
+      final resultQuery = generateMockQuery<CartDTO>(mockGraphQLClient, response: CartFakeData.wrongGetCartData);
 
       when(() => mockGraphQLService.query(any())).thenAnswer((invocation) async => Right(resultQuery));
       //act
@@ -272,10 +224,7 @@ void main() {
 
     test('returns ErrorHandler when the data has a cast error', () async {
       //arrange
-      final resultQuery = generateMockQuery<CartDTO>(
-        mockGraphQLClient,
-        response: CartFakeData.wrongTypeGetCartData,
-      );
+      final resultQuery = generateMockQuery<CartDTO>(mockGraphQLClient, response: CartFakeData.wrongTypeGetCartData);
 
       when(() => mockGraphQLService.query(any())).thenAnswer((invocation) async => Right(resultQuery));
       //act
@@ -293,11 +242,7 @@ void main() {
       'id': 123,
       'firstname': 'John',
       'lastname': 'Doe',
-      'region': {
-        'region': 'California',
-        'region_code': 'CA',
-        'region_id': 456,
-      },
+      'region': {'region': 'California', 'region_code': 'CA', 'region_id': 456},
       'country_code': 'US',
       'street': ['123 Main St'],
       'telephone': '123-456-7890',
@@ -322,15 +267,14 @@ void main() {
     test('setShippingAddressesOnCart success when server call is success', () async {
       final resultMockMutation = mockMutation(
         response: {
-          'setShippingAddressesOnCart': {'cart': CartFakeData.cartSuccessFakeData}
+          'setShippingAddressesOnCart': {'cart': CartFakeData.cartSuccessFakeData},
         },
       );
 
       when(() => mockGraphQLService.mutation(any())).thenAnswer((invocation) async => Right(resultMockMutation));
 
       // act
-      final result = await cartDataSourceImpl.setShippingAddressesOnCart(orderAddress, cartId,
-          isGuestUser: false, setShippingAddressOmsOptionsDTO: setShippingOmsOptions.toDTO());
+      final result = await cartDataSourceImpl.setShippingAddressesOnCart(orderAddress, cartId, isGuestUser: false);
 
       // assert
       verify(() => mockGraphQLService.mutation(any())).called(1);
@@ -340,15 +284,12 @@ void main() {
 
     test('setShippingAddressesOnCart returns ErrorHandler when  the server call fails', () async {
       //arrange
-      final expected = ErrorHandlerInternal(
-        errorMessage: 'Server error',
-      );
-      when(() => mockGraphQLService.mutation(any())).thenAnswer((_) async => Left(ErrorHandlerInternal(
-            errorMessage: 'Server error',
-          )));
+      final expected = ErrorHandlerInternal(errorMessage: 'Server error');
+      when(
+        () => mockGraphQLService.mutation(any()),
+      ).thenAnswer((_) async => Left(ErrorHandlerInternal(errorMessage: 'Server error')));
       //act
-      final result = await cartDataSourceImpl.setShippingAddressesOnCart(orderAddress, cartId,
-          isGuestUser: false, setShippingAddressOmsOptionsDTO: setShippingOmsOptions.toDTO());
+      final result = await cartDataSourceImpl.setShippingAddressesOnCart(orderAddress, cartId, isGuestUser: false);
 
       // // assert
       verify(() => mockGraphQLService.mutation(any())).called(1);
@@ -358,16 +299,20 @@ void main() {
     test('setBillingAddressesOnCart success when server call is success', () async {
       final setBillingAddressesMockMutation = mockMutation(
         response: {
-          'setBillingAddressOnCart': {'cart': CartFakeData.cartSuccessFakeData}
+          'setBillingAddressOnCart': {'cart': CartFakeData.cartSuccessFakeData},
         },
       );
 
-      when(() => mockGraphQLService.mutation(any()))
-          .thenAnswer((invocation) async => Right(setBillingAddressesMockMutation));
+      when(
+        () => mockGraphQLService.mutation(any()),
+      ).thenAnswer((invocation) async => Right(setBillingAddressesMockMutation));
 
       // act
-      final result = await cartDataSourceImpl.setBillingAddressesOnCart(orderAddress, cartId,
-          isGuestUser: false, setBillingAddressOmsOptionsDTO: addressOmsOptions.toDTO());
+      final result = await cartDataSourceImpl.setBillingAddressesOnCart(
+        orderAddress,
+        cartId,
+        isGuestUser: false,
+      );
 
       // assert
       verify(() => mockGraphQLService.mutation(any())).called(1);
@@ -377,15 +322,16 @@ void main() {
 
     test('setBillingAddressesOnCart returns ErrorHandler when  the server call fails', () async {
       //arrange
-      final expected = ErrorHandlerInternal(
-        errorMessage: 'Server error',
-      );
-      when(() => mockGraphQLService.mutation(any())).thenAnswer((_) async => Left(ErrorHandlerInternal(
-            errorMessage: 'Server error',
-          )));
+      final expected = ErrorHandlerInternal(errorMessage: 'Server error');
+      when(
+        () => mockGraphQLService.mutation(any()),
+      ).thenAnswer((_) async => Left(ErrorHandlerInternal(errorMessage: 'Server error')));
       //act
-      final result = await cartDataSourceImpl.setBillingAddressesOnCart(orderAddress, cartId,
-          isGuestUser: false, setBillingAddressOmsOptionsDTO: addressOmsOptions.toDTO());
+      final result = await cartDataSourceImpl.setBillingAddressesOnCart(
+        orderAddress,
+        cartId,
+        isGuestUser: false,
+      );
 
       // // assert
       verify(() => mockGraphQLService.mutation(any())).called(1);
@@ -399,7 +345,7 @@ void main() {
     test('setShippingMethodOnCart success when server call is success', () async {
       final resultMockMutation = mockMutation(
         response: {
-          'setShippingMethodsOnCart': {'cart': CartFakeData.cartSuccessFakeData}
+          'setShippingMethodsOnCart': {'cart': CartFakeData.cartSuccessFakeData},
         },
       );
 
@@ -415,12 +361,10 @@ void main() {
 
     test('setShippingMethodsOnCart returns ErrorHandler when  the server call fails', () async {
       //arrange
-      final expected = ErrorHandlerInternal(
-        errorMessage: 'Server error',
-      );
-      when(() => mockGraphQLService.mutation(any())).thenAnswer((_) async => Left(ErrorHandlerInternal(
-            errorMessage: 'Server error',
-          )));
+      final expected = ErrorHandlerInternal(errorMessage: 'Server error');
+      when(
+        () => mockGraphQLService.mutation(any()),
+      ).thenAnswer((_) async => Left(ErrorHandlerInternal(errorMessage: 'Server error')));
       //act
       final result = await cartDataSourceImpl.setShippingMethodOnCart(mockShippingMethod, 'cartId', isGuestUser: false);
 
@@ -432,12 +376,14 @@ void main() {
 
   group('setPaymentMethodOnCart', () {
     final availablePaymentMethod = InputSetPaymentMethodOnCartEntity(
-        cartId: 'your_current_cart_id', paymentMethod: PaymentMethod(code: "checkmo"));
+      cartId: 'your_current_cart_id',
+      paymentMethod: PaymentMethod(code: "checkmo"),
+    );
 
     test('setPaymentMethodOnCart success when server call is success', () async {
       final resultMockMutation = mockMutation(
         response: {
-          'setPaymentMethodOnCart': {'cart': CartFakeData.cartSuccessFakeData}
+          'setPaymentMethodOnCart': {'cart': CartFakeData.cartSuccessFakeData},
         },
       );
 
@@ -453,12 +399,10 @@ void main() {
 
     test('setShippingMethodsOnCart returns ErrorHandler when  the server call fails', () async {
       //arrange
-      final expected = ErrorHandlerInternal(
-        errorMessage: 'Server error',
-      );
-      when(() => mockGraphQLService.mutation(any())).thenAnswer((_) async => Left(ErrorHandlerInternal(
-            errorMessage: 'Server error',
-          )));
+      final expected = ErrorHandlerInternal(errorMessage: 'Server error');
+      when(
+        () => mockGraphQLService.mutation(any()),
+      ).thenAnswer((_) async => Left(ErrorHandlerInternal(errorMessage: 'Server error')));
       //act
       final result = await cartDataSourceImpl.setPaymentMethodOnCart(availablePaymentMethod, isGuestUser: false);
 
@@ -474,7 +418,7 @@ void main() {
     test('setGuestEmailOnCart success when server call is success', () async {
       final resultMockMutation = mockMutation(
         response: {
-          'setGuestEmailOnCart': {'cart': CartFakeData.cartSuccessFakeData}
+          'setGuestEmailOnCart': {'cart': CartFakeData.cartSuccessFakeData},
         },
       );
 
@@ -490,12 +434,10 @@ void main() {
 
     test('setGuestEmailOnCart returns ErrorHandler when  the server call fails', () async {
       //arrange
-      final expected = ErrorHandlerInternal(
-        errorMessage: 'Server error',
-      );
-      when(() => mockGraphQLService.mutation(any())).thenAnswer((_) async => Left(ErrorHandlerInternal(
-            errorMessage: 'Server error',
-          )));
+      final expected = ErrorHandlerInternal(errorMessage: 'Server error');
+      when(
+        () => mockGraphQLService.mutation(any()),
+      ).thenAnswer((_) async => Left(ErrorHandlerInternal(errorMessage: 'Server error')));
       //act
       final result = await cartDataSourceImpl.setGuestEmailOnCart(email: mockEmailGuest, cartId: 'cartId');
 
@@ -511,15 +453,18 @@ void main() {
     test('applyCouponToCartMutation success when server call is success', () async {
       final resultMockMutation = mockMutation(
         response: {
-          'applyCouponToCart': {'cart': CartFakeData.cartSuccessFakeData}
+          'applyCouponToCart': {'cart': CartFakeData.cartSuccessFakeData},
         },
       );
 
       when(() => mockGraphQLService.mutation(any())).thenAnswer((invocation) async => Right(resultMockMutation));
 
       // act
-      final result =
-          await cartDataSourceImpl.appliedCoupon(couponCode: mockCouponCode, cartId: 'cartId', isGuestUser: false);
+      final result = await cartDataSourceImpl.appliedCoupon(
+        couponCode: mockCouponCode,
+        cartId: 'cartId',
+        isGuestUser: false,
+      );
 
       // assert
       verify(() => mockGraphQLService.mutation(any())).called(1);
@@ -528,15 +473,16 @@ void main() {
 
     test('applyCouponToCartMutation returns ErrorHandler when  the server call fails', () async {
       //arrange
-      final expected = ErrorHandlerInternal(
-        errorMessage: 'Server error',
-      );
-      when(() => mockGraphQLService.mutation(any())).thenAnswer((_) async => Left(ErrorHandlerInternal(
-            errorMessage: 'Server error',
-          )));
+      final expected = ErrorHandlerInternal(errorMessage: 'Server error');
+      when(
+        () => mockGraphQLService.mutation(any()),
+      ).thenAnswer((_) async => Left(ErrorHandlerInternal(errorMessage: 'Server error')));
       //act
-      final result =
-          await cartDataSourceImpl.appliedCoupon(couponCode: mockCouponCode, cartId: 'cartId', isGuestUser: false);
+      final result = await cartDataSourceImpl.appliedCoupon(
+        couponCode: mockCouponCode,
+        cartId: 'cartId',
+        isGuestUser: false,
+      );
 
       // // assert
       verify(() => mockGraphQLService.mutation(any())).called(1);
@@ -550,7 +496,7 @@ void main() {
       final mockCartDTO = CartDTO.fromJson(CartFakeData.cartSuccessFakeDataWithoutCoupon);
       final resultMockMutation = mockMutation(
         response: {
-          'removeCouponFromCart': {'cart': CartFakeData.cartSuccessFakeDataWithoutCoupon}
+          'removeCouponFromCart': {'cart': CartFakeData.cartSuccessFakeDataWithoutCoupon},
         },
       );
 
@@ -566,12 +512,10 @@ void main() {
 
     test('deleteCouponFromCart returns ErrorHandler when  the server call fails', () async {
       //arrange
-      final expected = ErrorHandlerInternal(
-        errorMessage: 'Server error',
-      );
-      when(() => mockGraphQLService.mutation(any())).thenAnswer((_) async => Left(ErrorHandlerInternal(
-            errorMessage: 'Server error',
-          )));
+      final expected = ErrorHandlerInternal(errorMessage: 'Server error');
+      when(
+        () => mockGraphQLService.mutation(any()),
+      ).thenAnswer((_) async => Left(ErrorHandlerInternal(errorMessage: 'Server error')));
       //act
       final result = await cartDataSourceImpl.deleteCouponFromCart(cartId: mockCartId, isGuestUser: false);
 
@@ -604,11 +548,9 @@ void main() {
 
     test('should return SendTipResponseDTO when the request is successful', () async {
       final mockResponseData = {
-        'addTipCheckout': {'message': 'La propina fue agregada de \$79.31.', 'code': '200', 'cart_id': '211'}
+        'addTipCheckout': {'message': 'La propina fue agregada de \$79.31.', 'code': '200', 'cart_id': '211'},
       };
-      final resultMockMutation = mockMutation(
-        response: mockResponseData,
-      );
+      final resultMockMutation = mockMutation(response: mockResponseData);
 
       when(() => mockGraphQLService.mutation(any())).thenAnswer((_) async => right(resultMockMutation));
 
@@ -640,16 +582,16 @@ void main() {
                     "start_label": "08:00AM",
                     "start_minutes": 480,
                     "end_label": "12:00PM",
-                    "end_minutes": 720
+                    "end_minutes": 720,
                   },
                   {
                     "range": "12:00PM-07:00PM",
                     "start_label": "12:00PM",
                     "start_minutes": 720,
                     "end_label": "07:00PM",
-                    "end_minutes": 1140
-                  }
-                ]
+                    "end_minutes": 1140,
+                  },
+                ],
               },
               {
                 "format": "2023-09-26",
@@ -661,20 +603,20 @@ void main() {
                     "start_label": "08:00AM",
                     "start_minutes": 480,
                     "end_label": "12:00PM",
-                    "end_minutes": 720
+                    "end_minutes": 720,
                   },
                   {
                     "range": "12:00PM-07:00PM",
                     "start_label": "12:00PM",
                     "start_minutes": 720,
                     "end_label": "07:00PM",
-                    "end_minutes": 1140
-                  }
-                ]
-              }
-            ]
-          }
-        ]
+                    "end_minutes": 1140,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
       };
 
       final mockQuery = generateMockQuery<Map<String, dynamic>>(mockGraphQLClient, response: mockResponse);
@@ -709,7 +651,7 @@ void main() {
       // Arrange
       final resultMockMutation = mockMutation(
         response: {
-          'removeAllItemsFromCart': {'cart': CartFakeData.cartSuccessFakeData}
+          'removeAllItemsFromCart': {'cart': CartFakeData.cartSuccessFakeData},
         },
       );
       final expectedCartDTO = CartDTO.fromJson(CartFakeData.cartSuccessFakeData);

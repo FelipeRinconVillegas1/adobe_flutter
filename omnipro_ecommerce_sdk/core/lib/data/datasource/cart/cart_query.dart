@@ -16,7 +16,7 @@ String queryGetCartInfo() => '''
           uid
           quantity
           product {
-            ${queryItemProduct(includeNestedAssociatedProducts: false)}
+            ${queryItemProduct()}
           }
           prices {
             price {
@@ -56,9 +56,6 @@ String queryGetCartInfo() => '''
         currency
       }
       catalog_discount_amount {
-        value
-      }
-      refundable_fee {
         value
       }
     }

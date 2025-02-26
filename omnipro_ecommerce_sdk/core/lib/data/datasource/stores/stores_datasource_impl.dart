@@ -1,10 +1,8 @@
 import 'dart:convert';
-
 import 'package:core/data/datasource/stores/stores_datasource.dart';
 import 'package:core/data/datasource/stores/stores_mutation.dart';
 import 'package:core/data/datasource/stores/stores_query.dart';
 import 'package:core/data/dto/cart/warehouse_address_dto.fr.dart';
-import 'package:core/domain/entity/stores/last_store_in_compute_entity.fr.dart';
 import 'package:core/utils/error_handler/error_handler.dart';
 import 'package:dartz/dartz.dart';
 import '../../../domain/entity/stores/warehouse_address_entity.fr.dart';
@@ -45,26 +43,6 @@ class StoresDatasourceImpl implements StoresDatasource {
         );
       },
     );
-  }
-
-  @override
-  Future<void> saveLastStoreInCompute(LastStoreInComputeEntity lastStoreInComputeEntity) async {
-    await _secureStorageDatasource.saveData(KeySecureStorage.lastStoreInCompute, jsonEncode(lastStoreInComputeEntity));
-  }
-
-  @override
-  Future<Either<ErrorHandler, LastStoreInComputeEntity?>> getLastStoreInCompute() async {
-    try {
-      if (await _secureStorageDatasource.existData(KeySecureStorage.lastStoreInCompute)) {
-        final data = await _secureStorageDatasource.getData(KeySecureStorage.lastStoreInCompute);
-        return Right(LastStoreInComputeEntity.fromJson(jsonDecode(data)));
-      } else {
-        return right(null);
-      }
-    } catch (e, s) {
-      return left(ErrorHandlerExternal(
-          errorCode: ErrorCode.errorGetLastStoreInCompute, errorMessage: e.toString(), stackTrace: s));
-    }
   }
 
   @override

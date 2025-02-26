@@ -2,7 +2,6 @@ import 'package:core/di/data_provider.fr.dart';
 import 'package:core/domain/use_case/wishlist/update_products_in_wishlist_use_case.dart';
 import 'package:core/domain/use_case/wishlist/update_wishlist_use_case.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import '../../data/datasource/wishlist/wishlist_data_source.dart';
 import '../../data/datasource/wishlist/wishlist_data_source_impl.dart';
 import '../../data/repository/wishlist/wishlist_repository.dart';

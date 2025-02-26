@@ -16,7 +16,7 @@ extension StringX on String {
         return '';
       }
       return word[0].toUpperCase() + word.substring(1).toLowerCase();
-    }).join('');
+    }).join();
 
     return pascalCaseString;
   }

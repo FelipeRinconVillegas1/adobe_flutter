@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import '../../../domain/entity/stores/last_store_in_compute_entity.fr.dart';
 import '../../../domain/entity/stores/warehouse_address_entity.fr.dart';
 import '../../../utils/error_handler/error_handler.dart';
 import '../../dto/cart/warehouse_address_dto.fr.dart';
@@ -11,10 +10,6 @@ abstract class StoresRepository {
     required int currentPage,
     required Map<String, dynamic> sortStores,
   });
-
-  Future<void> saveLastStoreInCompute(LastStoreInComputeEntity lastStoreInComputeEntity);
-
-  Future<Either<ErrorHandler, LastStoreInComputeEntity?>> getLastStoreInCompute();
 
   Future<void> saveWareHousePickUp(WareHouseAddressEntity customerAddress);
 

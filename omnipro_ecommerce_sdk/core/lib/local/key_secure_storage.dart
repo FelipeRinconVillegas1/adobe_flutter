@@ -30,18 +30,7 @@ enum KeySecureStorage {
 
   /// It's the first time user in the app
   isFirstTime,
-  reminderSetting,
-  notificationSetting,
-  languageSetting,
 
-  /// Last time sync data of optionsDropdown from server to local storage in data time format iso 8601,
-  /// this flag is used to check if the data is expired or not to sync data from server to local storage.
-  lastTimeSyncDropdownOptions,
-  devicePushToken,
-
-  /// key to save the last store where the product comes from to be delivered to the customer
-  lastStoreInCompute,
-  lastPushNotificationUpdatedToken,
-  notificationsEnabled,
+  /// User email suggested
   suggestedEmails
 }

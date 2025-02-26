@@ -4,9 +4,7 @@ import 'package:core/domain/entity/environment.dart';
 import 'package:core/utils/error_handler/error_code.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:logger/logger.dart';
-import '../global_keys.dart';
 
 typedef CallBackToLogCrashlytics = void Function(Object error, StackTrace stack);
 
@@ -76,10 +74,6 @@ class LoggerApp {
       }
       error ??= Exception('Error-> message: $message');
 
-      if (errorType == ErrorType.error && ref != null) {
-        logErrorToAdobeEdgeNetworkAnalytics(errorCode, message);
-      }
-
       if (_callBackToLogCrashlytics != null) {
         _callBackToLogCrashlytics!(error, stack!);
       }
@@ -95,20 +89,6 @@ class LoggerApp {
         }
         return;
       }
-    } catch (_) {}
-  }
-
-  void logErrorToAdobeEdgeNetworkAnalytics(dynamic errorCode, String message) {
-    try {
-      String errorCodeString = "";
-      if (errorCode is ErrorCode) {
-        errorCodeString = errorCode.message;
-      } else if (errorCode is String) {
-        errorCodeString = errorCode;
-      }
-
-      final goRouter = GoRouter.of(rootNavigatorKey.currentState!.context);
-      String url = goRouter.routerDelegate.currentConfiguration.matches.last.matchedLocation;
     } catch (_) {}
   }
 }

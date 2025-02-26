@@ -1130,8 +1130,6 @@ mixin _$OrderItemTotalDTO {
   OrderItemShippingHandlingDTO get shippingHandling =>
       throw _privateConstructorUsedError;
   List<MoneyInfoDTO> get discounts => throw _privateConstructorUsedError;
-  @JsonKey(name: 'refundable_fee')
-  RefundableFeeDTO get refundableFee => throw _privateConstructorUsedError;
 
   /// Serializes this OrderItemTotalDTO to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1157,14 +1155,12 @@ abstract class $OrderItemTotalDTOCopyWith<$Res> {
     @JsonKey(name: 'shipping_handling')
     OrderItemShippingHandlingDTO shippingHandling,
     List<MoneyInfoDTO> discounts,
-    @JsonKey(name: 'refundable_fee') RefundableFeeDTO refundableFee,
   });
 
   $OrderItemGrandTotalDTOCopyWith<$Res> get grandTotal;
   $MoneyDTOCopyWith<$Res> get totalTax;
   $MoneyDTOCopyWith<$Res> get subTotal;
   $OrderItemShippingHandlingDTOCopyWith<$Res> get shippingHandling;
-  $RefundableFeeDTOCopyWith<$Res> get refundableFee;
 }
 
 /// @nodoc
@@ -1187,7 +1183,6 @@ class _$OrderItemTotalDTOCopyWithImpl<$Res, $Val extends OrderItemTotalDTO>
     Object? subTotal = null,
     Object? shippingHandling = null,
     Object? discounts = null,
-    Object? refundableFee = null,
   }) {
     return _then(
       _value.copyWith(
@@ -1216,11 +1211,6 @@ class _$OrderItemTotalDTOCopyWithImpl<$Res, $Val extends OrderItemTotalDTO>
                     ? _value.discounts
                     : discounts // ignore: cast_nullable_to_non_nullable
                         as List<MoneyInfoDTO>,
-            refundableFee:
-                null == refundableFee
-                    ? _value.refundableFee
-                    : refundableFee // ignore: cast_nullable_to_non_nullable
-                        as RefundableFeeDTO,
           )
           as $Val,
     );
@@ -1268,16 +1258,6 @@ class _$OrderItemTotalDTOCopyWithImpl<$Res, $Val extends OrderItemTotalDTO>
       },
     );
   }
-
-  /// Create a copy of OrderItemTotalDTO
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $RefundableFeeDTOCopyWith<$Res> get refundableFee {
-    return $RefundableFeeDTOCopyWith<$Res>(_value.refundableFee, (value) {
-      return _then(_value.copyWith(refundableFee: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -1296,7 +1276,6 @@ abstract class _$$OrderItemTotalDTOImplCopyWith<$Res>
     @JsonKey(name: 'shipping_handling')
     OrderItemShippingHandlingDTO shippingHandling,
     List<MoneyInfoDTO> discounts,
-    @JsonKey(name: 'refundable_fee') RefundableFeeDTO refundableFee,
   });
 
   @override
@@ -1307,8 +1286,6 @@ abstract class _$$OrderItemTotalDTOImplCopyWith<$Res>
   $MoneyDTOCopyWith<$Res> get subTotal;
   @override
   $OrderItemShippingHandlingDTOCopyWith<$Res> get shippingHandling;
-  @override
-  $RefundableFeeDTOCopyWith<$Res> get refundableFee;
 }
 
 /// @nodoc
@@ -1330,7 +1307,6 @@ class __$$OrderItemTotalDTOImplCopyWithImpl<$Res>
     Object? subTotal = null,
     Object? shippingHandling = null,
     Object? discounts = null,
-    Object? refundableFee = null,
   }) {
     return _then(
       _$OrderItemTotalDTOImpl(
@@ -1359,11 +1335,6 @@ class __$$OrderItemTotalDTOImplCopyWithImpl<$Res>
                 ? _value._discounts
                 : discounts // ignore: cast_nullable_to_non_nullable
                     as List<MoneyInfoDTO>,
-        refundableFee:
-            null == refundableFee
-                ? _value.refundableFee
-                : refundableFee // ignore: cast_nullable_to_non_nullable
-                    as RefundableFeeDTO,
       ),
     );
   }
@@ -1378,7 +1349,6 @@ class _$OrderItemTotalDTOImpl implements _OrderItemTotalDTO {
     @JsonKey(name: 'subtotal') required this.subTotal,
     @JsonKey(name: 'shipping_handling') required this.shippingHandling,
     required final List<MoneyInfoDTO> discounts,
-    @JsonKey(name: 'refundable_fee') required this.refundableFee,
   }) : _discounts = discounts;
 
   factory _$OrderItemTotalDTOImpl.fromJson(Map<String, dynamic> json) =>
@@ -1405,12 +1375,8 @@ class _$OrderItemTotalDTOImpl implements _OrderItemTotalDTO {
   }
 
   @override
-  @JsonKey(name: 'refundable_fee')
-  final RefundableFeeDTO refundableFee;
-
-  @override
   String toString() {
-    return 'OrderItemTotalDTO(grandTotal: $grandTotal, totalTax: $totalTax, subTotal: $subTotal, shippingHandling: $shippingHandling, discounts: $discounts, refundableFee: $refundableFee)';
+    return 'OrderItemTotalDTO(grandTotal: $grandTotal, totalTax: $totalTax, subTotal: $subTotal, shippingHandling: $shippingHandling, discounts: $discounts)';
   }
 
   @override
@@ -1429,9 +1395,7 @@ class _$OrderItemTotalDTOImpl implements _OrderItemTotalDTO {
             const DeepCollectionEquality().equals(
               other._discounts,
               _discounts,
-            ) &&
-            (identical(other.refundableFee, refundableFee) ||
-                other.refundableFee == refundableFee));
+            ));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1443,7 +1407,6 @@ class _$OrderItemTotalDTOImpl implements _OrderItemTotalDTO {
     subTotal,
     shippingHandling,
     const DeepCollectionEquality().hash(_discounts),
-    refundableFee,
   );
 
   /// Create a copy of OrderItemTotalDTO
@@ -1472,8 +1435,6 @@ abstract class _OrderItemTotalDTO implements OrderItemTotalDTO {
     @JsonKey(name: 'shipping_handling')
     required final OrderItemShippingHandlingDTO shippingHandling,
     required final List<MoneyInfoDTO> discounts,
-    @JsonKey(name: 'refundable_fee')
-    required final RefundableFeeDTO refundableFee,
   }) = _$OrderItemTotalDTOImpl;
 
   factory _OrderItemTotalDTO.fromJson(Map<String, dynamic> json) =
@@ -1493,172 +1454,12 @@ abstract class _OrderItemTotalDTO implements OrderItemTotalDTO {
   OrderItemShippingHandlingDTO get shippingHandling;
   @override
   List<MoneyInfoDTO> get discounts;
-  @override
-  @JsonKey(name: 'refundable_fee')
-  RefundableFeeDTO get refundableFee;
 
   /// Create a copy of OrderItemTotalDTO
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OrderItemTotalDTOImplCopyWith<_$OrderItemTotalDTOImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-RefundableFeeDTO _$RefundableFeeDTOFromJson(Map<String, dynamic> json) {
-  return _RefundableFeeDTO.fromJson(json);
-}
-
-/// @nodoc
-mixin _$RefundableFeeDTO {
-  double get value => throw _privateConstructorUsedError;
-
-  /// Serializes this RefundableFeeDTO to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of RefundableFeeDTO
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $RefundableFeeDTOCopyWith<RefundableFeeDTO> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $RefundableFeeDTOCopyWith<$Res> {
-  factory $RefundableFeeDTOCopyWith(
-    RefundableFeeDTO value,
-    $Res Function(RefundableFeeDTO) then,
-  ) = _$RefundableFeeDTOCopyWithImpl<$Res, RefundableFeeDTO>;
-  @useResult
-  $Res call({double value});
-}
-
-/// @nodoc
-class _$RefundableFeeDTOCopyWithImpl<$Res, $Val extends RefundableFeeDTO>
-    implements $RefundableFeeDTOCopyWith<$Res> {
-  _$RefundableFeeDTOCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of RefundableFeeDTO
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? value = null}) {
-    return _then(
-      _value.copyWith(
-            value:
-                null == value
-                    ? _value.value
-                    : value // ignore: cast_nullable_to_non_nullable
-                        as double,
-          )
-          as $Val,
-    );
-  }
-}
-
-/// @nodoc
-abstract class _$$RefundableFeeDTOImplCopyWith<$Res>
-    implements $RefundableFeeDTOCopyWith<$Res> {
-  factory _$$RefundableFeeDTOImplCopyWith(
-    _$RefundableFeeDTOImpl value,
-    $Res Function(_$RefundableFeeDTOImpl) then,
-  ) = __$$RefundableFeeDTOImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({double value});
-}
-
-/// @nodoc
-class __$$RefundableFeeDTOImplCopyWithImpl<$Res>
-    extends _$RefundableFeeDTOCopyWithImpl<$Res, _$RefundableFeeDTOImpl>
-    implements _$$RefundableFeeDTOImplCopyWith<$Res> {
-  __$$RefundableFeeDTOImplCopyWithImpl(
-    _$RefundableFeeDTOImpl _value,
-    $Res Function(_$RefundableFeeDTOImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of RefundableFeeDTO
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? value = null}) {
-    return _then(
-      _$RefundableFeeDTOImpl(
-        value:
-            null == value
-                ? _value.value
-                : value // ignore: cast_nullable_to_non_nullable
-                    as double,
-      ),
-    );
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$RefundableFeeDTOImpl implements _RefundableFeeDTO {
-  const _$RefundableFeeDTOImpl({required this.value});
-
-  factory _$RefundableFeeDTOImpl.fromJson(Map<String, dynamic> json) =>
-      _$$RefundableFeeDTOImplFromJson(json);
-
-  @override
-  final double value;
-
-  @override
-  String toString() {
-    return 'RefundableFeeDTO(value: $value)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$RefundableFeeDTOImpl &&
-            (identical(other.value, value) || other.value == value));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, value);
-
-  /// Create a copy of RefundableFeeDTO
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$RefundableFeeDTOImplCopyWith<_$RefundableFeeDTOImpl> get copyWith =>
-      __$$RefundableFeeDTOImplCopyWithImpl<_$RefundableFeeDTOImpl>(
-        this,
-        _$identity,
-      );
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$RefundableFeeDTOImplToJson(this);
-  }
-}
-
-abstract class _RefundableFeeDTO implements RefundableFeeDTO {
-  const factory _RefundableFeeDTO({required final double value}) =
-      _$RefundableFeeDTOImpl;
-
-  factory _RefundableFeeDTO.fromJson(Map<String, dynamic> json) =
-      _$RefundableFeeDTOImpl.fromJson;
-
-  @override
-  double get value;
-
-  /// Create a copy of RefundableFeeDTO
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$RefundableFeeDTOImplCopyWith<_$RefundableFeeDTOImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

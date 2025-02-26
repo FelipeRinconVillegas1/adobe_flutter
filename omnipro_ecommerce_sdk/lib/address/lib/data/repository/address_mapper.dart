@@ -1,9 +1,6 @@
-import 'package:core/data/dto/cart/set_billing_address_oms_options_dto.fr.dart';
-import 'package:core/data/dto/cart/set_shipping_address_oms_options_dto.fr.dart';
 import 'package:core/data/dto/customer_address_dto.fr.dart';
 import 'package:core/data/dto/custom_attribute_dto.fr.dart';
 import 'package:core/data/dto/state_dto.fr.dart';
-import 'package:core/domain/entity/cart/set_shipping_address_oms_options.dart';
 import 'package:core/domain/entity/state_country_entity.dart';
 import 'package:core/domain/entity/states_country.dart';
 import 'package:core/utils/custom_attribute_code.dart';
@@ -25,32 +22,6 @@ extension MapperStateDTO on StateDTO {
 
 extension MapperListCustomerAddressDTO on List<CustomerAddressDTO> {
   List<CustomerAddressEntity> toDomain() => map((e) => e.toDomain()).toList();
-}
-
-extension MapperSetShippingAddressOmsOptions on SetShippingAddressOmsOptions {
-  SetShippingAddressOmsOptionsDTO toDTO() => SetShippingAddressOmsOptionsDTO(
-        longitude: longitude,
-        latitude: latitude,
-        zoneCustom: zoneCustom,
-        stateCustom: stateCustom,
-        cityCustom: cityCustom,
-        omsReceivingDeliveryInstructions: omsReceivingDeliveryInstructions,
-        omsReceivingFullName: omsReceivingFullName,
-        omsReceivingIdentification: omsReceivingIdentification,
-        omsReceivingSpecialRequest: omsReceivingSpecialRequest,
-        omsReceivingTelephone: omsReceivingTelephone,
-        omsReceivingOption: omsReceivingOption,
-      );
-}
-
-extension MapperSetBillingAddressOmsOptions on AddressOmsOptions {
-  SetBillingAddressOmsOptionsDTO toDTO() => SetBillingAddressOmsOptionsDTO(
-        longitude: longitude,
-        latitude: latitude,
-        zoneCustom: zoneCustom,
-        stateCustom: stateCustom,
-        cityCustom: cityCustom,
-      );
 }
 
 extension MapperCustomerAddressEntity on CustomerAddressEntity {

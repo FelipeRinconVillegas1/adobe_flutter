@@ -7,7 +7,6 @@ import 'package:core/utils/error_handler/error_handler.dart';
 import 'package:core/utils/stream_event_change_contract.dart';
 import 'package:dartz/dartz.dart';
 import 'package:rxdart/rxdart.dart';
-
 import 'address_mutation.dart';
 import 'address_query.dart';
 

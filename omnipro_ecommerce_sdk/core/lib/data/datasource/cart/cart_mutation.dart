@@ -1,4 +1,3 @@
-import 'package:core/data/dto/cart/add_to_cart_oms_options_dto.fr.dart';
 import 'package:core/data/dto/customer_address_dto.fr.dart';
 import 'package:core/data/dto/cart/config_shipping_method_dto.fr.dart';
 import 'package:core/data/dto/cart/send_tip_dto.dart';
@@ -8,9 +7,6 @@ import 'package:core/domain/entity/customer.fr.dart';
 import '../../../domain/entity/cart/input_set_payment_method_on_cart_entity.fr.dart';
 import '../../../domain/entity/stores/warehouse_address_entity.fr.dart';
 import '../../../utils/constants.dart';
-import '../../dto/cart/set_appointment_information_on_cart_dto.fr.dart';
-import '../../dto/cart/set_billing_address_oms_options_dto.fr.dart';
-import '../../dto/cart/set_shipping_address_oms_options_dto.fr.dart';
 import 'cart_query.dart';
 
 // __  __ _    _ _______    _______ _____ ____  _   _
@@ -26,7 +22,6 @@ mutation {
   addSimpleProductsToCart(
     input: {
         cart_items: {
-            oms_options: { ${addProductToCart.omsOptions!.toParamMutation()} }
             data: { sku: "${addProductToCart.cartItems.sku}", quantity: ${addProductToCart.cartItems.quantity} }
         }
         cart_id: "${addProductToCart.cartId}"
@@ -46,7 +41,6 @@ mutation {
       cartItems: [
         ${addProductToCart.map((addProductToCart) => '''
         {
-            oms_options: { ${addProductToCart.omsOptions!.toParamMutation()} }
             sku: "${addProductToCart.cartItems.sku}",
             quantity: ${addProductToCart.cartItems.quantity} 
         }
@@ -110,9 +104,7 @@ mutation {
 }
     ''';
 
-String setShippingAddressesOnCartMutation(String cartId, CustomerAddressDTO orderAddressDTO,
-        SetShippingAddressOmsOptionsDTO setShippingAddressOmsOptionsDTO) =>
-    '''
+String setShippingAddressesOnCartMutation(String cartId, CustomerAddressDTO orderAddressDTO) => '''
 mutation {
   setShippingAddressesOnCart(
     input: {
@@ -120,7 +112,6 @@ mutation {
       shipping_addresses: [
        {
          customer_address_id: ${orderAddressDTO.id}
-         oms_options: {${setShippingAddressOmsOptionsDTO.toParamMutation()}}
        }
      ]
     }
@@ -134,11 +125,10 @@ mutation {
 ''';
 
 String setWarehouseAddressOnCartMutation(
-        Customer customer,
-        String cartId,
-        WareHouseAddressEntity wareHouseAddressEntity,
-        SetShippingAddressOmsOptionsDTO setShippingAddressOmsOptionsDTO) =>
-    '''
+  Customer customer,
+  String cartId,
+  WareHouseAddressEntity wareHouseAddressEntity,
+) => '''
 mutation {
   setShippingAddressesOnCart(
     input: {
@@ -157,7 +147,6 @@ mutation {
             telephone: "${wareHouseAddressEntity.telephone.replaceAll(RegExp(r'[^0-9]'), '')}"
             save_in_address_book: false
           }
-         oms_options: {${setShippingAddressOmsOptionsDTO.toParamMutation()}}
         }
      ]
     }
@@ -170,16 +159,13 @@ mutation {
 
 ''';
 
-String setBillingAddressesOnCartMutation(String cartId, CustomerAddressDTO orderAddressDTO,
-        SetBillingAddressOmsOptionsDTO setBillingAddressOmsOptionsDTO) =>
-    '''
+String setBillingAddressesOnCartMutation(String cartId, CustomerAddressDTO orderAddressDTO) => '''
   mutation {
   setBillingAddressOnCart(
     input: {
       cart_id: "$cartId"
       billing_address: {
         customer_address_id: ${orderAddressDTO.id}
-        oms_options: {${setBillingAddressOmsOptionsDTO.toParamMutation()}}
       }
     }
   ) {
@@ -288,27 +274,6 @@ mutation {
 }
 ''';
 
-String setAppointmentInformationOnCartMutation(SetAppointmentOnCartDTO setAppointmentOnCartDTO) => '''
-mutation SetAppointmentInformationOnCart {
-    setAppointmentInformationOnCart(
-        input: {
-            cart_id: "${setAppointmentOnCartDTO.cartId}"
-            oms_appointment_id: "${setAppointmentOnCartDTO.omsAppointmentId}"
-            oms_shipping_date: "${setAppointmentOnCartDTO.omsShippingDate}"
-            oms_shipping_time: "${setAppointmentOnCartDTO.omsShippingTime}"
-            oms_delivery_price: ${setAppointmentOnCartDTO.omsDeliveryPrice}
-        }
-    ) {
-        cart_id
-        oms_appointment_id
-        oms_shipping_date
-        oms_shipping_time
-        oms_delivery_price
-    }
-}
-
-''';
-
 String removeCartItemsFromCartMutation({required String cartId, required List<int> cartItemIds}) => '''
 mutation {
     removeCartItems(
@@ -320,12 +285,11 @@ mutation {
 }
 ''';
 
-String setOmsOptionsInCartMutation(AddToCartOmsOptionsDTO addToCartOmsOptionsDTO,String cartId) => '''
+String setOmsOptionsInCartMutation(String cartId) => '''
 mutation SetOmsOptionsInCart {
     setOmsOptionsInCart(
         input: {
-            cart_id: "${cartId}"
-            oms_options: { ${addToCartOmsOptionsDTO.toParamMutation()} }
+            cart_id: "$cartId"
         }
     ) {
         cart_id

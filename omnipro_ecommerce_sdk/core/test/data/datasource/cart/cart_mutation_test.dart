@@ -1,11 +1,9 @@
 import 'package:core/data/datasource/cart/cart_query.dart';
-import 'package:core/data/dto/cart/add_to_cart_oms_options_dto.fr.dart';
 import 'package:core/data/dto/cart/cart_item_input_dto.fr.dart';
 import 'package:core/data/dto/cart/config_shipping_method_dto.fr.dart';
 import 'package:core/data/dto/cart/send_tip_dto.dart';
 import 'package:core/data/dto/cart/update_cart_items_dto.fr.dart';
 import 'package:core/domain/entity/cart/input_set_payment_method_on_cart_entity.fr.dart';
-import 'package:core/domain/entity/cart/set_shipping_address_oms_options.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:core/data/datasource/cart/cart_mutation.dart';
 import 'package:core/data/dto/cart/add_product_to_cart_dto.fr.dart';
@@ -27,7 +25,6 @@ void main() {
             EnteredOptionInputDTO(uid: '5678', value: 'Option B'),
           ],
         ),
-        omsOptions: AddToCartOmsOptionsDTO(omsCid: '1', omsCode: '1', omsShippingMethod: '1'),
       );
 
       // Act
@@ -57,7 +54,6 @@ void main() {
             EnteredOptionInputDTO(uid: '5678', value: 'Option B'),
           ],
         ),
-        omsOptions: AddToCartOmsOptionsDTO(omsCid: '1', omsCode: '1', omsShippingMethod: '1'),
       );
       final expectedMutation = '''
       mutation {
@@ -112,23 +108,6 @@ void main() {
 
   group('setShippingAddressesOnCart and  setBillingAddressesOnCart', () {
     const addressDTO = CartFakeData.customerFakeAddress;
-
-    final setShippingOmsOptions = SetShippingAddressOmsOptions(
-      cityCustom: "08",
-      stateCustom: "87",
-      zoneCustom: "097",
-      latitude: "1234",
-      longitude: "12324",
-    );
-
-    final addressOmsOptions = AddressOmsOptions(
-      cityCustom: "08",
-      stateCustom: "87",
-      zoneCustom: "097",
-      latitude: "1234",
-      longitude: "12324",
-    );
-
     String cartId = '1234';
 
     String newAddressInMutation = '''
@@ -165,7 +144,7 @@ void main() {
         }
       ''';
       expect(
-          setShippingAddressesOnCartMutation(cartId, addressDTO, setShippingOmsOptions.toDTO())
+          setShippingAddressesOnCartMutation(cartId, addressDTO)
               .replaceAll(RegExp(r'\s'), ''),
           equals(expectedMutation.replaceAll(RegExp(r'\s'), '')));
     });
@@ -188,7 +167,7 @@ void main() {
       }
       ''';
       expect(
-          setBillingAddressesOnCartMutation(cartId, addressDTO, addressOmsOptions.toDTO())
+          setBillingAddressesOnCartMutation(cartId, addressDTO)
               .replaceAll(RegExp(r'\s'), ''),
           equals(expectedMutation.replaceAll(RegExp(r'\s'), '')));
     });

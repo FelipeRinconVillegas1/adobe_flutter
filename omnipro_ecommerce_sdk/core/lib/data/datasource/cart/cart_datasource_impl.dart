@@ -1,5 +1,3 @@
-import 'package:core/data/dto/cart/add_to_cart_oms_options_dto.fr.dart';
-import 'package:core/data/dto/cart/set_appointment_information_on_cart_dto.fr.dart';
 import 'package:core/data/dto/customer_address_dto.fr.dart';
 import 'package:core/data/dto/cart/add_product_to_cart_dto.fr.dart';
 import 'package:core/data/dto/cart/cart_dto.fr.dart';
@@ -11,20 +9,17 @@ import 'package:core/data/dto/products_dto.fr.dart';
 import 'package:core/domain/entity/stores/warehouse_address_entity.fr.dart';
 import 'package:core/utils/error_handler/error_code.dart';
 import 'package:core/utils/loggers/app_logger.dart';
-import 'package:dartz/dartz.dart';
 import 'package:core/data/datasource/cart/cart_datasource.dart';
 import 'package:core/utils/error_handler/error_handler.dart';
 import 'package:core/network/graphql/graphql_service.dart';
 import 'package:core/data/datasource/secure_call_datasource.dart';
 import 'package:core/utils/extension.dart';
-import 'package:graphql/src/core/query_result.dart';
-
 import '../../../domain/entity/cart/input_set_payment_method_on_cart_entity.fr.dart';
 import '../../../domain/entity/customer.fr.dart';
-import '../../dto/cart/set_billing_address_oms_options_dto.fr.dart';
-import '../../dto/cart/set_shipping_address_oms_options_dto.fr.dart';
 import 'cart_mutation.dart';
 import 'cart_query.dart';
+import 'package:dartz/dartz.dart';
+import 'package:graphql/src/core/query_result.dart';
 
 class CartDatasourceImpl extends CartDatasource {
   CartDatasourceImpl(this._graphQLService, this._graphQLServiceNoAuthenticated);
@@ -33,27 +28,19 @@ class CartDatasourceImpl extends CartDatasource {
   final GraphQLService _graphQLServiceNoAuthenticated;
 
   @override
-  Future<Either<ErrorHandler, CartDTO>> addProductToCart(List<AddProductToCartDTO> addProductsToCartDTO,
-      {bool isGuestUser = false}) async {
+  Future<Either<ErrorHandler, CartDTO>> addProductToCart(
+    List<AddProductToCartDTO> addProductsToCartDTO, {
+    bool isGuestUser = false,
+  }) async {
     return secureServerCall(() async {
       late Either<ErrorHandler, QueryResult<Object?>> response;
-
-      if (addProductsToCartDTO.first.omsOptions == null) {
-        return left(ErrorHandlerExternal(
-            errorCode: ErrorCode.errorAddProductCartNoComputeInput,
-            errorMessage: ErrorCode.errorAddProductCartNoComputeInput.message));
-      }
 
       String mutation = addProductToCartMutation(addProductsToCartDTO);
 
       if (isGuestUser) {
-        response = await _graphQLServiceNoAuthenticated.mutation(
-          mutation,
-        );
+        response = await _graphQLServiceNoAuthenticated.mutation(mutation);
       } else {
-        response = await _graphQLService.mutation(
-          mutation,
-        );
+        response = await _graphQLService.mutation(mutation);
       }
       final mutationResponse = response.getRight();
       if (mutationResponse == null) {
@@ -63,17 +50,21 @@ class CartDatasourceImpl extends CartDatasource {
       if ((mutationResponse.data?['addProductsToCart']['user_errors']?.length ?? 0) > 0) {
         String errorMessageOutOfStock = "Some of the products are out of stock.";
         dynamic errorCode = ErrorCode.addProductCart;
-        if ((mutationResponse.data?['addProductsToCart']['user_errors'][0]['message'] ?? "")
-            .contains(errorMessageOutOfStock)) {
+        if ((mutationResponse.data?['addProductsToCart']['user_errors'][0]['message'] ?? "").contains(
+          errorMessageOutOfStock,
+        )) {
           errorCode = ErrorCode.errorInsufficientStock;
         } else {
           errorCode = mutationResponse.data?['addProductsToCart']['user_errors'][0]['code'] ?? ErrorCode.addProductCart;
         }
 
-        return left(ErrorHandlerExternal(
+        return left(
+          ErrorHandlerExternal(
             errorCode: errorCode,
             errorMessage:
-                mutationResponse.data?['addProductsToCart']['user_errors'][0]['message'] ?? ErrorCode.addProductCart));
+                mutationResponse.data?['addProductsToCart']['user_errors'][0]['message'] ?? ErrorCode.addProductCart,
+          ),
+        );
       }
 
       return right(CartDTO.fromJson(mutationResponse.data?['addProductsToCart']['cart']));
@@ -81,19 +72,17 @@ class CartDatasourceImpl extends CartDatasource {
   }
 
   @override
-  Future<Either<ErrorHandler, CartDTO>> updateCartItems(
-      {required UpdateCartItemsInputDTO updateCartItemsInputDTO, required bool isGuestUser}) {
+  Future<Either<ErrorHandler, CartDTO>> updateCartItems({
+    required UpdateCartItemsInputDTO updateCartItemsInputDTO,
+    required bool isGuestUser,
+  }) {
     return secureServerCall(() async {
       final mutation = updateItemProductCartMutation(updateCartItemsInputDTO);
       late Either<ErrorHandler, QueryResult<Object?>> response;
       if (isGuestUser) {
-        response = await _graphQLServiceNoAuthenticated.mutation(
-          mutation,
-        );
+        response = await _graphQLServiceNoAuthenticated.mutation(mutation);
       } else {
-        response = await _graphQLService.mutation(
-          mutation,
-        );
+        response = await _graphQLService.mutation(mutation);
       }
 
       final mutationResponse = response.getRight();
@@ -106,19 +95,18 @@ class CartDatasourceImpl extends CartDatasource {
   }
 
   @override
-  Future<Either<ErrorHandler, CartDTO>> removeProductFromCart(
-      {required String cartId, required String cartItemId, required bool isGuestUser}) {
+  Future<Either<ErrorHandler, CartDTO>> removeProductFromCart({
+    required String cartId,
+    required String cartItemId,
+    required bool isGuestUser,
+  }) {
     return secureServerCall(() async {
       final mutation = removeProductFromCartMutation(cartId, cartItemId);
       late Either<ErrorHandler, QueryResult<Object?>> response;
       if (isGuestUser) {
-        response = await _graphQLServiceNoAuthenticated.mutation(
-          mutation,
-        );
+        response = await _graphQLServiceNoAuthenticated.mutation(mutation);
       } else {
-        response = await _graphQLService.mutation(
-          mutation,
-        );
+        response = await _graphQLService.mutation(mutation);
       }
       final queryResponse = response.getRight();
       if (queryResponse == null) {
@@ -135,13 +123,9 @@ class CartDatasourceImpl extends CartDatasource {
       final query = getCartInfoQuery(cartId);
       late Either<ErrorHandler, QueryResult<Object?>> response;
       if (isGuestUser) {
-        response = await _graphQLServiceNoAuthenticated.query(
-          query,
-        );
+        response = await _graphQLServiceNoAuthenticated.query(query);
       } else {
-        response = await _graphQLService.query(
-          query,
-        );
+        response = await _graphQLService.query(query);
       }
       final queryResponse = response.getRight();
       if (queryResponse == null) {
@@ -158,13 +142,9 @@ class CartDatasourceImpl extends CartDatasource {
       final mutation = createCartMutation();
       late Either<ErrorHandler, QueryResult<Object?>> response;
       if (isGuestUser) {
-        response = await _graphQLServiceNoAuthenticated.mutation(
-          mutation,
-        );
+        response = await _graphQLServiceNoAuthenticated.mutation(mutation);
       } else {
-        response = await _graphQLService.mutation(
-          mutation,
-        );
+        response = await _graphQLService.mutation(mutation);
       }
 
       final queryResponse = response.getRight();
@@ -175,7 +155,8 @@ class CartDatasourceImpl extends CartDatasource {
       String cartId = queryResponse.data?['customerCart']['id'];
       if (cartId.isEmpty) {
         return left(
-            ErrorHandlerExternal(errorCode: ErrorCode.customerCartID, errorMessage: 'CUSTOMER CART ID IS EMPTY'));
+          ErrorHandlerExternal(errorCode: ErrorCode.customerCartID, errorMessage: 'CUSTOMER CART ID IS EMPTY'),
+        );
       }
 
       return right(cartId);
@@ -183,27 +164,27 @@ class CartDatasourceImpl extends CartDatasource {
   }
 
   @override
-  Future<Either<ErrorHandler, CartDTO>> setShippingAddressesOnCart(CustomerAddressDTO orderAddressDTO, String cartId,
-      {required bool isGuestUser, required SetShippingAddressOmsOptionsDTO setShippingAddressOmsOptionsDTO}) {
+  Future<Either<ErrorHandler, CartDTO>> setShippingAddressesOnCart(
+    CustomerAddressDTO orderAddressDTO,
+    String cartId, {
+    required bool isGuestUser,
+  }) {
     return secureServerCall(() async {
-      final mutation = setShippingAddressesOnCartMutation(cartId, orderAddressDTO, setShippingAddressOmsOptionsDTO);
+      final mutation = setShippingAddressesOnCartMutation(cartId, orderAddressDTO);
       late Either<ErrorHandler, QueryResult<Object?>> response;
       if (isGuestUser) {
-        response = await _graphQLServiceNoAuthenticated.mutation(
-          mutation,
-        );
+        response = await _graphQLServiceNoAuthenticated.mutation(mutation);
       } else {
-        response = await _graphQLService.mutation(
-          mutation,
-        );
+        response = await _graphQLService.mutation(mutation);
       }
 
       final queryResponse = response.getRight();
       if (queryResponse == null) {
         LoggerApp().error(
-            message: 'Error setting shipping address on cart. ORDER ADDRESS: $orderAddressDTO',
-            error: response.getLeft()!,
-            errorCode: ErrorCode.errorSetShippingAddressOnCart.message);
+          message: 'Error setting shipping address on cart. ORDER ADDRESS: $orderAddressDTO',
+          error: response.getLeft()!,
+          errorCode: ErrorCode.errorSetShippingAddressOnCart.message,
+        );
         return left(response.getLeft()!);
       }
 
@@ -212,19 +193,18 @@ class CartDatasourceImpl extends CartDatasource {
   }
 
   @override
-  Future<Either<ErrorHandler, CartDTO>> setBillingAddressesOnCart(CustomerAddressDTO orderAddressDTO, String cartId,
-      {required bool isGuestUser, required SetBillingAddressOmsOptionsDTO setBillingAddressOmsOptionsDTO}) {
+  Future<Either<ErrorHandler, CartDTO>> setBillingAddressesOnCart(
+    CustomerAddressDTO orderAddressDTO,
+    String cartId, {
+    required bool isGuestUser,
+  }) {
     return secureServerCall(() async {
-      final mutation = setBillingAddressesOnCartMutation(cartId, orderAddressDTO, setBillingAddressOmsOptionsDTO);
+      final mutation = setBillingAddressesOnCartMutation(cartId, orderAddressDTO);
       late Either<ErrorHandler, QueryResult<Object?>> response;
       if (isGuestUser) {
-        response = await _graphQLServiceNoAuthenticated.mutation(
-          mutation,
-        );
+        response = await _graphQLServiceNoAuthenticated.mutation(mutation);
       } else {
-        response = await _graphQLService.mutation(
-          mutation,
-        );
+        response = await _graphQLService.mutation(mutation);
       }
 
       final queryResponse = response.getRight();
@@ -238,8 +218,10 @@ class CartDatasourceImpl extends CartDatasource {
 
   @override
   Future<Either<ErrorHandler, CartDTO>> setShippingMethodOnCart(
-      ConfigShippingMethodDTO newShippingMethod, String cartId,
-      {required bool isGuestUser}) {
+    ConfigShippingMethodDTO newShippingMethod,
+    String cartId, {
+    required bool isGuestUser,
+  }) {
     return secureServerCall(() async {
       late final String mutation;
       late Either<ErrorHandler, QueryResult<Object?>> response;
@@ -247,13 +229,9 @@ class CartDatasourceImpl extends CartDatasource {
       mutation = setShippingMethodsOnCartMutation(cartId, newShippingMethod);
 
       if (isGuestUser) {
-        response = await _graphQLServiceNoAuthenticated.mutation(
-          mutation,
-        );
+        response = await _graphQLServiceNoAuthenticated.mutation(mutation);
       } else {
-        response = await _graphQLService.mutation(
-          mutation,
-        );
+        response = await _graphQLService.mutation(mutation);
       }
 
       final queryResponse = response.getRight();
@@ -266,20 +244,18 @@ class CartDatasourceImpl extends CartDatasource {
   }
 
   @override
-  Future<Either<ErrorHandler, CartDTO>> setPaymentMethodOnCart(InputSetPaymentMethodOnCartEntity input,
-      {required bool isGuestUser}) {
+  Future<Either<ErrorHandler, CartDTO>> setPaymentMethodOnCart(
+    InputSetPaymentMethodOnCartEntity input, {
+    required bool isGuestUser,
+  }) {
     return secureServerCall(() async {
       late Either<ErrorHandler, QueryResult<Object?>> response;
       final mutation = setPaymentMethodsOnCartMutation(input);
 
       if (isGuestUser) {
-        response = await _graphQLServiceNoAuthenticated.mutation(
-          mutation,
-        );
+        response = await _graphQLServiceNoAuthenticated.mutation(mutation);
       } else {
-        response = await _graphQLService.mutation(
-          mutation,
-        );
+        response = await _graphQLService.mutation(mutation);
       }
 
       final queryResponse = response.getRight();
@@ -295,9 +271,7 @@ class CartDatasourceImpl extends CartDatasource {
   Future<Either<ErrorHandler, CartDTO>> setGuestEmailOnCart({required String email, required String cartId}) {
     return secureServerCall(() async {
       final mutation = setGuestEmailOnCartMutation(cartId, email);
-      final response = await _graphQLServiceNoAuthenticated.mutation(
-        mutation,
-      );
+      final response = await _graphQLServiceNoAuthenticated.mutation(mutation);
 
       final queryResponse = response.getRight();
       if (queryResponse == null) {
@@ -309,20 +283,19 @@ class CartDatasourceImpl extends CartDatasource {
   }
 
   @override
-  Future<Either<ErrorHandler, CartDTO>> appliedCoupon(
-      {required String cartId, required String couponCode, required bool isGuestUser}) {
+  Future<Either<ErrorHandler, CartDTO>> appliedCoupon({
+    required String cartId,
+    required String couponCode,
+    required bool isGuestUser,
+  }) {
     return secureServerCall(() async {
       final mutation = applyCouponToCartMutation(cartId: cartId, couponCode: couponCode);
       late Either<ErrorHandler, QueryResult<Object?>> response;
 
       if (isGuestUser) {
-        response = await _graphQLServiceNoAuthenticated.mutation(
-          mutation,
-        );
+        response = await _graphQLServiceNoAuthenticated.mutation(mutation);
       } else {
-        response = await _graphQLService.mutation(
-          mutation,
-        );
+        response = await _graphQLService.mutation(mutation);
       }
 
       final queryResponse = response.getRight();
@@ -341,13 +314,9 @@ class CartDatasourceImpl extends CartDatasource {
       late Either<ErrorHandler, QueryResult<Object?>> response;
 
       if (isGuestUser) {
-        response = await _graphQLServiceNoAuthenticated.mutation(
-          mutation,
-        );
+        response = await _graphQLServiceNoAuthenticated.mutation(mutation);
       } else {
-        response = await _graphQLService.mutation(
-          mutation,
-        );
+        response = await _graphQLService.mutation(mutation);
       }
 
       final queryResponse = response.getRight();
@@ -365,13 +334,9 @@ class CartDatasourceImpl extends CartDatasource {
       final mutation = createEmptyCartMutation();
       late Either<ErrorHandler, QueryResult<Object?>> response;
       if (isGuestUser) {
-        response = await _graphQLServiceNoAuthenticated.mutation(
-          mutation,
-        );
+        response = await _graphQLServiceNoAuthenticated.mutation(mutation);
       } else {
-        response = await _graphQLService.mutation(
-          mutation,
-        );
+        response = await _graphQLService.mutation(mutation);
       }
 
       final queryResponse = response.getRight();
@@ -390,9 +355,7 @@ class CartDatasourceImpl extends CartDatasource {
   Future<Either<ErrorHandler, List<ProductsItemsDTO>>> getCrossSellingProducts({required List<String> skus}) {
     return secureServerCall(() async {
       final query = getCrossSellingProductsQuery(skus);
-      final response = await _graphQLService.query(
-        query,
-      );
+      final response = await _graphQLService.query(query);
 
       final queryResponse = response.getRight();
       if (queryResponse == null) {
@@ -415,9 +378,7 @@ class CartDatasourceImpl extends CartDatasource {
   Future<Either<ErrorHandler, SendTipResponseDTO>> addTipToCart({required SendTipDTO sendTipDTO}) {
     return secureServerCall(() async {
       final mutation = addTipToCartMutation(tip: sendTipDTO);
-      final response = await _graphQLService.mutation(
-        mutation,
-      );
+      final response = await _graphQLService.mutation(mutation);
       final queryResponse = response.getRight();
       if (queryResponse == null) {
         return left(response.getLeft()!);
@@ -436,9 +397,7 @@ class CartDatasourceImpl extends CartDatasource {
   Future<Either<ErrorHandler, List<EnabledShippingMethodDTO>>> getEnabledShippingMethods() {
     return secureServerCall(() async {
       final query = getEnabledShippingMethodQuery();
-      final response = await _graphQLService.query(
-        query,
-      );
+      final response = await _graphQLService.query(query);
       final queryResponse = response.getRight();
       if (queryResponse == null) {
         return left(response.getLeft()!);
@@ -455,9 +414,7 @@ class CartDatasourceImpl extends CartDatasource {
   Future<Either<ErrorHandler, CartDTO>> removeAllItemsFromCart({required String cartId}) {
     return secureServerCall(() async {
       final mutation = removeAllItemsFromCartMutation(cartId: cartId);
-      final response = await _graphQLService.mutation(
-        mutation,
-      );
+      final response = await _graphQLService.mutation(mutation);
       final queryResponse = response.getRight();
       if (queryResponse == null) {
         return left(response.getLeft()!);
@@ -467,35 +424,18 @@ class CartDatasourceImpl extends CartDatasource {
   }
 
   @override
-  Future<Either<ErrorHandler, SetAppointmentOnCartDTO>> setAppointmentInformationOnCart(
-      {required SetAppointmentOnCartDTO setAppointmentOnCartDTO}) {
-    return secureServerCall(() async {
-      final mutation = setAppointmentInformationOnCartMutation(setAppointmentOnCartDTO);
-      final response = await _graphQLService.mutation(
-        mutation,
-      );
-      final queryResponse = response.getRight();
-      if (queryResponse == null) {
-        return left(response.getLeft()!);
-      }
-      return right(SetAppointmentOnCartDTO.fromJson(queryResponse.data?['setAppointmentInformationOnCart']));
-    });
-  }
-
-  @override
-  Future<Either<ErrorHandler, CartDTO>> removeCartItems(
-      {required String cartId, required List<int> cartItemIds, required bool isGuestUser}) {
+  Future<Either<ErrorHandler, CartDTO>> removeCartItems({
+    required String cartId,
+    required List<int> cartItemIds,
+    required bool isGuestUser,
+  }) {
     return secureServerCall(() async {
       final mutation = removeCartItemsFromCartMutation(cartId: cartId, cartItemIds: cartItemIds);
       late Either<ErrorHandler, QueryResult<Object?>> response;
       if (isGuestUser) {
-        response = await _graphQLServiceNoAuthenticated.mutation(
-          mutation,
-        );
+        response = await _graphQLServiceNoAuthenticated.mutation(mutation);
       } else {
-        response = await _graphQLService.mutation(
-          mutation,
-        );
+        response = await _graphQLService.mutation(mutation);
       }
       final queryResponse = response.getRight();
       if (queryResponse == null) {
@@ -509,48 +449,27 @@ class CartDatasourceImpl extends CartDatasource {
   Future<Either<ErrorHandler, CartDTO>> setWarehouseAddressOnCart(
     WareHouseAddressEntity wareHouseAddressEntity,
     String cartId, {
-    required SetShippingAddressOmsOptionsDTO setShippingAddressOmsOptionsDTO,
     required Customer customerLogged,
   }) {
     return secureServerCall(() async {
       final mutation = setWarehouseAddressOnCartMutation(
-          customerLogged, cartId, wareHouseAddressEntity, setShippingAddressOmsOptionsDTO);
-      final response = await _graphQLService.mutation(
-        mutation,
+        customerLogged,
+        cartId,
+        wareHouseAddressEntity,
       );
+      final response = await _graphQLService.mutation(mutation);
 
       final queryResponse = response.getRight();
       if (queryResponse == null) {
         LoggerApp().error(
-            message: 'Error setting shipping address on cart. ORDER ADDRESS: $wareHouseAddressEntity',
-            error: response.getLeft()!,
-            errorCode: ErrorCode.errorSetShippingAddressOnCart.message);
+          message: 'Error setting shipping address on cart. ORDER ADDRESS: $wareHouseAddressEntity',
+          error: response.getLeft()!,
+          errorCode: ErrorCode.errorSetShippingAddressOnCart.message,
+        );
         return left(response.getLeft()!);
       }
 
       return right(CartDTO.fromJson(queryResponse.data?['setShippingAddressesOnCart']['cart']));
-    });
-  }
-
-  @override
-  Future<Either<ErrorHandler, String>> setOmsOptionsInCart(
-      {required AddToCartOmsOptionsDTO addToCartOmsOptionsDTO, required String cartId}) {
-    return secureServerCall(() async {
-      final mutation = setOmsOptionsInCartMutation(addToCartOmsOptionsDTO, cartId);
-      final response = await _graphQLService.mutation(
-        mutation,
-      );
-
-      final queryResponse = response.getRight();
-      if (queryResponse == null) {
-        LoggerApp().error(
-            message: 'Error updating OMS options in cart. OMS OPTIONS , null response',
-            error: response.getLeft()!,
-            errorCode: ErrorCode.errorSetOmsOptionsInCart.message);
-        return left(response.getLeft()!);
-      }
-
-      return right(queryResponse.data?['setOmsOptionsInCart']['cart_id']);
     });
   }
 }

@@ -4,7 +4,7 @@ import 'package:core/data/datasource/product/share_product_query.dart';
 ///░█─░█ ░█─░█ ░█▀▀▀ ░█▄▄▀ ░█▄▄▄█
 ///─▀▀█▄ ─▀▄▄▀ ░█▄▄▄ ░█─░█ ──░█──
 
-getProductsByCategoryUidQuery(String uid) => '''
+String getProductsByCategoryUidQuery(String uid) => '''
 query getProducts{
   products(filter: {
   category_uid: {
@@ -34,7 +34,7 @@ query getProducts{
 }
 ''';
 
-getProductsBySkuQuery(List<String> skus) => '''
+String getProductsBySkuQuery(List<String> skus) => '''
 query getProducts{
   products(filter: {
   sku: {

@@ -1,5 +1,4 @@
 import 'package:core/data/datasource/cart/cart_datasource_impl.dart';
-import 'package:core/data/dto/cart/add_to_cart_oms_options_dto.fr.dart';
 import 'package:core/data/dto/cart/cart_dto.fr.dart';
 import 'package:core/data/dto/cart/cart_item_input_dto.fr.dart';
 import 'package:core/data/dto/cart/enabled_shipping_method_dto.fr.dart';
@@ -7,13 +6,11 @@ import 'package:core/data/dto/cart/send_tip_dto.dart';
 import 'package:core/data/repository/cart/cart_repository_impl.dart';
 import 'package:core/domain/entity/available_payment_method.dart';
 import 'package:core/domain/entity/cart/add_product_to_cart.dart';
-import 'package:core/domain/entity/cart/add_product_to_cart_oms_options.dart';
 import 'package:core/domain/entity/cart/cart.fr.dart';
 import 'package:core/domain/entity/cart/cart_item_input.dart';
 import 'package:core/domain/entity/cart/config_shipping_method.dart';
 import 'package:core/domain/entity/cart/input_set_payment_method_on_cart_entity.fr.dart';
 import 'package:core/domain/entity/cart/send_tip.dart';
-import 'package:core/domain/entity/cart/set_shipping_address_oms_options.dart';
 import 'package:core/domain/entity/cart/update_cart_items.dart';
 import 'package:core/domain/entity/products.dart';
 import 'package:core/utils/error_handler/error_handler.dart';
@@ -35,49 +32,25 @@ void main() {
   late CartRepositoryImpl cartRepositoryImpl;
   late AddProductToCart addProductToCart;
   late AddProductToCartDTO addProductToCartDTO;
-  late SetShippingAddressOmsOptions setShippingOmsOptions;
-  late AddressOmsOptions addressOmsOptions;
 
   setUp(() async {
     await LoggerApp().init(isDebug: false, isTest: true);
     cartDataSourceImpl = MockCartDataSource();
     cartRepositoryImpl = CartRepositoryImpl(cartDataSourceImpl);
-    addProductToCartDTO = const AddProductToCartDTO(
-      cartId: 'test',
-      cartItems: CartItemInputDTO(sku: '1', quantity: 1),
-      omsOptions: AddToCartOmsOptionsDTO(
-        omsCid: '1',
-        omsCode: '1',
-        omsShippingMethod: '1',
-      ),
-    );
+    addProductToCartDTO = const AddProductToCartDTO(cartId: 'test', cartItems: CartItemInputDTO(sku: '1', quantity: 1));
     addProductToCart = AddProductToCart(
       productItem: ProductsItems(
-          name: 'p1',
-          sku: 's1',
-          image: ProductsImage(label: 'test'),
-          typeId: "simple",
-          tags: [],
-          id: 1,
-          minSaleQty: 1,
-          margin: 1),
+        name: 'p1',
+        sku: 's1',
+        image: ProductsImage(label: 'test'),
+        typeId: "simple",
+        tags: [],
+        id: 1,
+        minSaleQty: 1,
+        margin: 1,
+      ),
       cartId: 'test',
       cartItem: CartItemInput(quantity: 1, price: 1, sku: "1"),
-      omsOptions: AddToCartOmsOptions(omsCid: '1', omsCode: '1', omsShippingMethod: '1'),
-    );
-    setShippingOmsOptions = SetShippingAddressOmsOptions(
-      cityCustom: "08",
-      stateCustom: "87",
-      zoneCustom: "097",
-      latitude: "1234",
-      longitude: "12324",
-    );
-    addressOmsOptions = AddressOmsOptions(
-      cityCustom: "08",
-      stateCustom: "87",
-      zoneCustom: "097",
-      latitude: "1234",
-      longitude: "12324",
     );
   });
 
@@ -86,8 +59,9 @@ void main() {
       //arrange
       final cartDTO = CartDTO.fromJson(CartFakeData.successfulAddCartData['addProductsToCart']['cart']);
       final cart = cartDTO.toDomain();
-      when(() => cartDataSourceImpl.addProductToCart([addProductToCartDTO]))
-          .thenAnswer((_) async => Right<ErrorHandler, CartDTO>(cartDTO));
+      when(
+        () => cartDataSourceImpl.addProductToCart([addProductToCartDTO]),
+      ).thenAnswer((_) async => Right<ErrorHandler, CartDTO>(cartDTO));
       //act
       final result = await cartRepositoryImpl.addProductToCart([addProductToCart], isGuestUser: false);
       //assert
@@ -98,9 +72,7 @@ void main() {
 
     test('returns ErrorHandler when datasource call fails', () async {
       //arrange
-      final expected = ErrorHandlerInternal(
-        errorMessage: 'Server error',
-      );
+      final expected = ErrorHandlerInternal(errorMessage: 'Server error');
       when(() => cartDataSourceImpl.addProductToCart([addProductToCartDTO])).thenAnswer((_) async => Left(expected));
       //act
       final result = await cartRepositoryImpl.addProductToCart([addProductToCart], isGuestUser: false);
@@ -118,55 +90,73 @@ void main() {
       cartId: 'your_cart_id',
       cartItems: [
         CartItemUpdateInput(
-            cartItemUid: 'UI',
-            quantityToSubtract: 1,
-            quantity: 1.0,
-            price: 1.0,
-            sku: 'sku',
-            product: ProductsItems(
-                name: 'p1',
-                margin: 1,
-                sku: 's1',
-                image: ProductsImage(label: 'test'),
-                typeId: "simple",
-                tags: [],
-                id: 1,
-                minSaleQty: 1))
+          cartItemUid: 'UI',
+          quantityToSubtract: 1,
+          quantity: 1.0,
+          price: 1.0,
+          sku: 'sku',
+          product: ProductsItems(
+            name: 'p1',
+            margin: 1,
+            sku: 's1',
+            image: ProductsImage(label: 'test'),
+            typeId: "simple",
+            tags: [],
+            id: 1,
+            minSaleQty: 1,
+          ),
+        ),
       ],
     );
     test('returns Cart when DataSource call is successful', () async {
-      when(() => cartDataSourceImpl.updateCartItems(
+      when(
+        () => cartDataSourceImpl.updateCartItems(
           updateCartItemsInputDTO: updateCartItemsInput.toDto(),
-          isGuestUser: false)).thenAnswer((_) async => Right(cartDTO));
+          isGuestUser: false,
+        ),
+      ).thenAnswer((_) async => Right(cartDTO));
 
       // Act
-      final result =
-          await cartRepositoryImpl.updateCartItems(updateCartItemsInput: updateCartItemsInput, isGuestUser: false);
+      final result = await cartRepositoryImpl.updateCartItems(
+        updateCartItemsInput: updateCartItemsInput,
+        isGuestUser: false,
+      );
 
       // Assert
       expect(result.getRight()!, cartDTO.toDomain());
-      verify(() => cartDataSourceImpl.updateCartItems(
-          updateCartItemsInputDTO: updateCartItemsInput.toDto(), isGuestUser: false)).called(1);
+      verify(
+        () => cartDataSourceImpl.updateCartItems(
+          updateCartItemsInputDTO: updateCartItemsInput.toDto(),
+          isGuestUser: false,
+        ),
+      ).called(1);
     });
 
     test('returns ErrorHandler when DataSource call fails', () async {
       // Arrange
-      final expectedError = ErrorHandlerInternal(
-        errorMessage: 'Server error',
-      );
+      final expectedError = ErrorHandlerInternal(errorMessage: 'Server error');
 
-      when(() => cartDataSourceImpl.updateCartItems(
+      when(
+        () => cartDataSourceImpl.updateCartItems(
           updateCartItemsInputDTO: updateCartItemsInput.toDto(),
-          isGuestUser: false)).thenAnswer((_) async => Left(expectedError));
+          isGuestUser: false,
+        ),
+      ).thenAnswer((_) async => Left(expectedError));
 
       // Act
-      final result =
-          await cartRepositoryImpl.updateCartItems(updateCartItemsInput: updateCartItemsInput, isGuestUser: false);
+      final result = await cartRepositoryImpl.updateCartItems(
+        updateCartItemsInput: updateCartItemsInput,
+        isGuestUser: false,
+      );
 
       // Assert
       expect(result, equals(left(expectedError)));
-      verify(() => cartDataSourceImpl.updateCartItems(
-          updateCartItemsInputDTO: updateCartItemsInput.toDto(), isGuestUser: false)).called(1);
+      verify(
+        () => cartDataSourceImpl.updateCartItems(
+          updateCartItemsInputDTO: updateCartItemsInput.toDto(),
+          isGuestUser: false,
+        ),
+      ).called(1);
     });
   });
 
@@ -175,29 +165,31 @@ void main() {
       //arrange
       final cartDTO = CartDTO.fromJson(CartFakeData.successfulAddCartData['addProductsToCart']['cart']);
       final cart = cartDTO.toDomain();
-      when(() => cartDataSourceImpl.removeProductFromCart(cartId: '1', cartItemId: '2', isGuestUser: false))
-          .thenAnswer((_) async => Right<ErrorHandler, CartDTO>(cartDTO));
+      when(
+        () => cartDataSourceImpl.removeProductFromCart(cartId: '1', cartItemId: '2', isGuestUser: false),
+      ).thenAnswer((_) async => Right<ErrorHandler, CartDTO>(cartDTO));
       //act
       final result = await cartRepositoryImpl.removeProductFromCart(cartId: '1', cartItemId: '2', isGuestUser: false);
       //assert
-      verify(() => cartDataSourceImpl.removeProductFromCart(cartId: '1', cartItemId: '2', isGuestUser: false))
-          .called(1);
+      verify(
+        () => cartDataSourceImpl.removeProductFromCart(cartId: '1', cartItemId: '2', isGuestUser: false),
+      ).called(1);
       expect(result.isRight(), true);
       expect(result..fold((l) => null, (r) => r), Right<ErrorHandler, Cart>(cart));
     });
 
     test('returns ErrorHandler when datasource call fails', () async {
       //arrange
-      final expected = ErrorHandlerInternal(
-        errorMessage: 'Server error',
-      );
-      when(() => cartDataSourceImpl.removeProductFromCart(cartId: '1', cartItemId: '2', isGuestUser: false))
-          .thenAnswer((_) async => Left(expected));
+      final expected = ErrorHandlerInternal(errorMessage: 'Server error');
+      when(
+        () => cartDataSourceImpl.removeProductFromCart(cartId: '1', cartItemId: '2', isGuestUser: false),
+      ).thenAnswer((_) async => Left(expected));
       //act
       final result = await cartRepositoryImpl.removeProductFromCart(cartId: '1', cartItemId: '2', isGuestUser: false);
       //assert
-      verify(() => cartDataSourceImpl.removeProductFromCart(cartId: '1', cartItemId: '2', isGuestUser: false))
-          .called(1);
+      verify(
+        () => cartDataSourceImpl.removeProductFromCart(cartId: '1', cartItemId: '2', isGuestUser: false),
+      ).called(1);
       expect(result.isLeft(), true);
       result.fold((l) => expect(l, expected), (r) => expect(r, null));
     });
@@ -208,8 +200,9 @@ void main() {
       //arrange
       final cartDTO = CartDTO.fromJson(CartFakeData.successfulAddCartData['addProductsToCart']['cart']);
       final cart = cartDTO.toDomain();
-      when(() => cartDataSourceImpl.getCartInfo('test', isGuestUser: false))
-          .thenAnswer((_) async => Right<ErrorHandler, CartDTO>(cartDTO));
+      when(
+        () => cartDataSourceImpl.getCartInfo('test', isGuestUser: false),
+      ).thenAnswer((_) async => Right<ErrorHandler, CartDTO>(cartDTO));
       //act
       final result = await cartRepositoryImpl.getCartInfo('test', isGuestUser: false);
       //assert
@@ -220,9 +213,7 @@ void main() {
 
     test('returns ErrorHandler when datasource call fails', () async {
       //arrange
-      final expected = ErrorHandlerInternal(
-        errorMessage: 'Server error',
-      );
+      final expected = ErrorHandlerInternal(errorMessage: 'Server error');
       when(() => cartDataSourceImpl.getCartInfo('test', isGuestUser: false)).thenAnswer((_) async => Left(expected));
       //act
       final result = await cartRepositoryImpl.getCartInfo('test', isGuestUser: false);
@@ -238,32 +229,34 @@ void main() {
     final mockCart = CartDTO.fromJson(CartFakeData.cartSuccessFakeData);
     const addressDTO = CartFakeData.customerFakeAddress;
     test('return Cart  when _cartDatasource.setShippingAddressesOnCart success ', () async {
-      when(() => cartDataSourceImpl.setShippingAddressesOnCart(addressDTO, cartIdMock,
-          isGuestUser: false,
-          setShippingAddressOmsOptionsDTO: setShippingOmsOptions.toDTO())).thenAnswer((_) async => Right(mockCart));
+      when(
+        () => cartDataSourceImpl.setShippingAddressesOnCart(addressDTO, cartIdMock, isGuestUser: false),
+      ).thenAnswer((_) async => Right(mockCart));
       //act
-      final result = await cartRepositoryImpl.setShippingAddressesOnCart(addressDTO.toDomain(), cartIdMock,
-          isGuestUser: false, setShippingAddressOmsOptions: setShippingOmsOptions);
+      final result = await cartRepositoryImpl.setShippingAddressesOnCart(
+        addressDTO.toDomain(),
+        cartIdMock,
+        isGuestUser: false,
+      );
       //assert
-      verify(() => cartDataSourceImpl.setShippingAddressesOnCart(addressDTO, cartIdMock,
-          isGuestUser: false, setShippingAddressOmsOptionsDTO: setShippingOmsOptions.toDTO())).called(1);
+      verify(() => cartDataSourceImpl.setShippingAddressesOnCart(addressDTO, cartIdMock, isGuestUser: false)).called(1);
       expect(result.fold((l) => null, (r) => r), mockCart);
     });
 
     test('setShippingAddressesOnCart returns ErrorHandler when datasource call fails', () async {
       //arrange
-      final expected = ErrorHandlerInternal(
-        errorMessage: 'Server error',
-      );
-      when(() => cartDataSourceImpl.setShippingAddressesOnCart(addressDTO, cartIdMock,
-          isGuestUser: false,
-          setShippingAddressOmsOptionsDTO: setShippingOmsOptions.toDTO())).thenAnswer((_) async => Left(expected));
+      final expected = ErrorHandlerInternal(errorMessage: 'Server error');
+      when(
+        () => cartDataSourceImpl.setShippingAddressesOnCart(addressDTO, cartIdMock, isGuestUser: false),
+      ).thenAnswer((_) async => Left(expected));
       //act
-      final result = await cartRepositoryImpl.setShippingAddressesOnCart(addressDTO.toDomain(), cartIdMock,
-          isGuestUser: false, setShippingAddressOmsOptions: setShippingOmsOptions);
+      final result = await cartRepositoryImpl.setShippingAddressesOnCart(
+        addressDTO.toDomain(),
+        cartIdMock,
+        isGuestUser: false,
+      );
       //assert
-      verify(() => cartDataSourceImpl.setShippingAddressesOnCart(addressDTO, cartIdMock,
-          isGuestUser: false, setShippingAddressOmsOptionsDTO: setShippingOmsOptions.toDTO())).called(1);
+      verify(() => cartDataSourceImpl.setShippingAddressesOnCart(addressDTO, cartIdMock, isGuestUser: false)).called(1);
 
       expect(result.fold((l) => l, (r) => null), expected);
     });
@@ -277,32 +270,54 @@ void main() {
     final mockCart = CartDTO.fromJson(CartFakeData.cartSuccessFakeData);
 
     test('setBillingAddressesOnCart return Cart when _cartDatasource.setBillingAddressesOnCart success ', () async {
-      when(() => cartDataSourceImpl.setBillingAddressesOnCart(addressDTO, cartIdMock,
+      when(
+        () => cartDataSourceImpl.setBillingAddressesOnCart(
+          addressDTO,
+          cartIdMock,
           isGuestUser: false,
-          setBillingAddressOmsOptionsDTO: addressOmsOptions.toDTO())).thenAnswer((_) async => Right(mockCart));
+        ),
+      ).thenAnswer((_) async => Right(mockCart));
       //act
-      final result = await cartRepositoryImpl.setBillingAddressesOnCart(addressDTO.toDomain(), cartIdMock,
-          isGuestUser: false, addressOmsOptions: addressOmsOptions);
+      final result = await cartRepositoryImpl.setBillingAddressesOnCart(
+        addressDTO.toDomain(),
+        cartIdMock,
+        isGuestUser: false,
+      );
       //assert
-      verify(() => cartDataSourceImpl.setBillingAddressesOnCart(addressDTO, cartIdMock,
-          isGuestUser: false, setBillingAddressOmsOptionsDTO: addressOmsOptions.toDTO())).called(1);
+      verify(
+        () => cartDataSourceImpl.setBillingAddressesOnCart(
+          addressDTO,
+          cartIdMock,
+          isGuestUser: false,
+        ),
+      ).called(1);
       expect(result.fold((l) => null, (r) => r), mockCart.toDomain());
     });
 
     test('setBillingAddressesOnCart returns ErrorHandler when datasource call fails', () async {
       //arrange
-      final expected = ErrorHandlerInternal(
-        errorMessage: 'Server error',
-      );
-      when(() => cartDataSourceImpl.setBillingAddressesOnCart(addressDTO, cartIdMock,
+      final expected = ErrorHandlerInternal(errorMessage: 'Server error');
+      when(
+        () => cartDataSourceImpl.setBillingAddressesOnCart(
+          addressDTO,
+          cartIdMock,
           isGuestUser: false,
-          setBillingAddressOmsOptionsDTO: addressOmsOptions.toDTO())).thenAnswer((_) async => Left(expected));
+        ),
+      ).thenAnswer((_) async => Left(expected));
       //act
-      final result = await cartRepositoryImpl.setBillingAddressesOnCart(addressDTO.toDomain(), cartIdMock,
-          isGuestUser: false, addressOmsOptions: addressOmsOptions);
+      final result = await cartRepositoryImpl.setBillingAddressesOnCart(
+        addressDTO.toDomain(),
+        cartIdMock,
+        isGuestUser: false,
+      );
       //assert
-      verify(() => cartDataSourceImpl.setBillingAddressesOnCart(addressDTO, cartIdMock,
-          isGuestUser: false, setBillingAddressOmsOptionsDTO: addressOmsOptions.toDTO())).called(1);
+      verify(
+        () => cartDataSourceImpl.setBillingAddressesOnCart(
+          addressDTO,
+          cartIdMock,
+          isGuestUser: false,
+        ),
+      ).called(1);
 
       expect(result.fold((l) => l, (r) => null), expected);
     });
@@ -317,32 +332,38 @@ void main() {
     final mockCart = CartDTO.fromJson(CartFakeData.cartSuccessFakeData);
 
     test('setShippingMethodOnCart return Cart  when _cartDatasource.setShippingMethodOnCart success ', () async {
-      when(() => cartDataSourceImpl.setShippingMethodOnCart(mockShippingMethod.toDTO(), cartIdMock, isGuestUser: false))
-          .thenAnswer((_) async => Right(mockCart));
+      when(
+        () => cartDataSourceImpl.setShippingMethodOnCart(mockShippingMethod.toDTO(), cartIdMock, isGuestUser: false),
+      ).thenAnswer((_) async => Right(mockCart));
       //act
-      final result =
-          await cartRepositoryImpl.setShippingMethodOnCart(mockShippingMethod, cartIdMock, isGuestUser: false);
+      final result = await cartRepositoryImpl.setShippingMethodOnCart(
+        mockShippingMethod,
+        cartIdMock,
+        isGuestUser: false,
+      );
       //assert
-      verify(() =>
-              cartDataSourceImpl.setShippingMethodOnCart(mockShippingMethod.toDTO(), cartIdMock, isGuestUser: false))
-          .called(1);
+      verify(
+        () => cartDataSourceImpl.setShippingMethodOnCart(mockShippingMethod.toDTO(), cartIdMock, isGuestUser: false),
+      ).called(1);
       expect(result.fold((l) => null, (r) => r), mockCart.toDomain());
     });
 
     test('setPaymentMethodOnCart returns ErrorHandler when datasource call fails', () async {
       //arrange
-      final expected = ErrorHandlerInternal(
-        errorMessage: 'Server error',
-      );
-      when(() => cartDataSourceImpl.setShippingMethodOnCart(mockShippingMethod.toDTO(), cartIdMock, isGuestUser: false))
-          .thenAnswer((_) async => Left(expected));
+      final expected = ErrorHandlerInternal(errorMessage: 'Server error');
+      when(
+        () => cartDataSourceImpl.setShippingMethodOnCart(mockShippingMethod.toDTO(), cartIdMock, isGuestUser: false),
+      ).thenAnswer((_) async => Left(expected));
       //act
-      final result =
-          await cartRepositoryImpl.setShippingMethodOnCart(mockShippingMethod, cartIdMock, isGuestUser: false);
+      final result = await cartRepositoryImpl.setShippingMethodOnCart(
+        mockShippingMethod,
+        cartIdMock,
+        isGuestUser: false,
+      );
       //assert
-      verify(() =>
-              cartDataSourceImpl.setShippingMethodOnCart(mockShippingMethod.toDTO(), cartIdMock, isGuestUser: false))
-          .called(1);
+      verify(
+        () => cartDataSourceImpl.setShippingMethodOnCart(mockShippingMethod.toDTO(), cartIdMock, isGuestUser: false),
+      ).called(1);
 
       expect(result.fold((l) => l, (r) => null), expected);
     });
@@ -350,13 +371,16 @@ void main() {
 
   group('setPaymentMethodOnCart', () {
     final availablePaymentMethod = InputSetPaymentMethodOnCartEntity(
-        cartId: 'your_current_cart_id', paymentMethod: PaymentMethod(code: "checkmo"));
+      cartId: 'your_current_cart_id',
+      paymentMethod: PaymentMethod(code: "checkmo"),
+    );
 
     final mockCart = CartDTO.fromJson(CartFakeData.cartSuccessFakeData);
 
     test('return Cart  when _cartDatasource.setPaymentMethodOnCart success ', () async {
-      when(() => cartDataSourceImpl.setPaymentMethodOnCart(availablePaymentMethod, isGuestUser: false))
-          .thenAnswer((_) async => Right(mockCart));
+      when(
+        () => cartDataSourceImpl.setPaymentMethodOnCart(availablePaymentMethod, isGuestUser: false),
+      ).thenAnswer((_) async => Right(mockCart));
       //act
       final result = await cartRepositoryImpl.setPaymentMethodOnCart(availablePaymentMethod, isGuestUser: false);
       //assert
@@ -366,11 +390,10 @@ void main() {
 
     test('setPaymentMethodOnCart returns ErrorHandler when datasource call fails', () async {
       //arrange
-      final expected = ErrorHandlerInternal(
-        errorMessage: 'Server error',
-      );
-      when(() => cartDataSourceImpl.setPaymentMethodOnCart(availablePaymentMethod, isGuestUser: false))
-          .thenAnswer((_) async => Left(expected));
+      final expected = ErrorHandlerInternal(errorMessage: 'Server error');
+      when(
+        () => cartDataSourceImpl.setPaymentMethodOnCart(availablePaymentMethod, isGuestUser: false),
+      ).thenAnswer((_) async => Left(expected));
       //act
       final result = await cartRepositoryImpl.setPaymentMethodOnCart(availablePaymentMethod, isGuestUser: false);
       //assert
@@ -388,8 +411,9 @@ void main() {
     final mockCart = CartDTO.fromJson(CartFakeData.cartSuccessFakeData);
 
     test('return Cart  when _cartDatasource.setGuestEmailOnCart success ', () async {
-      when(() => cartDataSourceImpl.setGuestEmailOnCart(email: mockEmail, cartId: cartIdMock))
-          .thenAnswer((_) async => Right(mockCart));
+      when(
+        () => cartDataSourceImpl.setGuestEmailOnCart(email: mockEmail, cartId: cartIdMock),
+      ).thenAnswer((_) async => Right(mockCart));
       //act
       final result = await cartRepositoryImpl.setGuestEmailOnCart(email: mockEmail, cartId: cartIdMock);
       //assert
@@ -399,11 +423,10 @@ void main() {
 
     test('setPaymentMethodOnCart returns ErrorHandler when datasource call fails', () async {
       //arrange
-      final expected = ErrorHandlerInternal(
-        errorMessage: 'Server error',
-      );
-      when(() => cartDataSourceImpl.setGuestEmailOnCart(email: mockEmail, cartId: cartIdMock))
-          .thenAnswer((_) async => Left(expected));
+      final expected = ErrorHandlerInternal(errorMessage: 'Server error');
+      when(
+        () => cartDataSourceImpl.setGuestEmailOnCart(email: mockEmail, cartId: cartIdMock),
+      ).thenAnswer((_) async => Left(expected));
       //act
       final result = await cartRepositoryImpl.setGuestEmailOnCart(email: mockEmail, cartId: cartIdMock);
       //assert
@@ -421,8 +444,9 @@ void main() {
     final mockCart = CartDTO.fromJson(CartFakeData.cartSuccessFakeData);
 
     test('return Cart  when _cartDatasource.setGuestEmailOnCart success ', () async {
-      when(() => cartDataSourceImpl.setGuestEmailOnCart(email: mockEmail, cartId: cartIdMock))
-          .thenAnswer((_) async => Right(mockCart));
+      when(
+        () => cartDataSourceImpl.setGuestEmailOnCart(email: mockEmail, cartId: cartIdMock),
+      ).thenAnswer((_) async => Right(mockCart));
       //act
       final result = await cartRepositoryImpl.setGuestEmailOnCart(email: mockEmail, cartId: cartIdMock);
       //assert
@@ -432,11 +456,10 @@ void main() {
 
     test('setPaymentMethodOnCart returns ErrorHandler when datasource call fails', () async {
       //arrange
-      final expected = ErrorHandlerInternal(
-        errorMessage: 'Server error',
-      );
-      when(() => cartDataSourceImpl.setGuestEmailOnCart(email: mockEmail, cartId: cartIdMock))
-          .thenAnswer((_) async => Left(expected));
+      final expected = ErrorHandlerInternal(errorMessage: 'Server error');
+      when(
+        () => cartDataSourceImpl.setGuestEmailOnCart(email: mockEmail, cartId: cartIdMock),
+      ).thenAnswer((_) async => Left(expected));
       //act
       final result = await cartRepositoryImpl.setGuestEmailOnCart(email: mockEmail, cartId: cartIdMock);
       //assert
@@ -453,31 +476,39 @@ void main() {
     final mockCart = CartDTO.fromJson(CartFakeData.cartSuccessFakeData);
 
     test('return Cart  when _cartDatasource.setGuestEmailOnCart success ', () async {
-      when(() => cartDataSourceImpl.appliedCoupon(couponCode: mockCouponCode, cartId: cartIdMock, isGuestUser: false))
-          .thenAnswer((_) async => Right(mockCart));
+      when(
+        () => cartDataSourceImpl.appliedCoupon(couponCode: mockCouponCode, cartId: cartIdMock, isGuestUser: false),
+      ).thenAnswer((_) async => Right(mockCart));
       //act
-      final result =
-          await cartRepositoryImpl.appliedCoupon(couponCode: mockCouponCode, cartId: cartIdMock, isGuestUser: false);
+      final result = await cartRepositoryImpl.appliedCoupon(
+        couponCode: mockCouponCode,
+        cartId: cartIdMock,
+        isGuestUser: false,
+      );
       //assert
-      verify(() => cartDataSourceImpl.appliedCoupon(couponCode: mockCouponCode, cartId: cartIdMock, isGuestUser: false))
-          .called(1);
+      verify(
+        () => cartDataSourceImpl.appliedCoupon(couponCode: mockCouponCode, cartId: cartIdMock, isGuestUser: false),
+      ).called(1);
       expect(result.fold((l) => null, (r) => r), mockCart.toDomain());
       expect(result.fold((l) => null, (r) => r.appliedCoupons.length), 1);
     });
 
     test('appliedCoupon returns ErrorHandler when datasource call fails', () async {
       //arrange
-      final expected = ErrorHandlerInternal(
-        errorMessage: 'Server error',
-      );
-      when(() => cartDataSourceImpl.appliedCoupon(couponCode: mockCouponCode, cartId: cartIdMock, isGuestUser: false))
-          .thenAnswer((_) async => Left(expected));
+      final expected = ErrorHandlerInternal(errorMessage: 'Server error');
+      when(
+        () => cartDataSourceImpl.appliedCoupon(couponCode: mockCouponCode, cartId: cartIdMock, isGuestUser: false),
+      ).thenAnswer((_) async => Left(expected));
       //act
-      final result =
-          await cartRepositoryImpl.appliedCoupon(couponCode: mockCouponCode, cartId: cartIdMock, isGuestUser: false);
+      final result = await cartRepositoryImpl.appliedCoupon(
+        couponCode: mockCouponCode,
+        cartId: cartIdMock,
+        isGuestUser: false,
+      );
       //assert
-      verify(() => cartDataSourceImpl.appliedCoupon(couponCode: mockCouponCode, cartId: cartIdMock, isGuestUser: false))
-          .called(1);
+      verify(
+        () => cartDataSourceImpl.appliedCoupon(couponCode: mockCouponCode, cartId: cartIdMock, isGuestUser: false),
+      ).called(1);
 
       expect(result.fold((l) => l, (r) => null), expected);
     });
@@ -489,8 +520,9 @@ void main() {
     final mockCart = CartDTO.fromJson(CartFakeData.cartSuccessFakeData);
 
     test('return Cart  when _cartDatasource.deleteCouponFromCart success ', () async {
-      when(() => cartDataSourceImpl.deleteCouponFromCart(cartId: cartIdMock, isGuestUser: false))
-          .thenAnswer((_) async => Right(mockCart));
+      when(
+        () => cartDataSourceImpl.deleteCouponFromCart(cartId: cartIdMock, isGuestUser: false),
+      ).thenAnswer((_) async => Right(mockCart));
       //act
       final result = await cartRepositoryImpl.deleteCouponFromCart(cartId: cartIdMock, isGuestUser: false);
       //assert
@@ -501,11 +533,10 @@ void main() {
 
     test('deleteCouponFromCart returns ErrorHandler when datasource call fails', () async {
       //arrange
-      final expected = ErrorHandlerInternal(
-        errorMessage: 'Server error',
-      );
-      when(() => cartDataSourceImpl.deleteCouponFromCart(cartId: cartIdMock, isGuestUser: false))
-          .thenAnswer((_) async => Left(expected));
+      final expected = ErrorHandlerInternal(errorMessage: 'Server error');
+      when(
+        () => cartDataSourceImpl.deleteCouponFromCart(cartId: cartIdMock, isGuestUser: false),
+      ).thenAnswer((_) async => Left(expected));
       //act
       final result = await cartRepositoryImpl.deleteCouponFromCart(cartId: cartIdMock, isGuestUser: false);
       //assert
@@ -520,8 +551,9 @@ void main() {
 
     test('should return ErrorHandler when there is an error', () async {
       final mockError = ErrorHandlerInternal(errorMessage: 'Test Error');
-      when(() => cartDataSourceImpl.addTipToCart(sendTipDTO: mockSendTip.toDto()))
-          .thenAnswer((_) async => left(mockError));
+      when(
+        () => cartDataSourceImpl.addTipToCart(sendTipDTO: mockSendTip.toDto()),
+      ).thenAnswer((_) async => left(mockError));
 
       final result = await cartRepositoryImpl.sendTip(sendTip: mockSendTip);
 
@@ -530,11 +562,15 @@ void main() {
     });
 
     test('should return SendTipResponse when the request is successful', () async {
-      final mockDtoResponse =
-          SendTipResponseDTO(cartId: '211', message: 'La propina fue agregada de \$211', code: '200');
+      final mockDtoResponse = SendTipResponseDTO(
+        cartId: '211',
+        message: 'La propina fue agregada de \$211',
+        code: '200',
+      );
 
-      when(() => cartDataSourceImpl.addTipToCart(sendTipDTO: mockSendTip.toDto()))
-          .thenAnswer((_) async => right(mockDtoResponse));
+      when(
+        () => cartDataSourceImpl.addTipToCart(sendTipDTO: mockSendTip.toDto()),
+      ).thenAnswer((_) async => right(mockDtoResponse));
 
       final result = await cartRepositoryImpl.sendTip(sendTip: mockSendTip);
 
@@ -573,8 +609,9 @@ void main() {
       // Arrange
       final cartDTO = CartDTO.fromJson(CartFakeData.successfulAddCartData['addProductsToCart']['cart']);
       final cart = cartDTO.toDomain();
-      when(() => cartDataSourceImpl.removeAllItemsFromCart(cartId: any(named: 'cartId')))
-          .thenAnswer((_) async => Right<ErrorHandler, CartDTO>(cartDTO));
+      when(
+        () => cartDataSourceImpl.removeAllItemsFromCart(cartId: any(named: 'cartId')),
+      ).thenAnswer((_) async => Right<ErrorHandler, CartDTO>(cartDTO));
 
       // Act
       final result = await cartRepositoryImpl.removeAllItemsFromCart(cartId: 'test');
@@ -587,11 +624,10 @@ void main() {
 
     test('returns ErrorHandler when datasource call fails', () async {
       // Arrange
-      final expected = ErrorHandlerInternal(
-        errorMessage: 'Server error',
-      );
-      when(() => cartDataSourceImpl.removeAllItemsFromCart(cartId: any(named: 'cartId')))
-          .thenAnswer((_) async => Left(expected));
+      final expected = ErrorHandlerInternal(errorMessage: 'Server error');
+      when(
+        () => cartDataSourceImpl.removeAllItemsFromCart(cartId: any(named: 'cartId')),
+      ).thenAnswer((_) async => Left(expected));
 
       // Act
       final result = await cartRepositoryImpl.removeAllItemsFromCart(cartId: 'test');

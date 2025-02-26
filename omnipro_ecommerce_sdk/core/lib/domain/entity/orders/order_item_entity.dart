@@ -4,20 +4,21 @@ import 'package:core/utils/extension.dart';
 import 'package:equatable/equatable.dart';
 
 class OrderItemEntity extends Equatable {
-  const OrderItemEntity(
-      {required this.id,
-      required this.number,
-      required this.orderDate,
-      required this.total,
-      required this.status,
-      required this.statusCode,
-      this.editedAt,
-      required this.items,
-      required this.paymentMethods,
-      required this.shippingMethod,
-      required this.carrier,
-      required this.shippingAddress,
-      required this.isHasCatalogExtended});
+  const OrderItemEntity({
+    required this.id,
+    required this.number,
+    required this.orderDate,
+    required this.total,
+    required this.status,
+    required this.statusCode,
+    this.editedAt,
+    required this.items,
+    required this.paymentMethods,
+    required this.shippingMethod,
+    required this.carrier,
+    required this.shippingAddress,
+    required this.isHasCatalogExtended,
+  });
   final String id;
   final String number;
   final String orderDate;
@@ -32,53 +33,55 @@ class OrderItemEntity extends Equatable {
   final List<ItemProductEntity> items;
   final OrderItemTotalEntity total;
 
-  OrderItemEntity copyWith(
-      {String? id,
-      String? number,
-      String? orderDate,
-      String? status,
-      String? statusCode,
-      String? editedAt,
-      String? carrier,
-      int? numberProducts,
-      List<ItemProductEntity>? items,
-      OrderItemTotalEntity? total,
-      List<OrderPaymentMethodItemEntity>? paymentMethods,
-      String? shippingMethod,
-      ShippingAddressOrder? shippingAddress,
-      bool? isHasCatalogExtended}) {
+  OrderItemEntity copyWith({
+    String? id,
+    String? number,
+    String? orderDate,
+    String? status,
+    String? statusCode,
+    String? editedAt,
+    String? carrier,
+    int? numberProducts,
+    List<ItemProductEntity>? items,
+    OrderItemTotalEntity? total,
+    List<OrderPaymentMethodItemEntity>? paymentMethods,
+    String? shippingMethod,
+    ShippingAddressOrder? shippingAddress,
+    bool? isHasCatalogExtended,
+  }) {
     return OrderItemEntity(
-        id: id ?? this.id,
-        items: items ?? this.items,
-        number: number ?? this.number,
-        carrier: carrier ?? this.carrier,
-        orderDate: orderDate ?? this.orderDate,
-        status: status ?? this.status,
-        statusCode: statusCode ?? this.statusCode,
-        editedAt: editedAt ?? this.editedAt,
-        total: total ?? this.total,
-        paymentMethods: paymentMethods ?? this.paymentMethods,
-        shippingMethod: shippingMethod ?? this.shippingMethod,
-        shippingAddress: shippingAddress ?? this.shippingAddress,
-        isHasCatalogExtended: isHasCatalogExtended ?? this.isHasCatalogExtended);
+      id: id ?? this.id,
+      items: items ?? this.items,
+      number: number ?? this.number,
+      carrier: carrier ?? this.carrier,
+      orderDate: orderDate ?? this.orderDate,
+      status: status ?? this.status,
+      statusCode: statusCode ?? this.statusCode,
+      editedAt: editedAt ?? this.editedAt,
+      total: total ?? this.total,
+      paymentMethods: paymentMethods ?? this.paymentMethods,
+      shippingMethod: shippingMethod ?? this.shippingMethod,
+      shippingAddress: shippingAddress ?? this.shippingAddress,
+      isHasCatalogExtended: isHasCatalogExtended ?? this.isHasCatalogExtended,
+    );
   }
 
   @override
   List<Object?> get props => [
-        id,
-        number,
-        orderDate,
-        status,
-        statusCode,
-        editedAt,
-        items,
-        total,
-        paymentMethods,
-        shippingMethod,
-        shippingAddress,
-        isHasCatalogExtended,
-        carrier
-      ];
+    id,
+    number,
+    orderDate,
+    status,
+    statusCode,
+    editedAt,
+    items,
+    total,
+    paymentMethods,
+    shippingMethod,
+    shippingAddress,
+    isHasCatalogExtended,
+    carrier,
+  ];
 }
 
 class OrderItemTotalEntity extends Equatable {
@@ -88,7 +91,6 @@ class OrderItemTotalEntity extends Equatable {
     required this.subTotal,
     required this.shippingHandling,
     required this.discounts,
-    required this.refundableFee,
   });
   final OrderItemGrandTotal grandTotal;
   final Money totalTax;
@@ -96,12 +98,11 @@ class OrderItemTotalEntity extends Equatable {
 
   final OrderItemShippingHandling shippingHandling;
   final List<MoneyInfo> discounts;
-  final RefundableFeeEntity refundableFee;
 
   double get totalDiscounts => discounts.fold(0, (previousValue, element) => previousValue + element.money.value);
 
   @override
-  List<Object?> get props => [grandTotal, totalTax, subTotal, shippingHandling, discounts, refundableFee];
+  List<Object?> get props => [grandTotal, totalTax, subTotal, shippingHandling, discounts];
 }
 
 class OrderPaymentMethodItemEntity extends Equatable {
@@ -111,14 +112,6 @@ class OrderPaymentMethodItemEntity extends Equatable {
 
   @override
   List<Object?> get props => [name, type];
-}
-
-class RefundableFeeEntity extends Equatable {
-  const RefundableFeeEntity({required this.value});
-  final double value;
-
-  @override
-  List<Object?> get props => [value];
 }
 
 class ProductTaxPriceEntity extends Equatable {
@@ -183,21 +176,21 @@ class ItemProductEntity extends Equatable {
 
   @override
   List<Object?> get props => [
-        productName,
-        productSku,
-        productUrlKey,
-        quantityOrdered,
-        quantityInvoiced,
-        quantityShipped,
-        eligibleForReturn,
-        productSalePrice,
-        imageURL,
-        salesUnitOfMeasure,
-        productTaxPrice,
-        omsShippingDate,
-        omsShippingTime,
-        omsShippingMethod
-      ];
+    productName,
+    productSku,
+    productUrlKey,
+    quantityOrdered,
+    quantityInvoiced,
+    quantityShipped,
+    eligibleForReturn,
+    productSalePrice,
+    imageURL,
+    salesUnitOfMeasure,
+    productTaxPrice,
+    omsShippingDate,
+    omsShippingTime,
+    omsShippingMethod,
+  ];
 }
 
 class ItemProductOmsShippingMethodEntity extends Equatable {

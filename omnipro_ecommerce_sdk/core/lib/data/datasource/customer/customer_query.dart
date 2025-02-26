@@ -59,7 +59,7 @@ String wishlistQuery() {
           id
           quantity
           product{
-            ${queryItemProduct(includeNestedAssociatedProducts: false)}
+            ${queryItemProduct()}
           }
         }
       }
@@ -79,7 +79,7 @@ String wishlistsQuery() {
           id
           quantity
           product{
-            ${queryItemProduct(includeNestedAssociatedProducts: false)}
+            ${queryItemProduct()}
           }
         }
       }

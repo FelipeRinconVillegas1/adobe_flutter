@@ -106,9 +106,6 @@ _$OrderItemTotalDTOImpl _$$OrderItemTotalDTOImplFromJson(
       (json['discounts'] as List<dynamic>)
           .map((e) => MoneyInfoDTO.fromJson(e as Map<String, dynamic>))
           .toList(),
-  refundableFee: RefundableFeeDTO.fromJson(
-    json['refundable_fee'] as Map<String, dynamic>,
-  ),
 );
 
 Map<String, dynamic> _$$OrderItemTotalDTOImplToJson(
@@ -119,16 +116,7 @@ Map<String, dynamic> _$$OrderItemTotalDTOImplToJson(
   'subtotal': instance.subTotal,
   'shipping_handling': instance.shippingHandling,
   'discounts': instance.discounts,
-  'refundable_fee': instance.refundableFee,
 };
-
-_$RefundableFeeDTOImpl _$$RefundableFeeDTOImplFromJson(
-  Map<String, dynamic> json,
-) => _$RefundableFeeDTOImpl(value: (json['value'] as num).toDouble());
-
-Map<String, dynamic> _$$RefundableFeeDTOImplToJson(
-  _$RefundableFeeDTOImpl instance,
-) => <String, dynamic>{'value': instance.value};
 
 _$OrderItemShippingHandlingDTOImpl _$$OrderItemShippingHandlingDTOImplFromJson(
   Map<String, dynamic> json,

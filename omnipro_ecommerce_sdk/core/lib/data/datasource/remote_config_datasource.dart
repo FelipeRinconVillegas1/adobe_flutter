@@ -30,7 +30,7 @@ class RemoteConfigDataSourceImp implements RemoteConfigDataSource {
       await _activateData();
     } catch (e,s) {
       if(e is ExceptionRemoteConfig){
-        throw e;
+        rethrow;
       }else{
         throw ExceptionRemoteConfig(
           errorMessage: "Failed to fetch remote config connection: ${e.toString()}",
@@ -62,16 +62,12 @@ class RemoteConfigDataSourceImp implements RemoteConfigDataSource {
         return const Duration(seconds: 10);
       case Environment.prod:
         return const Duration(hours: 12);
-      default:
-        return const Duration(hours: 12);
-    }
+      }
   }
 
   Future<void> _setDefaults() async {
     await _firebaseRemoteConfig.setDefaults(<String, dynamic>{
-      RemoteConfigKey.superOffersID: Constants.superOffersID,
-      RemoteConfigKey.skuBolsasAutomaticas: Constants.skuBolsaAutomatica,
-      RemoteConfigKey.listBenefits: Constants.listBenefits,
+      ///Aqui van los valores por defecto de remoteconfig
     });
   }
 

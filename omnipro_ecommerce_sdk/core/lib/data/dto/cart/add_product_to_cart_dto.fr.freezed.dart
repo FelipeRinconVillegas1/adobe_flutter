@@ -23,8 +23,6 @@ AddProductToCartDTO _$AddProductToCartDTOFromJson(Map<String, dynamic> json) {
 mixin _$AddProductToCartDTO {
   String get cartId => throw _privateConstructorUsedError;
   CartItemInputDTO get cartItems => throw _privateConstructorUsedError;
-  @JsonKey(name: 'oms_options')
-  AddToCartOmsOptionsDTO? get omsOptions => throw _privateConstructorUsedError;
 
   /// Serializes this AddProductToCartDTO to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -43,14 +41,9 @@ abstract class $AddProductToCartDTOCopyWith<$Res> {
     $Res Function(AddProductToCartDTO) then,
   ) = _$AddProductToCartDTOCopyWithImpl<$Res, AddProductToCartDTO>;
   @useResult
-  $Res call({
-    String cartId,
-    CartItemInputDTO cartItems,
-    @JsonKey(name: 'oms_options') AddToCartOmsOptionsDTO? omsOptions,
-  });
+  $Res call({String cartId, CartItemInputDTO cartItems});
 
   $CartItemInputDTOCopyWith<$Res> get cartItems;
-  $AddToCartOmsOptionsDTOCopyWith<$Res>? get omsOptions;
 }
 
 /// @nodoc
@@ -67,11 +60,7 @@ class _$AddProductToCartDTOCopyWithImpl<$Res, $Val extends AddProductToCartDTO>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? cartId = null,
-    Object? cartItems = null,
-    Object? omsOptions = freezed,
-  }) {
+  $Res call({Object? cartId = null, Object? cartItems = null}) {
     return _then(
       _value.copyWith(
             cartId:
@@ -84,11 +73,6 @@ class _$AddProductToCartDTOCopyWithImpl<$Res, $Val extends AddProductToCartDTO>
                     ? _value.cartItems
                     : cartItems // ignore: cast_nullable_to_non_nullable
                         as CartItemInputDTO,
-            omsOptions:
-                freezed == omsOptions
-                    ? _value.omsOptions
-                    : omsOptions // ignore: cast_nullable_to_non_nullable
-                        as AddToCartOmsOptionsDTO?,
           )
           as $Val,
     );
@@ -103,20 +87,6 @@ class _$AddProductToCartDTOCopyWithImpl<$Res, $Val extends AddProductToCartDTO>
       return _then(_value.copyWith(cartItems: value) as $Val);
     });
   }
-
-  /// Create a copy of AddProductToCartDTO
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $AddToCartOmsOptionsDTOCopyWith<$Res>? get omsOptions {
-    if (_value.omsOptions == null) {
-      return null;
-    }
-
-    return $AddToCartOmsOptionsDTOCopyWith<$Res>(_value.omsOptions!, (value) {
-      return _then(_value.copyWith(omsOptions: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -128,16 +98,10 @@ abstract class _$$AddProductToCartDTOImplCopyWith<$Res>
   ) = __$$AddProductToCartDTOImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    String cartId,
-    CartItemInputDTO cartItems,
-    @JsonKey(name: 'oms_options') AddToCartOmsOptionsDTO? omsOptions,
-  });
+  $Res call({String cartId, CartItemInputDTO cartItems});
 
   @override
   $CartItemInputDTOCopyWith<$Res> get cartItems;
-  @override
-  $AddToCartOmsOptionsDTOCopyWith<$Res>? get omsOptions;
 }
 
 /// @nodoc
@@ -153,11 +117,7 @@ class __$$AddProductToCartDTOImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? cartId = null,
-    Object? cartItems = null,
-    Object? omsOptions = freezed,
-  }) {
+  $Res call({Object? cartId = null, Object? cartItems = null}) {
     return _then(
       _$AddProductToCartDTOImpl(
         cartId:
@@ -170,11 +130,6 @@ class __$$AddProductToCartDTOImplCopyWithImpl<$Res>
                 ? _value.cartItems
                 : cartItems // ignore: cast_nullable_to_non_nullable
                     as CartItemInputDTO,
-        omsOptions:
-            freezed == omsOptions
-                ? _value.omsOptions
-                : omsOptions // ignore: cast_nullable_to_non_nullable
-                    as AddToCartOmsOptionsDTO?,
       ),
     );
   }
@@ -186,7 +141,6 @@ class _$AddProductToCartDTOImpl implements _AddProductToCartDTO {
   const _$AddProductToCartDTOImpl({
     required this.cartId,
     required this.cartItems,
-    @JsonKey(name: 'oms_options') this.omsOptions,
   });
 
   factory _$AddProductToCartDTOImpl.fromJson(Map<String, dynamic> json) =>
@@ -196,13 +150,10 @@ class _$AddProductToCartDTOImpl implements _AddProductToCartDTO {
   final String cartId;
   @override
   final CartItemInputDTO cartItems;
-  @override
-  @JsonKey(name: 'oms_options')
-  final AddToCartOmsOptionsDTO? omsOptions;
 
   @override
   String toString() {
-    return 'AddProductToCartDTO(cartId: $cartId, cartItems: $cartItems, omsOptions: $omsOptions)';
+    return 'AddProductToCartDTO(cartId: $cartId, cartItems: $cartItems)';
   }
 
   @override
@@ -212,14 +163,12 @@ class _$AddProductToCartDTOImpl implements _AddProductToCartDTO {
             other is _$AddProductToCartDTOImpl &&
             (identical(other.cartId, cartId) || other.cartId == cartId) &&
             (identical(other.cartItems, cartItems) ||
-                other.cartItems == cartItems) &&
-            (identical(other.omsOptions, omsOptions) ||
-                other.omsOptions == omsOptions));
+                other.cartItems == cartItems));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, cartId, cartItems, omsOptions);
+  int get hashCode => Object.hash(runtimeType, cartId, cartItems);
 
   /// Create a copy of AddProductToCartDTO
   /// with the given fields replaced by the non-null parameter values.
@@ -242,7 +191,6 @@ abstract class _AddProductToCartDTO implements AddProductToCartDTO {
   const factory _AddProductToCartDTO({
     required final String cartId,
     required final CartItemInputDTO cartItems,
-    @JsonKey(name: 'oms_options') final AddToCartOmsOptionsDTO? omsOptions,
   }) = _$AddProductToCartDTOImpl;
 
   factory _AddProductToCartDTO.fromJson(Map<String, dynamic> json) =
@@ -252,9 +200,6 @@ abstract class _AddProductToCartDTO implements AddProductToCartDTO {
   String get cartId;
   @override
   CartItemInputDTO get cartItems;
-  @override
-  @JsonKey(name: 'oms_options')
-  AddToCartOmsOptionsDTO? get omsOptions;
 
   /// Create a copy of AddProductToCartDTO
   /// with the given fields replaced by the non-null parameter values.

@@ -243,7 +243,6 @@ class ErrorHelper {
       'es': "Error actualizando la dirección, intente nuevamente.",
       'en': "Error updating the address, try again"
     },
-    "OMS_OPTIONS_NOT_FOUND": {'es': "No se encontraron opciones de OMS", 'en': "OMS options not found"},
     "ERROR_INVALID_REFRESH_TOKEN": {
       'es': "No se pudo refrescar el token de usuario",
       'en': "Could not refresh the user token"
@@ -579,10 +578,6 @@ class ErrorHelper {
     "DELETE_ACCOUNT_FAIL": {
       'es': "No se pudo eliminar la cuenta, por favor intenta más tarde.",
       'en': "Could not delete the account, please try again later.",
-    },
-    "ERROR_UPDATE_OMS_OPTIONS_IN_CART": {
-      'es': "No se pudo actualizar el método de envio a los productos de tu carrito, por favor intenta más tarde.",
-      'en': "Could not update the OMS options in the cart, please try again later.",
     },
     "ERROR_INTERNET_CONNECTION": {
       'es': "No hay conexión a internet, por favor revisa tu conexión, y vuelve a intentar.",

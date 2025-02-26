@@ -5,10 +5,10 @@ import 'package:dartz/dartz.dart';
 
 /// Share product (url-detail-product-web) with intent using native methods
 class ShareProductNativeMethodsUseCase {
+  ShareProductNativeMethodsUseCase(this._shareProductRepository, this._shareContent);
+
   final ShareProductRepository _shareProductRepository;
   final ShareContent _shareContent;
-
-  ShareProductNativeMethodsUseCase(this._shareProductRepository, this._shareContent);
 
   Future<Either<ErrorHandler, bool>> call(String localizationCode, String productUrl) async {
     try {

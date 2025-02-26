@@ -685,8 +685,6 @@ CartPricesDTO _$CartPricesDTOFromJson(Map<String, dynamic> json) {
 mixin _$CartPricesDTO {
   @JsonKey(name: 'grand_total')
   MoneyDTO get grandTotalDTO => throw _privateConstructorUsedError;
-  @JsonKey(name: 'refundable_fee')
-  RefundableFeeDTO get refundableFeeDTO => throw _privateConstructorUsedError;
   @JsonKey(name: 'catalog_discount_amount')
   CatalogDiscountAmountDTO get catalogDiscountAmountDTO =>
       throw _privateConstructorUsedError;
@@ -716,7 +714,6 @@ abstract class $CartPricesDTOCopyWith<$Res> {
   @useResult
   $Res call({
     @JsonKey(name: 'grand_total') MoneyDTO grandTotalDTO,
-    @JsonKey(name: 'refundable_fee') RefundableFeeDTO refundableFeeDTO,
     @JsonKey(name: 'catalog_discount_amount')
     CatalogDiscountAmountDTO catalogDiscountAmountDTO,
     @JsonKey(name: 'subtotal_excluding_tax') MoneyDTO subtotalExcludingTaxDTO,
@@ -725,7 +722,6 @@ abstract class $CartPricesDTOCopyWith<$Res> {
   });
 
   $MoneyDTOCopyWith<$Res> get grandTotalDTO;
-  $RefundableFeeDTOCopyWith<$Res> get refundableFeeDTO;
   $CatalogDiscountAmountDTOCopyWith<$Res> get catalogDiscountAmountDTO;
   $MoneyDTOCopyWith<$Res> get subtotalExcludingTaxDTO;
 }
@@ -746,7 +742,6 @@ class _$CartPricesDTOCopyWithImpl<$Res, $Val extends CartPricesDTO>
   @override
   $Res call({
     Object? grandTotalDTO = null,
-    Object? refundableFeeDTO = null,
     Object? catalogDiscountAmountDTO = null,
     Object? subtotalExcludingTaxDTO = null,
     Object? discountsDTO = null,
@@ -759,11 +754,6 @@ class _$CartPricesDTOCopyWithImpl<$Res, $Val extends CartPricesDTO>
                     ? _value.grandTotalDTO
                     : grandTotalDTO // ignore: cast_nullable_to_non_nullable
                         as MoneyDTO,
-            refundableFeeDTO:
-                null == refundableFeeDTO
-                    ? _value.refundableFeeDTO
-                    : refundableFeeDTO // ignore: cast_nullable_to_non_nullable
-                        as RefundableFeeDTO,
             catalogDiscountAmountDTO:
                 null == catalogDiscountAmountDTO
                     ? _value.catalogDiscountAmountDTO
@@ -803,16 +793,6 @@ class _$CartPricesDTOCopyWithImpl<$Res, $Val extends CartPricesDTO>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $RefundableFeeDTOCopyWith<$Res> get refundableFeeDTO {
-    return $RefundableFeeDTOCopyWith<$Res>(_value.refundableFeeDTO, (value) {
-      return _then(_value.copyWith(refundableFeeDTO: value) as $Val);
-    });
-  }
-
-  /// Create a copy of CartPricesDTO
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
   $CatalogDiscountAmountDTOCopyWith<$Res> get catalogDiscountAmountDTO {
     return $CatalogDiscountAmountDTOCopyWith<$Res>(
       _value.catalogDiscountAmountDTO,
@@ -844,7 +824,6 @@ abstract class _$$CartPricesDTOImplCopyWith<$Res>
   @useResult
   $Res call({
     @JsonKey(name: 'grand_total') MoneyDTO grandTotalDTO,
-    @JsonKey(name: 'refundable_fee') RefundableFeeDTO refundableFeeDTO,
     @JsonKey(name: 'catalog_discount_amount')
     CatalogDiscountAmountDTO catalogDiscountAmountDTO,
     @JsonKey(name: 'subtotal_excluding_tax') MoneyDTO subtotalExcludingTaxDTO,
@@ -854,8 +833,6 @@ abstract class _$$CartPricesDTOImplCopyWith<$Res>
 
   @override
   $MoneyDTOCopyWith<$Res> get grandTotalDTO;
-  @override
-  $RefundableFeeDTOCopyWith<$Res> get refundableFeeDTO;
   @override
   $CatalogDiscountAmountDTOCopyWith<$Res> get catalogDiscountAmountDTO;
   @override
@@ -877,7 +854,6 @@ class __$$CartPricesDTOImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? grandTotalDTO = null,
-    Object? refundableFeeDTO = null,
     Object? catalogDiscountAmountDTO = null,
     Object? subtotalExcludingTaxDTO = null,
     Object? discountsDTO = null,
@@ -890,11 +866,6 @@ class __$$CartPricesDTOImplCopyWithImpl<$Res>
                 ? _value.grandTotalDTO
                 : grandTotalDTO // ignore: cast_nullable_to_non_nullable
                     as MoneyDTO,
-        refundableFeeDTO:
-            null == refundableFeeDTO
-                ? _value.refundableFeeDTO
-                : refundableFeeDTO // ignore: cast_nullable_to_non_nullable
-                    as RefundableFeeDTO,
         catalogDiscountAmountDTO:
             null == catalogDiscountAmountDTO
                 ? _value.catalogDiscountAmountDTO
@@ -925,7 +896,6 @@ class __$$CartPricesDTOImplCopyWithImpl<$Res>
 class _$CartPricesDTOImpl implements _CartPricesDTO {
   const _$CartPricesDTOImpl({
     @JsonKey(name: 'grand_total') required this.grandTotalDTO,
-    @JsonKey(name: 'refundable_fee') required this.refundableFeeDTO,
     @JsonKey(name: 'catalog_discount_amount')
     required this.catalogDiscountAmountDTO,
     @JsonKey(name: 'subtotal_excluding_tax')
@@ -943,9 +913,6 @@ class _$CartPricesDTOImpl implements _CartPricesDTO {
   @override
   @JsonKey(name: 'grand_total')
   final MoneyDTO grandTotalDTO;
-  @override
-  @JsonKey(name: 'refundable_fee')
-  final RefundableFeeDTO refundableFeeDTO;
   @override
   @JsonKey(name: 'catalog_discount_amount')
   final CatalogDiscountAmountDTO catalogDiscountAmountDTO;
@@ -972,7 +939,7 @@ class _$CartPricesDTOImpl implements _CartPricesDTO {
 
   @override
   String toString() {
-    return 'CartPricesDTO(grandTotalDTO: $grandTotalDTO, refundableFeeDTO: $refundableFeeDTO, catalogDiscountAmountDTO: $catalogDiscountAmountDTO, subtotalExcludingTaxDTO: $subtotalExcludingTaxDTO, discountsDTO: $discountsDTO, appliedTaxesDTO: $appliedTaxesDTO)';
+    return 'CartPricesDTO(grandTotalDTO: $grandTotalDTO, catalogDiscountAmountDTO: $catalogDiscountAmountDTO, subtotalExcludingTaxDTO: $subtotalExcludingTaxDTO, discountsDTO: $discountsDTO, appliedTaxesDTO: $appliedTaxesDTO)';
   }
 
   @override
@@ -982,8 +949,6 @@ class _$CartPricesDTOImpl implements _CartPricesDTO {
             other is _$CartPricesDTOImpl &&
             (identical(other.grandTotalDTO, grandTotalDTO) ||
                 other.grandTotalDTO == grandTotalDTO) &&
-            (identical(other.refundableFeeDTO, refundableFeeDTO) ||
-                other.refundableFeeDTO == refundableFeeDTO) &&
             (identical(
                   other.catalogDiscountAmountDTO,
                   catalogDiscountAmountDTO,
@@ -1009,7 +974,6 @@ class _$CartPricesDTOImpl implements _CartPricesDTO {
   int get hashCode => Object.hash(
     runtimeType,
     grandTotalDTO,
-    refundableFeeDTO,
     catalogDiscountAmountDTO,
     subtotalExcludingTaxDTO,
     const DeepCollectionEquality().hash(_discountsDTO),
@@ -1033,8 +997,6 @@ class _$CartPricesDTOImpl implements _CartPricesDTO {
 abstract class _CartPricesDTO implements CartPricesDTO {
   const factory _CartPricesDTO({
     @JsonKey(name: 'grand_total') required final MoneyDTO grandTotalDTO,
-    @JsonKey(name: 'refundable_fee')
-    required final RefundableFeeDTO refundableFeeDTO,
     @JsonKey(name: 'catalog_discount_amount')
     required final CatalogDiscountAmountDTO catalogDiscountAmountDTO,
     @JsonKey(name: 'subtotal_excluding_tax')
@@ -1049,9 +1011,6 @@ abstract class _CartPricesDTO implements CartPricesDTO {
   @override
   @JsonKey(name: 'grand_total')
   MoneyDTO get grandTotalDTO;
-  @override
-  @JsonKey(name: 'refundable_fee')
-  RefundableFeeDTO get refundableFeeDTO;
   @override
   @JsonKey(name: 'catalog_discount_amount')
   CatalogDiscountAmountDTO get catalogDiscountAmountDTO;

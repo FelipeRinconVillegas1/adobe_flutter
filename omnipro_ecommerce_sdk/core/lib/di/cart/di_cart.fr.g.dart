@@ -248,27 +248,6 @@ final setBillingAddressToCartUseCaseProvider =
 // ignore: unused_element
 typedef SetBillingAddressToCartUseCaseRef =
     ProviderRef<SetBillingAddressToCartUseCase>;
-String _$setAppointmentOnCartUseCaseHash() =>
-    r'bc649ed7d055ba83257fa713c4f5b652312db183';
-
-/// See also [setAppointmentOnCartUseCase].
-@ProviderFor(setAppointmentOnCartUseCase)
-final setAppointmentOnCartUseCaseProvider =
-    Provider<SetAppointmentOnCartUseCase>.internal(
-      setAppointmentOnCartUseCase,
-      name: r'setAppointmentOnCartUseCaseProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$setAppointmentOnCartUseCaseHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef SetAppointmentOnCartUseCaseRef =
-    ProviderRef<SetAppointmentOnCartUseCase>;
 String _$setShippingAddressToCartUseCaseHash() =>
     r'5e9511908a0a3ec5f6434efb38738e9db18efb21';
 
@@ -486,26 +465,5 @@ final removeAllItemsFromCartUseCaseProvider =
 // ignore: unused_element
 typedef RemoveAllItemsFromCartUseCaseRef =
     ProviderRef<RemoveAllItemsFromCartUseCase>;
-String _$updateOmsOptionsToAllProductsInCartUseCaseHash() =>
-    r'e5c01df0bd7df6ddca16906c7bf7e0c8302d5579';
-
-/// See also [updateOmsOptionsToAllProductsInCartUseCase].
-@ProviderFor(updateOmsOptionsToAllProductsInCartUseCase)
-final updateOmsOptionsToAllProductsInCartUseCaseProvider =
-    Provider<UpdateOmsOptionsToAllProductsInCartUseCase>.internal(
-      updateOmsOptionsToAllProductsInCartUseCase,
-      name: r'updateOmsOptionsToAllProductsInCartUseCaseProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$updateOmsOptionsToAllProductsInCartUseCaseHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef UpdateOmsOptionsToAllProductsInCartUseCaseRef =
-    ProviderRef<UpdateOmsOptionsToAllProductsInCartUseCase>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

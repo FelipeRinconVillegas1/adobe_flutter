@@ -1,13 +1,13 @@
 import 'package:equatable/equatable.dart';
 
 class DeliveryTip extends Equatable {
-  final String labelTip;
-  final double value;
-
   const DeliveryTip({
     required this.labelTip,
     required this.value,
   });
+
+  final String labelTip;
+  final double value;
 
   DeliveryTip copyWith({
     String? labelTip,

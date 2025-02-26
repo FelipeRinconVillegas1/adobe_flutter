@@ -1,4 +1,4 @@
-String queryItemProduct({bool includeNestedAssociatedProducts = true}) => '''
+String queryItemProduct() => '''
       id
       name
       sku
@@ -20,13 +20,6 @@ String queryItemProduct({bool includeNestedAssociatedProducts = true}) => '''
       }
       upc
       url_key
-      ${includeNestedAssociatedProducts ? '''
-      ... on RecipeProduct {
-            associatedProducts {
-              ${queryItemProduct(includeNestedAssociatedProducts: false)}
-            }
-      }
-        ''' : ""}
       description{
         html
       }

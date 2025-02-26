@@ -1,16 +1,13 @@
 import 'package:core/di/data_provider.fr.dart';
 import 'package:core/domain/use_case/cart/get_enables_shipping_methods_use_case.dart';
 import 'package:core/domain/use_case/cart/remove_cart_items_use_case.dart';
-import 'package:core/domain/use_case/cart/update_oms_options_to_all_products_in_cart_use_case.dart';
 import 'package:core/domain/use_case/stores/set_warehouse_address_on_cart_use_case.dart';
 import 'package:core/local/di_secure_storage.fr.dart';
 import 'package:core/data/datasource/cart/cart_datasource.dart';
 import 'package:core/data/repository/cart/cart_repository.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:core/domain/use_case/cart/add_product_to_cart_use_case.dart';
 import 'package:core/domain/use_case/cart/set_guest_email_on_cart.dart';
 import 'package:core/di/use_cases_provider.fr.dart';
-
 import '../../data/datasource/cart/cart_datasource_impl.dart';
 import '../../data/repository/cart/cart_repository_impl.dart';
 import '../../domain/use_case/cart/add_tip_to_cart_use_case.dart';
@@ -24,12 +21,12 @@ import '../../domain/use_case/cart/get_cart_info_use_case.dart';
 import '../../domain/use_case/cart/get_crosssell_products_use_case.dart';
 import '../../domain/use_case/cart/remove_all_items_from_cart_use_case.dart';
 import '../../domain/use_case/cart/remove_product_to_cart_use_case.dart';
-import '../../domain/use_case/cart/set_appointment_information_on_cart_use_case.dart';
 import '../../domain/use_case/cart/set_billing_address_to_cart.dart';
 import '../../domain/use_case/cart/set_payment_method_to_cart_use_case.dart';
 import '../../domain/use_case/cart/set_shipping_address_to_cart.dart';
 import '../../domain/use_case/cart/set_shipping_method_to_cart.dart';
 import '../../domain/use_case/cart/update_cart_items_use_case.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'di_cart.fr.g.dart';
 
@@ -101,11 +98,6 @@ SetBillingAddressToCartUseCase setBillingAddressToCartUseCase(SetBillingAddressT
 }
 
 @Riverpod(keepAlive: true)
-SetAppointmentOnCartUseCase setAppointmentOnCartUseCase(SetAppointmentOnCartUseCaseRef ref) {
-  return SetAppointmentOnCartUseCase(ref.watch(cartRepositorySourceProvider), ref.watch(getCartIdUseCaseProvider));
-}
-
-@Riverpod(keepAlive: true)
 SetShippingAddressToCartUseCase setShippingAddressToCartUseCase(SetShippingAddressToCartUseCaseRef ref) {
   return SetShippingAddressToCartUseCase(ref.watch(cartRepositorySourceProvider), ref.watch(getCartIdUseCaseProvider),
       ref.watch(isCustomerLoggedInSourceProvider));
@@ -169,11 +161,4 @@ CartDatasource cartDatasourceSource(CartDatasourceSourceRef ref) {
 @Riverpod(keepAlive: true)
 RemoveAllItemsFromCartUseCase removeAllItemsFromCartUseCase(RemoveAllItemsFromCartUseCaseRef ref) {
   return RemoveAllItemsFromCartUseCase(ref.watch(cartRepositorySourceProvider), ref.watch(getCartIdUseCaseProvider));
-}
-
-@Riverpod(keepAlive: true)
-UpdateOmsOptionsToAllProductsInCartUseCase updateOmsOptionsToAllProductsInCartUseCase(
-    UpdateOmsOptionsToAllProductsInCartUseCaseRef ref) {
-  return UpdateOmsOptionsToAllProductsInCartUseCase(
-      ref.watch(cartRepositorySourceProvider), ref.watch(getCartIdUseCaseProvider));
 }

@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:core/data/datasource/customer/customer_datasource.dart';
 import 'package:core/data/dto/customer_dto.fr.dart';
 import 'package:core/data/mapper.dart';
@@ -10,7 +9,6 @@ import 'package:core/local/key_secure_storage.dart';
 import 'package:core/utils/error_handler/error_code.dart';
 import 'package:core/utils/error_handler/error_handler.dart';
 import 'package:dartz/dartz.dart';
-
 import '../../../domain/entity/delete_account/delete_customer_input.dart';
 import 'customer_repository.dart';
 

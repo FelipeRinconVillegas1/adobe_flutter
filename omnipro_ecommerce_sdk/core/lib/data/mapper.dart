@@ -4,10 +4,8 @@ import 'package:core/data/dto/dropdown_manager/dropdown_option_dto.fr.dart';
 import 'package:core/data/dto/html/html_dto.fr.dart';
 import 'package:core/data/dto/localization_item_dto.fr.dart';
 import 'package:core/data/dto/products_mapper.dart';
-import 'package:core/data/dto/purse_info_dto.fr.dart';
 import 'package:core/domain/entity/available_payment_method.dart';
 import 'package:core/domain/entity/bot_whatsapp.dart';
-import 'package:core/domain/entity/cart/reundable_fee_entity.dart';
 import 'package:core/domain/entity/complement_share_product.dart';
 import 'package:core/domain/entity/custom_attribute.dart';
 import 'package:core/domain/entity/customer.fr.dart';
@@ -16,29 +14,20 @@ import 'package:core/domain/entity/html/html_entity.dart';
 import 'package:core/domain/entity/localization_item.dart';
 import 'package:core/domain/entity/localization_message.dart';
 import 'package:core/domain/entity/money.fr.dart';
-import 'package:core/domain/entity/purse_info_entity.dart';
 import 'package:core/domain/entity/session_data.dart';
 import 'package:core/domain/entity/user_credential_response.dart';
 import 'package:core/utils/custom_attribute_code.dart';
 import 'package:omnipro_ecommerce_sdk/address/lib/data/repository/address_mapper.dart';
 import '../domain/entity/delete_account/delete_customer_input.dart';
 import '../domain/entity/stores/warehouse_address_entity.fr.dart';
-import '../domain/entity/orders/orders_edited_entity.fr.dart';
 import '../domain/entity/shipping_methods_entity.dart';
 import '../domain/entity/wishlist.fr.dart';
-import '../domain/entity/loyalty_wallet/balance_loyalty_wallet.dart';
-import '../domain/entity/loyalty_wallet/loyalty_wallet_credential.dart';
-import '../domain/entity/loyalty_wallet/loyalty_wallet_transaction.dart';
 import 'dto/bot_whats_app_dto.fr.dart';
-import 'dto/cart/refundable_fee_dto.fr.dart';
 import 'dto/cart/warehouse_address_dto.fr.dart';
 import 'dto/complement_share_product_dto.fr.dart';
 import 'dto/customer_dto.fr.dart';
 import 'dto/delete_account/delete_customer_input_dto.fr.dart';
 import 'dto/localization_message_dto.fr.dart';
-import 'dto/loyalty_wallet/balance_loyalty_wallet_dto.fr.dart';
-import 'dto/loyalty_wallet/loyalty_wallet_credential_dto.fr.dart';
-import 'dto/loyalty_wallet/loyalty_wallet_transaction_dto.fr.dart';
 import 'dto/money_dto.fr.dart';
 import 'dto/money_info_dto.fr.dart';
 import 'dto/orders/order_edited_dto.fr.dart';
@@ -233,34 +222,6 @@ extension MapperComplementShareProductDTO on ComplementShareProductDTO {
   ComplementSharedProduct toDomain() => ComplementSharedProduct(url, initialMessage.toDomain());
 }
 
-extension MapperPurseInfoListDto on PurseInfoListDto {
-  PurseInfoEntityList toDomain() => PurseInfoEntityList(
-        purseInfoList: purseInfoList.map((e) => e.toDomain()).toList(),
-        userId: userId,
-      );
-}
-
-extension MapperPurseInfoListEntity on PurseInfoEntityList {
-  PurseInfoListDto toDto() => PurseInfoListDto(
-        purseInfoList: purseInfoList.map((e) => e.toDto()).toList(),
-        userId: userId,
-      );
-}
-
-extension MapperPurseInfoDto on PurseInfoDto {
-  PurseInfoEntity toDomain() => PurseInfoEntity(
-        purseId: purseId,
-        balance: balance,
-      );
-}
-
-extension MapperPurseInfoEntity on PurseInfoEntity {
-  PurseInfoDto toDto() => PurseInfoDto(
-        purseId: purseId,
-        balance: balance,
-      );
-}
-
 extension MapperMoneyInfoToDomain on MoneyInfoDTO {
   MoneyInfo toDomain() => MoneyInfo(
         label: label,
@@ -282,123 +243,11 @@ extension MapperMoneyDTO on Money {
       );
 }
 
-extension MapperRefundableFeeDTO on RefundableFeeDTO {
-  RefundableFeeEntity toDomain() => RefundableFeeEntity(value: value);
-}
-
-extension MapperRefundableFeeEntity on RefundableFeeEntity {
-  RefundableFeeDTO toDTO() => RefundableFeeDTO(value: value);
-}
-
 extension MapperMoney on MoneyDTO {
   Money toDomain() => Money(
         value: value,
         currency: currency,
       );
-}
-
-extension MapperOrderEdited on OrdersEditedDTO {
-  OrdersEditedEntity toDomain() => OrdersEditedEntity(
-        orders: orders.map((e) => e.toDomain()).toList(),
-      );
-}
-
-extension MapperOrderEditedDTO on OrderEditedDTO {
-  OrderEditedEntity toDomain() => OrderEditedEntity(
-        orderId: orderId,
-        deletedProducts: deletedProducts.toDomain(),
-        editedProducts: editedProducts.toDomain(),
-        addedProducts: addedProducts.toDomain(),
-      );
-}
-
-extension MapperOrderItemDeletedEditedDTO on OrderItemDeletedEditedDTO {
-  OrderItemDeletedEditedEntity toDomain() => OrderItemDeletedEditedEntity(
-        totalCount: totalCount,
-        items: items.map((e) => e.toDomain()).toList(),
-      );
-}
-
-extension MapperOrderItemEditedDTO on OrderItemEditedDTO {
-  OrderItemEditedEntity toDomain() => OrderItemEditedEntity(
-        totalCount: totalCount,
-        items: items.map((e) => e.toDomain()).toList(),
-      );
-}
-
-extension MapperOrderItemAddedDTO on OrderItemAddedDTO {
-  OrderItemAddedEntity toDomain() => OrderItemAddedEntity(
-        totalCount: totalCount,
-        items: items.map((e) => e.toDomain()).toList(),
-      );
-}
-
-extension MapperOrderItemModifiedDTO on OrderItemModifiedDTO {
-  OrderItemModifiedEntity toDomain() => OrderItemModifiedEntity(
-        productName: productName,
-        productSku: productSku,
-        productUrlKey: productUrlKey,
-        productImage: productImage,
-        salesUnitOfMeasure: salesUnitOfMeasure ?? "",
-        productQty: productQty,
-        productSalePrice: productSalePrice?.toDomain(),
-        productSaleRowTotal: productSaleRowTotal?.toDomain(),
-        productSaleTaxPrice: productSaleTaxPrice?.toDomain(),
-      );
-}
-
-extension BalanceLoyaltyWalletToDTO on BalanceLoyaltyWallet {
-  BalanceLoyaltyWalletDTO toDTO() {
-    return BalanceLoyaltyWalletDTO(balance: balance);
-  }
-}
-
-extension BalanceLoyaltyWalletDTOToWallet on BalanceLoyaltyWalletDTO {
-  BalanceLoyaltyWallet toDomain() {
-    return BalanceLoyaltyWallet(balance: balance);
-  }
-}
-
-extension LoyaltyWalletCredentialToDTO on LoyaltyWalletCredential {
-  LoyaltyWalletCredentialDTO toDTO() {
-    return LoyaltyWalletCredentialDTO(
-      cardNumber: cardNumber,
-      cardBirthDate: cardBirthDate,
-      customerEmail: customerEmail,
-    );
-  }
-}
-
-extension DTOToLoyaltyWalletCredential on LoyaltyWalletCredentialDTO {
-  LoyaltyWalletCredential toDomain() {
-    return LoyaltyWalletCredential(
-      cardNumber: cardNumber,
-      cardBirthDate: cardBirthDate,
-      customerEmail: customerEmail,
-    );
-  }
-}
-
-extension LoyaltyWalletTransactionToDTO on LoyaltyWalletTransaction {
-  LoyaltyWalletTransactionDTO toDTO() {
-    return LoyaltyWalletTransactionDTO(
-      date: date,
-      name: name,
-      spent: spent,
-      earned: earned,
-    );
-  }
-}
-
-extension LoyaltyWalletTransactionDTOToDomain on LoyaltyWalletTransactionDTO {
-  LoyaltyWalletTransaction toDomain() {
-    return LoyaltyWalletTransaction(
-      date: date,
-      name: name,
-      spent: spent,
-      earned: earned,
-    );
-  }
 }
 
 extension HtmlDTOMapper on HtmlDTO {

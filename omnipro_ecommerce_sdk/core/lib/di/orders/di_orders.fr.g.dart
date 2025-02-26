@@ -80,26 +80,5 @@ final reorderItemsUseCaseProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef ReorderItemsUseCaseRef = AutoDisposeProviderRef<ReorderItemsUseCase>;
-String _$getOrderEditedUseCaseHash() =>
-    r'4350f2cf51e1408f079a9ea0eafd014fe1cada4a';
-
-/// See also [getOrderEditedUseCase].
-@ProviderFor(getOrderEditedUseCase)
-final getOrderEditedUseCaseProvider =
-    AutoDisposeProvider<GetOrderEditedUseCase>.internal(
-      getOrderEditedUseCase,
-      name: r'getOrderEditedUseCaseProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$getOrderEditedUseCaseHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef GetOrderEditedUseCaseRef =
-    AutoDisposeProviderRef<GetOrderEditedUseCase>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

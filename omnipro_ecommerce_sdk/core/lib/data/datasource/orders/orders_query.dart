@@ -126,9 +126,6 @@ query (\$pageSize: Int, \$currentPage: Int, \$sort: CustomerOrderSortInput, \$fi
             }
             label
           }
-          refundable_fee {
-            value
-          }
         }
       }
     }

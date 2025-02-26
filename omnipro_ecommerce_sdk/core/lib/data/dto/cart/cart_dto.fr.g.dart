@@ -79,9 +79,6 @@ _$CartPricesDTOImpl _$$CartPricesDTOImplFromJson(Map<String, dynamic> json) =>
       grandTotalDTO: MoneyDTO.fromJson(
         json['grand_total'] as Map<String, dynamic>,
       ),
-      refundableFeeDTO: RefundableFeeDTO.fromJson(
-        json['refundable_fee'] as Map<String, dynamic>,
-      ),
       catalogDiscountAmountDTO: CatalogDiscountAmountDTO.fromJson(
         json['catalog_discount_amount'] as Map<String, dynamic>,
       ),
@@ -103,7 +100,6 @@ _$CartPricesDTOImpl _$$CartPricesDTOImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$CartPricesDTOImplToJson(_$CartPricesDTOImpl instance) =>
     <String, dynamic>{
       'grand_total': instance.grandTotalDTO,
-      'refundable_fee': instance.refundableFeeDTO,
       'catalog_discount_amount': instance.catalogDiscountAmountDTO,
       'subtotal_excluding_tax': instance.subtotalExcludingTaxDTO,
       'discounts': instance.discountsDTO,

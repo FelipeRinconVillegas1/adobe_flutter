@@ -5,7 +5,6 @@ import 'package:core/utils/error_handler/error_handler.dart' as h;
 import 'package:core/utils/error_handler/error_helper.dart';
 import 'package:dartz/dartz.dart';
 import 'package:graphql/client.dart';
-import 'package:http/http.dart';
 import '../conectivity_check.dart';
 import 'refresh_token_link.dart';
 

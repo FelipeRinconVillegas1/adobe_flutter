@@ -42,27 +42,6 @@ final storesRepositoryProvider = Provider<StoresRepository>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef StoresRepositoryRef = ProviderRef<StoresRepository>;
-String _$getLastStoreInComputeUseCaseHash() =>
-    r'ddc74b9c4492bee23db98b5a608314b3a045ec33';
-
-/// See also [getLastStoreInComputeUseCase].
-@ProviderFor(getLastStoreInComputeUseCase)
-final getLastStoreInComputeUseCaseProvider =
-    Provider<GetLastStoreInComputeUseCase>.internal(
-      getLastStoreInComputeUseCase,
-      name: r'getLastStoreInComputeUseCaseProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$getLastStoreInComputeUseCaseHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef GetLastStoreInComputeUseCaseRef =
-    ProviderRef<GetLastStoreInComputeUseCase>;
 String _$getStoresByFilterUseCaseHash() =>
     r'd792bcfba3186c3cf772e6c340ab143fc3c67691';
 
@@ -83,27 +62,6 @@ final getStoresByFilterUseCaseProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef GetStoresByFilterUseCaseRef = ProviderRef<GetStoresByFilterUseCase>;
-String _$saveLastStoreInComputeUseCaseHash() =>
-    r'3bb6f894c750d59f5e7c8673681f3588c54c6a0f';
-
-/// See also [saveLastStoreInComputeUseCase].
-@ProviderFor(saveLastStoreInComputeUseCase)
-final saveLastStoreInComputeUseCaseProvider =
-    Provider<SaveLastStoreInComputeUseCase>.internal(
-      saveLastStoreInComputeUseCase,
-      name: r'saveLastStoreInComputeUseCaseProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$saveLastStoreInComputeUseCaseHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef SaveLastStoreInComputeUseCaseRef =
-    ProviderRef<SaveLastStoreInComputeUseCase>;
 String _$getLocalStorePickupSelectedUseCaseHash() =>
     r'39a8247b5189d895092d86dd58eb388536de28b2';
 

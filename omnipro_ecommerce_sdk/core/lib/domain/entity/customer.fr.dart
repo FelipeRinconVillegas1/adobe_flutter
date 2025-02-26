@@ -36,29 +36,4 @@ extension CustomerExtension on Customer {
   String? programKnowledge() => customAttributesOptionals[CustomAttributeCode.programKnowlege]?.value;
 
   String? maritalStatus() => customAttributesOptionals[CustomAttributeCode.maritalStatus]?.value;
-
-  bool? isSubscribedReceiveEventInformation() {
-    final CustomAttribute? customAttribute = customAttributesOptionals[CustomAttributeCode.recceiveEventInformation];
-    if (customAttribute != null && customAttribute.value.isNotEmpty) {
-      return customAttribute.value == '1';
-    }
-    return null;
-  }
-
-  bool? hasChildren() {
-    final CustomAttribute? customAttribute = customAttributesOptionals[CustomAttributeCode.children];
-    if (customAttribute != null && customAttribute.value.isNotEmpty) {
-      return customAttribute.value == '1';
-    }
-    return null;
-  }
-
-  bool? hasPets() {
-    final CustomAttribute? customAttribute = customAttributesOptionals[CustomAttributeCode.pets];
-    if (customAttribute != null && customAttribute.value.isNotEmpty) {
-      return customAttribute.value == '1';
-    }
-    return null;
-  }
-
 }

@@ -6,10 +6,10 @@ import 'package:http/http.dart' as http;
 import 'api_client.dart';
 
 class HttpApiClient implements ApiClient {
+  HttpApiClient(this._client, {required this.baseUrl});
+
   final http.Client _client;
   final String baseUrl;
-
-  HttpApiClient(this._client, {required this.baseUrl});
 
   Uri getUrl(String path) {
     return Uri.https(baseUrl, path);

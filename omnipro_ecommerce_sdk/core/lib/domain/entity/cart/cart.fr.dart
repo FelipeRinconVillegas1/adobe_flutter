@@ -1,5 +1,4 @@
 import 'package:core/domain/entity/available_payment_method.dart';
-import 'package:core/domain/entity/cart/reundable_fee_entity.dart';
 import 'package:core/domain/entity/cart/shipping_address_on_cart.dart';
 import 'package:core/domain/entity/money.fr.dart';
 import 'package:core/domain/entity/products.dart';
@@ -19,8 +18,7 @@ class Cart with _$Cart {
       prices: CartPrices(
           grandTotal: Money(value: 0, currency: ''),
           subtotalExcludingTax: Money(value: 0, currency: ''),
-          catalogDiscountAmount: CatalogDiscountAmount(value: 0),
-          refundableFee: RefundableFeeEntity(value: 0)));
+          catalogDiscountAmount: CatalogDiscountAmount(value: 0)));
 
   //Cart with items
   const factory Cart(
@@ -44,7 +42,6 @@ class Cart with _$Cart {
 class CartPrices with _$CartPrices {
   const factory CartPrices({
     @JsonKey(name: 'grand_total') required Money grandTotal,
-    @JsonKey(name: 'refundable_fee') required RefundableFeeEntity refundableFee,
     @JsonKey(name: 'catalog_discount_amount') required CatalogDiscountAmount catalogDiscountAmount,
     required Money subtotalExcludingTax,
     @JsonKey(name: 'discounts') @Default([]) List<MoneyInfo> discounts,
