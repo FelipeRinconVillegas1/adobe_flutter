@@ -269,27 +269,6 @@ final setShippingAddressToCartUseCaseProvider =
 // ignore: unused_element
 typedef SetShippingAddressToCartUseCaseRef =
     ProviderRef<SetShippingAddressToCartUseCase>;
-String _$setWarehouseAddressOnCartUseCaseHash() =>
-    r'0f3c6de9b7d0cbed6a5ab5cc2f5e015dfdee8e10';
-
-/// See also [setWarehouseAddressOnCartUseCase].
-@ProviderFor(setWarehouseAddressOnCartUseCase)
-final setWarehouseAddressOnCartUseCaseProvider =
-    Provider<SetWarehouseAddressOnCartUseCase>.internal(
-      setWarehouseAddressOnCartUseCase,
-      name: r'setWarehouseAddressOnCartUseCaseProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$setWarehouseAddressOnCartUseCaseHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef SetWarehouseAddressOnCartUseCaseRef =
-    ProviderRef<SetWarehouseAddressOnCartUseCase>;
 String _$getCartInfoUseCaseHash() =>
     r'bb02ef333afb3cda4606a0a0215f773f56322556';
 

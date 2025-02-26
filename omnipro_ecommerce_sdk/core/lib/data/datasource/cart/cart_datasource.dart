@@ -41,12 +41,6 @@ abstract class CartDatasource {
 
   Future<Either<ErrorHandler, CartDTO>> getCartInfo(String cartId, {required bool isGuestUser});
 
-  Future<Either<ErrorHandler, CartDTO>> setWarehouseAddressOnCart(
-    WareHouseAddressEntity wareHouseAddressEntity,
-    String cartId, {
-    required Customer customerLogged,
-  });
-
   Future<Either<ErrorHandler, CartDTO>> setShippingAddressesOnCart(
     CustomerAddressDTO orderAddressDTO,
     String cartId, {

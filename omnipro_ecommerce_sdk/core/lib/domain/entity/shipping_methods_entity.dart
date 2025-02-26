@@ -1,7 +1,5 @@
 import 'package:equatable/equatable.dart';
 
-import '../../utils/constants.dart';
-
 class ShippingMethodsEntity extends Equatable {
   const ShippingMethodsEntity({
     required this.items,

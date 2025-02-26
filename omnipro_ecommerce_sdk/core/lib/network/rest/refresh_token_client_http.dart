@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:async/async.dart';
 import 'package:http/http.dart';
-import '../../utils/constants.dart';
+import '../../init/setup_omnipro_sdk.dart';
 import '../token_service.dart';
 
 /// An HTTP client wrapper that automatically retries failing requests by unauthorized token.
@@ -39,8 +39,12 @@ class RefreshTokenClientHTTP extends BaseClient {
       'Authorization': 'Bearer $_bearerToken',
       'Content-Type': 'application/json; charset=UTF-8',
       'Accept': 'application/json',
-      'Store': Constants.storeView,
     });
+
+    /// Add custom headers
+    request.headers.addAll(
+        SetupOnmiproSdk().getConfig().headersMagentoGraphQL ?? <String, String>{}
+    );
 
     var i = 0;
     for (;;) {

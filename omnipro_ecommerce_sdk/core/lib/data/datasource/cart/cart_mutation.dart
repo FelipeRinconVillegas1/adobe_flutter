@@ -6,7 +6,6 @@ import 'package:core/data/dto/cart/add_product_to_cart_dto.fr.dart';
 import 'package:core/domain/entity/customer.fr.dart';
 import '../../../domain/entity/cart/input_set_payment_method_on_cart_entity.fr.dart';
 import '../../../domain/entity/stores/warehouse_address_entity.fr.dart';
-import '../../../utils/constants.dart';
 import 'cart_query.dart';
 
 // __  __ _    _ _______    _______ _____ ____  _   _
@@ -113,41 +112,6 @@ mutation {
        {
          customer_address_id: ${orderAddressDTO.id}
        }
-     ]
-    }
-  ) {
-    cart {
-      ${queryGetCartInfo()}
-    }
-  }
-}
-
-''';
-
-String setWarehouseAddressOnCartMutation(
-  Customer customer,
-  String cartId,
-  WareHouseAddressEntity wareHouseAddressEntity,
-) => '''
-mutation {
-  setShippingAddressesOnCart(
-    input: {
-      cart_id: "$cartId"
-      shipping_addresses: [
-        {
-         address: {
-            firstname: "${customer.firstName}"
-            lastname: "${customer.lastName}"
-            street: ["${wareHouseAddressEntity.name}","${wareHouseAddressEntity.address}","${wareHouseAddressEntity.cityName}"]
-            city: "${wareHouseAddressEntity.cityName}"
-            region: "${Constants.defaultCountry.nameEs}"
-            region_id: 0
-            postcode: "${wareHouseAddressEntity.postCode}"
-            country_code: "${Constants.defaultCountry.code}"
-            telephone: "${wareHouseAddressEntity.telephone.replaceAll(RegExp(r'[^0-9]'), '')}"
-            save_in_address_book: false
-          }
-        }
      ]
     }
   ) {

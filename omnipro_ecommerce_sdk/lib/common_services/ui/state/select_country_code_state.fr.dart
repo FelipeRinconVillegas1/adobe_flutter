@@ -1,12 +1,11 @@
 import 'package:core/domain/entity/dropdown_manager/dropdown_option.dart';
-import 'package:core/utils/constants.dart';
 
 class SelectCountryCodeState {
   DropdownOptionCountryCode countryCodeOptionSelected;
   final List<DropdownOptionCountryCode> listCountries;
 
   SelectCountryCodeState({
-    this.countryCodeOptionSelected = Constants.defaultCountry,
+    required this.countryCodeOptionSelected,
     this.listCountries = const [],
   });
 

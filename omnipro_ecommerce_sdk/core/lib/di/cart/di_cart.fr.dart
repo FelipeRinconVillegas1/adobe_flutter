@@ -1,7 +1,6 @@
 import 'package:core/di/data_provider.fr.dart';
 import 'package:core/domain/use_case/cart/get_enables_shipping_methods_use_case.dart';
 import 'package:core/domain/use_case/cart/remove_cart_items_use_case.dart';
-import 'package:core/domain/use_case/stores/set_warehouse_address_on_cart_use_case.dart';
 import 'package:core/local/di_secure_storage.fr.dart';
 import 'package:core/data/datasource/cart/cart_datasource.dart';
 import 'package:core/data/repository/cart/cart_repository.dart';
@@ -101,14 +100,6 @@ SetBillingAddressToCartUseCase setBillingAddressToCartUseCase(SetBillingAddressT
 SetShippingAddressToCartUseCase setShippingAddressToCartUseCase(SetShippingAddressToCartUseCaseRef ref) {
   return SetShippingAddressToCartUseCase(ref.watch(cartRepositorySourceProvider), ref.watch(getCartIdUseCaseProvider),
       ref.watch(isCustomerLoggedInSourceProvider));
-}
-
-@Riverpod(keepAlive: true)
-SetWarehouseAddressOnCartUseCase setWarehouseAddressOnCartUseCase(SetWarehouseAddressOnCartUseCaseRef ref) {
-  return SetWarehouseAddressOnCartUseCase(
-    ref.watch(cartRepositorySourceProvider),
-    ref.watch(getCartIdUseCaseProvider),
-  );
 }
 
 @Riverpod(keepAlive: true)

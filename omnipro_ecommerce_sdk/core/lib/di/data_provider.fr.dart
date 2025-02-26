@@ -1,4 +1,8 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'package:http/http.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:synchronized/synchronized.dart';
 import 'package:core/data/datasource/dropdown_manager/dropdown_options_datasource.dart';
 import 'package:core/data/datasource/remote_config_datasource.dart';
 import 'package:core/data/datasource/session/log_out_data_source.dart';
@@ -13,15 +17,10 @@ import 'package:core/network/graphql/refresh_token_link.dart';
 import 'package:core/network/rest/api_client.dart';
 import 'package:core/network/token_mediator.dart';
 import 'package:core/network/token_service.dart';
-import 'package:core/utils/constants.dart';
-import 'package:firebase_remote_config/firebase_remote_config.dart';
-import 'package:http/http.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:synchronized/synchronized.dart';
-
 import '../data/datasource/dropdown_manager/dropdown_options_datasource_impl.dart';
 import '../data/datasource/suggested_texts/suggested_texts_datasource.dart';
 import '../data/repository/suggested_texts/suggested_texts_repository.dart';
+import '../init/setup_omnipro_sdk.dart';
 import '../network/rest/api_client_http.dart';
 import '../network/rest/http_service_token.dart';
 import '../network/rest/refresh_token_client_http.dart';
@@ -118,13 +117,13 @@ String baseUrlAppServerSource(BaseUrlSourceRef ref) {
 
 @Riverpod(keepAlive: true)
 String baseUrlSource(BaseUrlSourceRef ref) {
-  return Constants.urlSuper99Magento;
+  return SetupOnmiproSdk().getConfig().urlHostMagento;
 }
 
 /// REST API PROVIDERS ----------------------------------------------------------
 @Riverpod(keepAlive: true)
 String baseUrlRest(BaseUrlRestRef ref) {
-  return '';
+  return SetupOnmiproSdk().getConfig().baseUrlRest;
 }
 
 @Riverpod(keepAlive: true)

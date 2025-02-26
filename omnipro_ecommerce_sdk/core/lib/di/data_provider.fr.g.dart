@@ -450,7 +450,7 @@ final baseUrlAppServerSourceProvider = Provider<String>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef BaseUrlAppServerSourceRef = ProviderRef<String>;
-String _$baseUrlSourceHash() => r'608af1bf26cea50f93e26fc0d2bc061fc26b3c5c';
+String _$baseUrlSourceHash() => r'16abd9883799866ce840ecf76ed6fb852a469b3e';
 
 /// See also [baseUrlSource].
 @ProviderFor(baseUrlSource)
@@ -468,7 +468,7 @@ final baseUrlSourceProvider = Provider<String>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef BaseUrlSourceRef = ProviderRef<String>;
-String _$baseUrlRestHash() => r'13326b252013b696b84630ec08fa8f4e332ddce9';
+String _$baseUrlRestHash() => r'e8e259ad9d1198ff96e4f3507904753a1018c18d';
 
 /// REST API PROVIDERS ----------------------------------------------------------
 ///

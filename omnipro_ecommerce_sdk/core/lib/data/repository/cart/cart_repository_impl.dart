@@ -195,19 +195,4 @@ class CartRepositoryImpl extends CartRepository {
         .removeCartItems(cartId: cartId, cartItemIds: cartItemIds, isGuestUser: isGuestUser)
         .then((value) => value.fold((errorHandler) => left(errorHandler), (cartDTO) => right(cartDTO.toDomain())));
   }
-
-  @override
-  Future<Either<ErrorHandler, Cart>> setWarehouseAddressOnCart(
-    WareHouseAddressEntity wareHouseAddressEntity,
-    String cartId, {
-    required Customer customerLogged,
-  }) {
-    return _cartDatasource
-        .setWarehouseAddressOnCart(
-          wareHouseAddressEntity,
-          cartId,
-          customerLogged: customerLogged,
-        )
-        .then((value) => value.fold((errorHandler) => left(errorHandler), (cartDTO) => right(cartDTO.toDomain())));
-  }
 }

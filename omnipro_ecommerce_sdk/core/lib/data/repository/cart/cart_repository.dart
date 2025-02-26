@@ -35,12 +35,6 @@ abstract class CartRepository {
 
   Future<Either<ErrorHandler, String>> createEmptyCart({required bool isGuestUser});
 
-  Future<Either<ErrorHandler, Cart>> setWarehouseAddressOnCart(
-    WareHouseAddressEntity wareHouseAddressEntity,
-    String cartId, {
-    required Customer customerLogged,
-  });
-
   Future<Either<ErrorHandler, Cart>> setShippingAddressesOnCart(
     CustomerAddressEntity orderAddress,
     String cartId, {

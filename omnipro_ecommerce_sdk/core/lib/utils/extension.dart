@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'dart:math';
-import 'constants.dart';
+import '../init/setup_omnipro_sdk.dart';
 
 extension IterableExt on Iterable {
   Iterable superJoin(dynamic separator) {
@@ -27,10 +27,7 @@ extension EitherExtension<L, R> on Either<L, R> {
 }
 
 extension RemoveQuotes on String {
-  String removeQuotesInKeys() => replaceAllMapped(
-        RegExp(r'"(.+)"\s*:\s*'),
-        (match) => '${match.group(1)}: ',
-      );
+  String removeQuotesInKeys() => replaceAllMapped(RegExp(r'"(.+)"\s*:\s*'), (match) => '${match.group(1)}: ');
 }
 
 String toParamMutationHelper(String jsonEncode) {
@@ -59,9 +56,9 @@ String toMutationHelper(String jsonEncode) {
 extension ToCurrency on double {
   /// Extension for double to convert to currency format with default locale and symbol currency.
   String toCurrency({bool includeSymbol = true}) => NumberFormat.currency(
-          locale: Constants.defaultLocaleCurrency,
-          customPattern: "${includeSymbol ? Constants.defaultSymbolCurrency : ''} #,##0.00")
-      .format(this);
+    locale: SetupOnmiproSdk().getConfig().defaultLocaleCurrency,
+    customPattern: "${includeSymbol ? SetupOnmiproSdk().getConfig().defaultSymbolCurrency : ''} #,##0.00",
+  ).format(this);
 }
 
 extension CurrencyFormat on String {

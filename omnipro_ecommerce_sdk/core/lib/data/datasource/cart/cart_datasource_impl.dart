@@ -444,32 +444,4 @@ class CartDatasourceImpl extends CartDatasource {
       return right(CartDTO.fromJson(queryResponse.data?['removeCartItems']));
     });
   }
-
-  @override
-  Future<Either<ErrorHandler, CartDTO>> setWarehouseAddressOnCart(
-    WareHouseAddressEntity wareHouseAddressEntity,
-    String cartId, {
-    required Customer customerLogged,
-  }) {
-    return secureServerCall(() async {
-      final mutation = setWarehouseAddressOnCartMutation(
-        customerLogged,
-        cartId,
-        wareHouseAddressEntity,
-      );
-      final response = await _graphQLService.mutation(mutation);
-
-      final queryResponse = response.getRight();
-      if (queryResponse == null) {
-        LoggerApp().error(
-          message: 'Error setting shipping address on cart. ORDER ADDRESS: $wareHouseAddressEntity',
-          error: response.getLeft()!,
-          errorCode: ErrorCode.errorSetShippingAddressOnCart.message,
-        );
-        return left(response.getLeft()!);
-      }
-
-      return right(CartDTO.fromJson(queryResponse.data?['setShippingAddressesOnCart']['cart']));
-    });
-  }
 }

@@ -1,14 +1,13 @@
 import 'package:core/domain/entity/dropdown_manager/dropdown_option.dart';
 import 'package:core/domain/form_model/phone_number.dart';
-import 'package:core/utils/constants.dart';
 
 class FormEditMobileNumberState {
-  final DropdownOptionCountryCode? countrySelected;
+  final DropdownOptionCountryCode countrySelected;
   final PhoneNumber mobileNumber;
   final bool validateFields;
 
   FormEditMobileNumberState({
-    this.countrySelected = Constants.defaultCountry,
+    required this.countrySelected,
     this.mobileNumber = const PhoneNumber.dirty(),
     this.validateFields = false,
   });

@@ -4,7 +4,6 @@ import 'package:core/local/data/datasource/secure_storage_datasource.dart';
 import 'package:core/local/key_secure_storage.dart';
 import 'package:core/network/graphql/token_mutation.dart';
 import 'package:core/network/token_service.dart';
-import 'package:core/utils/constants.dart';
 import 'package:core/utils/error_handler/error_code.dart';
 import 'package:core/utils/error_handler/error_handler.dart';
 import 'package:core/utils/loggers/app_logger.dart';
@@ -12,6 +11,8 @@ import 'package:graphql/client.dart';
 import 'package:synchronized/synchronized.dart';
 
 import 'graphql_service.dart';
+
+const String errorByTokenMessage = 'The current customer isn\'t authorized';
 
 /// Manager of the GraphQL authentication token.
 class GraphQLServiceToken implements TokenService {
@@ -28,7 +29,7 @@ class GraphQLServiceToken implements TokenService {
 
     responseWithError.errors?.forEach((element) {
       List<dynamic> extensionMessage = element.extensions?.values.toList() ?? [];
-      if (element.message.contains(Constants.errorByTokenMessage) ||
+      if (element.message.contains(errorByTokenMessage) ||
           extensionMessage.contains('graphql-authorization')) {
         isByAuthorization = true;
       }
