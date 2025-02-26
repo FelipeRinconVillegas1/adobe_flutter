@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'dart:math';
-import '../domain/entity/cart/cart.fr.dart';
 import 'constants.dart';
 
 extension IterableExt on Iterable {
