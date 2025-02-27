@@ -39,7 +39,6 @@ void main() {
         lastName: 'Smith',
         id: 1,
         email: 'jane.smith@example.com',
-        customAttributesRequired: {},
         dateOfBirth: DateTime(1990, 1, 1));
 
     final localCustomerData = jsonEncode(remoteCustomerData.toDTO().toJson());

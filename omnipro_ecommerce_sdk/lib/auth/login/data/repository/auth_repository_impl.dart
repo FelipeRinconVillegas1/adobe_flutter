@@ -7,7 +7,6 @@ import 'package:dartz/dartz.dart';
 import 'package:omnipro_ecommerce_sdk/auth/login/data/mapper_login.dart';
 import '../../domain/entity/customer_tokens_entity.dart';
 import '../../domain/entity/login_with_auth_provider.dart';
-import '../../domain/entity/validate_customer_otp_entity.dart';
 import '../datasource/login_datasource.dart';
 import '../dto/login_auth_provider_dto.dart';
 import 'auth_repository.dart';
@@ -56,61 +55,5 @@ class AuthRepositoryImpl extends AuthRepository {
   @override
   Future<Either<ErrorHandler, bool>> requestPasswordResetEmail(String email) {
     return _loginDatasource.requestPasswordResetEmail(email);
-  }
-
-  @override
-  Future<Either<ErrorHandler, bool>> validateIfCustomerExistByEmail(String email) async {
-    final resp = await _loginDatasource.validateIfCustomerExistByEmail(email);
-    return resp.fold(
-      (error) {
-        if (error.errorMessage.contains('message: Email is invalid')) {
-          return left(ErrorHandlerExternal(
-            errorMessage: error.errorMessage,
-            stackTrace: error.stackTrace,
-            errorCode: 'INVALID_EMAIL',
-            error: error.error,
-          ));
-        }
-        return left(error);
-      },
-      (value) => right(value),
-    );
-  }
-
-  @override
-  Future<Either<ErrorHandler, bool>> validateIfCustomerExistByPhone(String phone, String countryCode) async {
-    return await _loginDatasource.validateIfCustomerExistByPhone(phone, countryCode);
-  }
-
-  @override
-  Future<Either<ErrorHandler, bool>> sendCode(
-    String phoneNumber,
-    String countryCode,
-    String hashSignature,
-    String email,
-  ) async {
-    final response = await _loginDatasource.sendCode(
-      phoneNumber,
-      countryCode,
-      hashSignature,
-      email,
-    );
-    return response.fold((l) => left(l), (r) => right(r.status));
-  }
-
-  @override
-  Future<Either<ErrorHandler, ValidateCustomerOtpEntity>> validateCode(
-    String phoneNumber,
-    String countryCode,
-    String otpCode,
-    String email,
-  ) async {
-    final response = await _loginDatasource.validateCode(
-      phoneNumber,
-      countryCode,
-      otpCode,
-      email,
-    );
-    return response.fold((l) => left(l), (r) => right(r.toDomain()));
   }
 }

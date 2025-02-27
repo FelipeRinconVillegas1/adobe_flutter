@@ -29,11 +29,6 @@ mixin _$CreateCustomerDTO {
   @JsonKey(name: 'date_of_birth')
   @DateTimeConverterISO8601()
   DateTime get dateOfBirth => throw _privateConstructorUsedError;
-  @JsonKey(name: 'is_subscribed')
-  bool get isSuscribed => throw _privateConstructorUsedError;
-  @JsonKey(name: 'custom_attributes')
-  List<CustomAttributeDTO> get customAttributes =>
-      throw _privateConstructorUsedError;
 
   /// Serializes this CreateCustomerDTO to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -61,9 +56,6 @@ abstract class $CreateCustomerDTOCopyWith<$Res> {
     @JsonKey(name: 'date_of_birth')
     @DateTimeConverterISO8601()
     DateTime dateOfBirth,
-    @JsonKey(name: 'is_subscribed') bool isSuscribed,
-    @JsonKey(name: 'custom_attributes')
-    List<CustomAttributeDTO> customAttributes,
   });
 }
 
@@ -88,8 +80,6 @@ class _$CreateCustomerDTOCopyWithImpl<$Res, $Val extends CreateCustomerDTO>
     Object? password = null,
     Object? gender = null,
     Object? dateOfBirth = null,
-    Object? isSuscribed = null,
-    Object? customAttributes = null,
   }) {
     return _then(
       _value.copyWith(
@@ -123,16 +113,6 @@ class _$CreateCustomerDTOCopyWithImpl<$Res, $Val extends CreateCustomerDTO>
                     ? _value.dateOfBirth
                     : dateOfBirth // ignore: cast_nullable_to_non_nullable
                         as DateTime,
-            isSuscribed:
-                null == isSuscribed
-                    ? _value.isSuscribed
-                    : isSuscribed // ignore: cast_nullable_to_non_nullable
-                        as bool,
-            customAttributes:
-                null == customAttributes
-                    ? _value.customAttributes
-                    : customAttributes // ignore: cast_nullable_to_non_nullable
-                        as List<CustomAttributeDTO>,
           )
           as $Val,
     );
@@ -157,9 +137,6 @@ abstract class _$$CreateCustomerDTOImplCopyWith<$Res>
     @JsonKey(name: 'date_of_birth')
     @DateTimeConverterISO8601()
     DateTime dateOfBirth,
-    @JsonKey(name: 'is_subscribed') bool isSuscribed,
-    @JsonKey(name: 'custom_attributes')
-    List<CustomAttributeDTO> customAttributes,
   });
 }
 
@@ -183,8 +160,6 @@ class __$$CreateCustomerDTOImplCopyWithImpl<$Res>
     Object? password = null,
     Object? gender = null,
     Object? dateOfBirth = null,
-    Object? isSuscribed = null,
-    Object? customAttributes = null,
   }) {
     return _then(
       _$CreateCustomerDTOImpl(
@@ -218,16 +193,6 @@ class __$$CreateCustomerDTOImplCopyWithImpl<$Res>
                 ? _value.dateOfBirth
                 : dateOfBirth // ignore: cast_nullable_to_non_nullable
                     as DateTime,
-        isSuscribed:
-            null == isSuscribed
-                ? _value.isSuscribed
-                : isSuscribed // ignore: cast_nullable_to_non_nullable
-                    as bool,
-        customAttributes:
-            null == customAttributes
-                ? _value._customAttributes
-                : customAttributes // ignore: cast_nullable_to_non_nullable
-                    as List<CustomAttributeDTO>,
       ),
     );
   }
@@ -246,10 +211,7 @@ class _$CreateCustomerDTOImpl implements _CreateCustomerDTO {
     @JsonKey(name: 'date_of_birth')
     @DateTimeConverterISO8601()
     required this.dateOfBirth,
-    @JsonKey(name: 'is_subscribed') this.isSuscribed = true,
-    @JsonKey(name: 'custom_attributes')
-    required final List<CustomAttributeDTO> customAttributes,
-  }) : _customAttributes = customAttributes;
+  });
 
   factory _$CreateCustomerDTOImpl.fromJson(Map<String, dynamic> json) =>
       _$$CreateCustomerDTOImplFromJson(json);
@@ -268,22 +230,10 @@ class _$CreateCustomerDTOImpl implements _CreateCustomerDTO {
   @JsonKey(name: 'date_of_birth')
   @DateTimeConverterISO8601()
   final DateTime dateOfBirth;
-  @override
-  @JsonKey(name: 'is_subscribed')
-  final bool isSuscribed;
-  final List<CustomAttributeDTO> _customAttributes;
-  @override
-  @JsonKey(name: 'custom_attributes')
-  List<CustomAttributeDTO> get customAttributes {
-    if (_customAttributes is EqualUnmodifiableListView)
-      return _customAttributes;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_customAttributes);
-  }
 
   @override
   String toString() {
-    return 'CreateCustomerDTO(firstName: $firstName, lastName: $lastName, email: $email, password: $password, gender: $gender, dateOfBirth: $dateOfBirth, isSuscribed: $isSuscribed, customAttributes: $customAttributes)';
+    return 'CreateCustomerDTO(firstName: $firstName, lastName: $lastName, email: $email, password: $password, gender: $gender, dateOfBirth: $dateOfBirth)';
   }
 
   @override
@@ -300,13 +250,7 @@ class _$CreateCustomerDTOImpl implements _CreateCustomerDTO {
                 other.password == password) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.dateOfBirth, dateOfBirth) ||
-                other.dateOfBirth == dateOfBirth) &&
-            (identical(other.isSuscribed, isSuscribed) ||
-                other.isSuscribed == isSuscribed) &&
-            const DeepCollectionEquality().equals(
-              other._customAttributes,
-              _customAttributes,
-            ));
+                other.dateOfBirth == dateOfBirth));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -319,8 +263,6 @@ class _$CreateCustomerDTOImpl implements _CreateCustomerDTO {
     password,
     gender,
     dateOfBirth,
-    isSuscribed,
-    const DeepCollectionEquality().hash(_customAttributes),
   );
 
   /// Create a copy of CreateCustomerDTO
@@ -350,9 +292,6 @@ abstract class _CreateCustomerDTO implements CreateCustomerDTO {
     @JsonKey(name: 'date_of_birth')
     @DateTimeConverterISO8601()
     required final DateTime dateOfBirth,
-    @JsonKey(name: 'is_subscribed') final bool isSuscribed,
-    @JsonKey(name: 'custom_attributes')
-    required final List<CustomAttributeDTO> customAttributes,
   }) = _$CreateCustomerDTOImpl;
 
   factory _CreateCustomerDTO.fromJson(Map<String, dynamic> json) =
@@ -372,12 +311,6 @@ abstract class _CreateCustomerDTO implements CreateCustomerDTO {
   @JsonKey(name: 'date_of_birth')
   @DateTimeConverterISO8601()
   DateTime get dateOfBirth;
-  @override
-  @JsonKey(name: 'is_subscribed')
-  bool get isSuscribed;
-  @override
-  @JsonKey(name: 'custom_attributes')
-  List<CustomAttributeDTO> get customAttributes;
 
   /// Create a copy of CreateCustomerDTO
   /// with the given fields replaced by the non-null parameter values.

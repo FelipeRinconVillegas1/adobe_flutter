@@ -1,5 +1,4 @@
 import 'package:core/data/dto/customer_address_dto.fr.dart';
-import 'package:core/data/dto/custom_attribute_dto.fr.dart';
 
 abstract class CartFakeData {
   static const itemsMock = [
@@ -374,9 +373,5 @@ abstract class CartFakeData {
     city: 'Los Angeles',
     defaultShipping: true,
     defaultBilling: false,
-    customAttributes: [
-      CustomAttributeDTO(code: 'state_custom', value: 'California'),
-      CustomAttributeDTO(code: 'zone_custom', value: 'Zone'),
-    ],
   );
 }

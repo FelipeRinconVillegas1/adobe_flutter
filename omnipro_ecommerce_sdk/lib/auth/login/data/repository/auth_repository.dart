@@ -4,7 +4,6 @@ import 'package:core/utils/error_handler/error_handler.dart';
 import 'package:dartz/dartz.dart';
 import '../../domain/entity/customer_tokens_entity.dart';
 import '../../domain/entity/login_with_auth_provider.dart';
-import '../../domain/entity/validate_customer_otp_entity.dart';
 
 abstract class AuthRepository {
   /// Authenticate the user with the given credentials.
@@ -16,22 +15,4 @@ abstract class AuthRepository {
   Future<void> saveSession(SessionData sessionData);
 
   Future<Either<ErrorHandler, bool>> requestPasswordResetEmail(String email);
-
-  Future<Either<ErrorHandler, bool>> validateIfCustomerExistByEmail(String email);
-
-  Future<Either<ErrorHandler, bool>> validateIfCustomerExistByPhone(String phone, String countryCode);
-
-  Future<Either<ErrorHandler, bool>> sendCode(
-    String phoneNumber,
-    String countryCode,
-    String hashSignature,
-    String email,
-  );
-
-  Future<Either<ErrorHandler, ValidateCustomerOtpEntity>> validateCode(
-    String phoneNumber,
-    String countryCode,
-    String otpCode,
-    String email,
-  );
 }

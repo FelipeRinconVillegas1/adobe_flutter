@@ -1,4 +1,3 @@
-import 'package:core/data/dto/custom_attribute_dto.fr.dart';
 import 'package:core/utils/test_helpers.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:omnipro_ecommerce_sdk/auth/sign_up/data/datasource/sign_up_mutation.dart';
@@ -15,11 +14,6 @@ void main() {
         password: 'password123',
         dateOfBirth: DateTime(1990, 10, 15),
         gender: 1,
-        isSuscribed: true,
-        customAttributes: [
-          const CustomAttributeDTO(code: 'country_code', value: 'MX'),
-          const CustomAttributeDTO(code: 'cellphone', value: '32923238'),
-        ],
       );
       const expectedMutation = r'''
 mutation {

@@ -7,7 +7,7 @@ part of 'select_country_code_notifier.fr.dart';
 // **************************************************************************
 
 String _$selectCountryCodeNotifierHash() =>
-    r'a7f01b571943c06b247cb853949804a1c0c3ed5f';
+    r'54a511b84d2c8e33f83865ea2515aff38902128a';
 
 /// See also [SelectCountryCodeNotifier].
 @ProviderFor(SelectCountryCodeNotifier)

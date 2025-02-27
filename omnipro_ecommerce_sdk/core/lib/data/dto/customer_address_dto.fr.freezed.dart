@@ -30,9 +30,6 @@ mixin _$CustomerAddressDTO {
   List<String> get street => throw _privateConstructorUsedError;
   String get telephone => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
-  @JsonKey(name: 'custom_attributesV2')
-  List<CustomAttributeDTO> get customAttributes =>
-      throw _privateConstructorUsedError;
   @JsonKey(name: 'default_shipping', defaultValue: false)
   bool? get defaultShipping => throw _privateConstructorUsedError;
   @JsonKey(name: 'default_billing', defaultValue: false)
@@ -65,8 +62,6 @@ abstract class $CustomerAddressDTOCopyWith<$Res> {
     List<String> street,
     String telephone,
     String city,
-    @JsonKey(name: 'custom_attributesV2')
-    List<CustomAttributeDTO> customAttributes,
     @JsonKey(name: 'default_shipping', defaultValue: false)
     bool? defaultShipping,
     @JsonKey(name: 'default_billing', defaultValue: false) bool? defaultBilling,
@@ -99,7 +94,6 @@ class _$CustomerAddressDTOCopyWithImpl<$Res, $Val extends CustomerAddressDTO>
     Object? street = null,
     Object? telephone = null,
     Object? city = null,
-    Object? customAttributes = null,
     Object? defaultShipping = freezed,
     Object? defaultBilling = freezed,
     Object? postcode = freezed,
@@ -146,11 +140,6 @@ class _$CustomerAddressDTOCopyWithImpl<$Res, $Val extends CustomerAddressDTO>
                     ? _value.city
                     : city // ignore: cast_nullable_to_non_nullable
                         as String,
-            customAttributes:
-                null == customAttributes
-                    ? _value.customAttributes
-                    : customAttributes // ignore: cast_nullable_to_non_nullable
-                        as List<CustomAttributeDTO>,
             defaultShipping:
                 freezed == defaultShipping
                     ? _value.defaultShipping
@@ -200,8 +189,6 @@ abstract class _$$CustomerAddressDTOImplCopyWith<$Res>
     List<String> street,
     String telephone,
     String city,
-    @JsonKey(name: 'custom_attributesV2')
-    List<CustomAttributeDTO> customAttributes,
     @JsonKey(name: 'default_shipping', defaultValue: false)
     bool? defaultShipping,
     @JsonKey(name: 'default_billing', defaultValue: false) bool? defaultBilling,
@@ -234,7 +221,6 @@ class __$$CustomerAddressDTOImplCopyWithImpl<$Res>
     Object? street = null,
     Object? telephone = null,
     Object? city = null,
-    Object? customAttributes = null,
     Object? defaultShipping = freezed,
     Object? defaultBilling = freezed,
     Object? postcode = freezed,
@@ -281,11 +267,6 @@ class __$$CustomerAddressDTOImplCopyWithImpl<$Res>
                 ? _value.city
                 : city // ignore: cast_nullable_to_non_nullable
                     as String,
-        customAttributes:
-            null == customAttributes
-                ? _value._customAttributes
-                : customAttributes // ignore: cast_nullable_to_non_nullable
-                    as List<CustomAttributeDTO>,
         defaultShipping:
             freezed == defaultShipping
                 ? _value.defaultShipping
@@ -319,14 +300,11 @@ class _$CustomerAddressDTOImpl implements _CustomerAddressDTO {
     final List<String> street = const [],
     required this.telephone,
     required this.city,
-    @JsonKey(name: 'custom_attributesV2')
-    required final List<CustomAttributeDTO> customAttributes,
     @JsonKey(name: 'default_shipping', defaultValue: false)
     this.defaultShipping,
     @JsonKey(name: 'default_billing', defaultValue: false) this.defaultBilling,
     this.postcode,
-  }) : _street = street,
-       _customAttributes = customAttributes;
+  }) : _street = street;
 
   factory _$CustomerAddressDTOImpl.fromJson(Map<String, dynamic> json) =>
       _$$CustomerAddressDTOImplFromJson(json);
@@ -356,16 +334,6 @@ class _$CustomerAddressDTOImpl implements _CustomerAddressDTO {
   final String telephone;
   @override
   final String city;
-  final List<CustomAttributeDTO> _customAttributes;
-  @override
-  @JsonKey(name: 'custom_attributesV2')
-  List<CustomAttributeDTO> get customAttributes {
-    if (_customAttributes is EqualUnmodifiableListView)
-      return _customAttributes;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_customAttributes);
-  }
-
   @override
   @JsonKey(name: 'default_shipping', defaultValue: false)
   final bool? defaultShipping;
@@ -377,7 +345,7 @@ class _$CustomerAddressDTOImpl implements _CustomerAddressDTO {
 
   @override
   String toString() {
-    return 'CustomerAddressDTO(id: $id, firstname: $firstname, lastname: $lastname, region: $region, countryCode: $countryCode, street: $street, telephone: $telephone, city: $city, customAttributes: $customAttributes, defaultShipping: $defaultShipping, defaultBilling: $defaultBilling, postcode: $postcode)';
+    return 'CustomerAddressDTO(id: $id, firstname: $firstname, lastname: $lastname, region: $region, countryCode: $countryCode, street: $street, telephone: $telephone, city: $city, defaultShipping: $defaultShipping, defaultBilling: $defaultBilling, postcode: $postcode)';
   }
 
   @override
@@ -397,10 +365,6 @@ class _$CustomerAddressDTOImpl implements _CustomerAddressDTO {
             (identical(other.telephone, telephone) ||
                 other.telephone == telephone) &&
             (identical(other.city, city) || other.city == city) &&
-            const DeepCollectionEquality().equals(
-              other._customAttributes,
-              _customAttributes,
-            ) &&
             (identical(other.defaultShipping, defaultShipping) ||
                 other.defaultShipping == defaultShipping) &&
             (identical(other.defaultBilling, defaultBilling) ||
@@ -421,7 +385,6 @@ class _$CustomerAddressDTOImpl implements _CustomerAddressDTO {
     const DeepCollectionEquality().hash(_street),
     telephone,
     city,
-    const DeepCollectionEquality().hash(_customAttributes),
     defaultShipping,
     defaultBilling,
     postcode,
@@ -454,8 +417,6 @@ abstract class _CustomerAddressDTO implements CustomerAddressDTO {
     final List<String> street,
     required final String telephone,
     required final String city,
-    @JsonKey(name: 'custom_attributesV2')
-    required final List<CustomAttributeDTO> customAttributes,
     @JsonKey(name: 'default_shipping', defaultValue: false)
     final bool? defaultShipping,
     @JsonKey(name: 'default_billing', defaultValue: false)
@@ -483,9 +444,6 @@ abstract class _CustomerAddressDTO implements CustomerAddressDTO {
   String get telephone;
   @override
   String get city;
-  @override
-  @JsonKey(name: 'custom_attributesV2')
-  List<CustomAttributeDTO> get customAttributes;
   @override
   @JsonKey(name: 'default_shipping', defaultValue: false)
   bool? get defaultShipping;

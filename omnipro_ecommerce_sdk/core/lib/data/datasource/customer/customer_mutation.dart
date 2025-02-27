@@ -1,4 +1,3 @@
-import 'package:core/data/dto/custom_attribute_dto.fr.dart';
 import 'package:core/data/dto/customer_dto.fr.dart';
 import 'package:core/utils/date_time_converter_iso8601.dart';
 import '../../dto/delete_account/delete_customer_input_dto.fr.dart';
@@ -21,7 +20,6 @@ String updateCustomerMutation(CustomerDTO newCustomer) => '''
       lastname: "${newCustomer.lastName}",
       gender: ${newCustomer.gender},
       date_of_birth: "${const DateTimeConverterISO8601().toJson(newCustomer.dateOfBirth)}",
-      custom_attributes: ${newCustomer.customAttributes.toGraphql()}
     }
   ) {
     ${customerQuery()}

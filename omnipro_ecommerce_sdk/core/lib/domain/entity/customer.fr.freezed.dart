@@ -27,10 +27,6 @@ mixin _$Customer {
   DateTime get dateOfBirth => throw _privateConstructorUsedError;
   int? get gender => throw _privateConstructorUsedError;
   List<WishList> get wishlists => throw _privateConstructorUsedError;
-  Map<CustomAttributeCode, CustomAttribute> get customAttributesRequired =>
-      throw _privateConstructorUsedError;
-  Map<CustomAttributeCode, CustomAttribute> get customAttributesOptionals =>
-      throw _privateConstructorUsedError;
   List<CustomerAddressEntity> get addresses =>
       throw _privateConstructorUsedError;
 
@@ -54,8 +50,6 @@ abstract class $CustomerCopyWith<$Res> {
     @JsonKey(name: 'dob') DateTime dateOfBirth,
     int? gender,
     List<WishList> wishlists,
-    Map<CustomAttributeCode, CustomAttribute> customAttributesRequired,
-    Map<CustomAttributeCode, CustomAttribute> customAttributesOptionals,
     List<CustomerAddressEntity> addresses,
   });
 }
@@ -82,8 +76,6 @@ class _$CustomerCopyWithImpl<$Res, $Val extends Customer>
     Object? dateOfBirth = null,
     Object? gender = freezed,
     Object? wishlists = null,
-    Object? customAttributesRequired = null,
-    Object? customAttributesOptionals = null,
     Object? addresses = null,
   }) {
     return _then(
@@ -123,16 +115,6 @@ class _$CustomerCopyWithImpl<$Res, $Val extends Customer>
                     ? _value.wishlists
                     : wishlists // ignore: cast_nullable_to_non_nullable
                         as List<WishList>,
-            customAttributesRequired:
-                null == customAttributesRequired
-                    ? _value.customAttributesRequired
-                    : customAttributesRequired // ignore: cast_nullable_to_non_nullable
-                        as Map<CustomAttributeCode, CustomAttribute>,
-            customAttributesOptionals:
-                null == customAttributesOptionals
-                    ? _value.customAttributesOptionals
-                    : customAttributesOptionals // ignore: cast_nullable_to_non_nullable
-                        as Map<CustomAttributeCode, CustomAttribute>,
             addresses:
                 null == addresses
                     ? _value.addresses
@@ -161,8 +143,6 @@ abstract class _$$CustomerImplCopyWith<$Res>
     @JsonKey(name: 'dob') DateTime dateOfBirth,
     int? gender,
     List<WishList> wishlists,
-    Map<CustomAttributeCode, CustomAttribute> customAttributesRequired,
-    Map<CustomAttributeCode, CustomAttribute> customAttributesOptionals,
     List<CustomerAddressEntity> addresses,
   });
 }
@@ -188,8 +168,6 @@ class __$$CustomerImplCopyWithImpl<$Res>
     Object? dateOfBirth = null,
     Object? gender = freezed,
     Object? wishlists = null,
-    Object? customAttributesRequired = null,
-    Object? customAttributesOptionals = null,
     Object? addresses = null,
   }) {
     return _then(
@@ -229,16 +207,6 @@ class __$$CustomerImplCopyWithImpl<$Res>
                 ? _value._wishlists
                 : wishlists // ignore: cast_nullable_to_non_nullable
                     as List<WishList>,
-        customAttributesRequired:
-            null == customAttributesRequired
-                ? _value._customAttributesRequired
-                : customAttributesRequired // ignore: cast_nullable_to_non_nullable
-                    as Map<CustomAttributeCode, CustomAttribute>,
-        customAttributesOptionals:
-            null == customAttributesOptionals
-                ? _value._customAttributesOptionals
-                : customAttributesOptionals // ignore: cast_nullable_to_non_nullable
-                    as Map<CustomAttributeCode, CustomAttribute>,
         addresses:
             null == addresses
                 ? _value._addresses
@@ -260,14 +228,8 @@ class _$CustomerImpl implements _Customer {
     @JsonKey(name: 'dob') required this.dateOfBirth,
     this.gender,
     final List<WishList> wishlists = const [],
-    required final Map<CustomAttributeCode, CustomAttribute>
-    customAttributesRequired,
-    final Map<CustomAttributeCode, CustomAttribute> customAttributesOptionals =
-        const {},
     final List<CustomerAddressEntity> addresses = const [],
   }) : _wishlists = wishlists,
-       _customAttributesRequired = customAttributesRequired,
-       _customAttributesOptionals = customAttributesOptionals,
        _addresses = addresses;
 
   @override
@@ -294,25 +256,6 @@ class _$CustomerImpl implements _Customer {
     return EqualUnmodifiableListView(_wishlists);
   }
 
-  final Map<CustomAttributeCode, CustomAttribute> _customAttributesRequired;
-  @override
-  Map<CustomAttributeCode, CustomAttribute> get customAttributesRequired {
-    if (_customAttributesRequired is EqualUnmodifiableMapView)
-      return _customAttributesRequired;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_customAttributesRequired);
-  }
-
-  final Map<CustomAttributeCode, CustomAttribute> _customAttributesOptionals;
-  @override
-  @JsonKey()
-  Map<CustomAttributeCode, CustomAttribute> get customAttributesOptionals {
-    if (_customAttributesOptionals is EqualUnmodifiableMapView)
-      return _customAttributesOptionals;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_customAttributesOptionals);
-  }
-
   final List<CustomerAddressEntity> _addresses;
   @override
   @JsonKey()
@@ -324,7 +267,7 @@ class _$CustomerImpl implements _Customer {
 
   @override
   String toString() {
-    return 'Customer(id: $id, firstName: $firstName, lastName: $lastName, email: $email, dateOfBirth: $dateOfBirth, gender: $gender, wishlists: $wishlists, customAttributesRequired: $customAttributesRequired, customAttributesOptionals: $customAttributesOptionals, addresses: $addresses)';
+    return 'Customer(id: $id, firstName: $firstName, lastName: $lastName, email: $email, dateOfBirth: $dateOfBirth, gender: $gender, wishlists: $wishlists, addresses: $addresses)';
   }
 
   @override
@@ -346,14 +289,6 @@ class _$CustomerImpl implements _Customer {
               _wishlists,
             ) &&
             const DeepCollectionEquality().equals(
-              other._customAttributesRequired,
-              _customAttributesRequired,
-            ) &&
-            const DeepCollectionEquality().equals(
-              other._customAttributesOptionals,
-              _customAttributesOptionals,
-            ) &&
-            const DeepCollectionEquality().equals(
               other._addresses,
               _addresses,
             ));
@@ -369,8 +304,6 @@ class _$CustomerImpl implements _Customer {
     dateOfBirth,
     gender,
     const DeepCollectionEquality().hash(_wishlists),
-    const DeepCollectionEquality().hash(_customAttributesRequired),
-    const DeepCollectionEquality().hash(_customAttributesOptionals),
     const DeepCollectionEquality().hash(_addresses),
   );
 
@@ -392,9 +325,6 @@ abstract class _Customer implements Customer {
     @JsonKey(name: 'dob') required final DateTime dateOfBirth,
     final int? gender,
     final List<WishList> wishlists,
-    required final Map<CustomAttributeCode, CustomAttribute>
-    customAttributesRequired,
-    final Map<CustomAttributeCode, CustomAttribute> customAttributesOptionals,
     final List<CustomerAddressEntity> addresses,
   }) = _$CustomerImpl;
 
@@ -415,10 +345,6 @@ abstract class _Customer implements Customer {
   int? get gender;
   @override
   List<WishList> get wishlists;
-  @override
-  Map<CustomAttributeCode, CustomAttribute> get customAttributesRequired;
-  @override
-  Map<CustomAttributeCode, CustomAttribute> get customAttributesOptionals;
   @override
   List<CustomerAddressEntity> get addresses;
 

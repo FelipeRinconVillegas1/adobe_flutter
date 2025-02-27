@@ -36,7 +36,6 @@ void main() {
       lastName: 'Doe',
       email: newEmail,
       dateOfBirth: DateTime(1990, 1, 1),
-      customAttributesRequired: {},
     );
 
     test('should update customer email successfully', () async {

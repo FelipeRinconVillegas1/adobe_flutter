@@ -1,5 +1,4 @@
 import 'package:core/data/dto/user_credential_response_dto.fr.dart';
-import 'package:core/data/mapper.dart';
 import 'package:core/domain/entity/user_credential_response.dart';
 import '../domain/entity/create_customer_data.dart';
 import 'dto/create_customer_dto.fr.dart';
@@ -12,8 +11,6 @@ extension MapperDataCreateCustomer on CreateCustomerData {
         password: password,
         gender: gender,
         dateOfBirth: date,
-        customAttributes: customAttributes.map((e) => e.toDTO()).toList(),
-        isSuscribed: isSuscribed,
       );
 }
 

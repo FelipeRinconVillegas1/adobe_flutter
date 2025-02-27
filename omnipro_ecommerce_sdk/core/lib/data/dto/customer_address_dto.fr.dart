@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:core/data/dto/custom_attribute_dto.fr.dart';
 import 'package:core/utils/extension.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -18,7 +17,6 @@ class CustomerAddressDTO with _$CustomerAddressDTO {
     @Default([]) List<String> street,
     required String telephone,
     required String city,
-    @JsonKey(name: 'custom_attributesV2') required List<CustomAttributeDTO> customAttributes,
     @JsonKey(name: 'default_shipping', defaultValue: false) bool? defaultShipping,
     @JsonKey(name: 'default_billing', defaultValue: false) bool? defaultBilling,
     String? postcode,

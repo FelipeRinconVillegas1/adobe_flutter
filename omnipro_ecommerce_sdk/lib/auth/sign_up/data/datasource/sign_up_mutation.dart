@@ -1,5 +1,4 @@
 import 'package:core/data/datasource/customer/customer_query.dart';
-import 'package:core/data/dto/custom_attribute_dto.fr.dart';
 import 'package:core/utils/date_time_converter_iso8601.dart';
 import '../dto/create_customer_dto.fr.dart';
 
@@ -20,9 +19,7 @@ mutation  {
       email: "${createCustomerDto.email}",
       password: "${createCustomerDto.password}",
       dob: "${const DateTimeConverterISO8601().toJson(createCustomerDto.dateOfBirth).split('T').first}",     
-      gender: ${createCustomerDto.gender},
-      is_subscribed: ${createCustomerDto.isSuscribed},
-      custom_attributes: ${createCustomerDto.customAttributes.toGraphql()}
+      gender: ${createCustomerDto.gender}
     }
   ) 
   {

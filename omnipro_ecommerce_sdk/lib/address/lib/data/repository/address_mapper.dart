@@ -1,11 +1,7 @@
 import 'package:core/data/dto/customer_address_dto.fr.dart';
-import 'package:core/data/dto/custom_attribute_dto.fr.dart';
 import 'package:core/data/dto/state_dto.fr.dart';
 import 'package:core/domain/entity/state_country_entity.dart';
 import 'package:core/domain/entity/states_country.dart';
-import 'package:core/utils/custom_attribute_code.dart';
-import 'package:collection/collection.dart';
-
 import '../../domain/entity/customer_address_entity.dart';
 
 extension MapperListStateDTO on List<StateDTO> {
@@ -38,38 +34,6 @@ extension MapperCustomerAddressEntity on CustomerAddressEntity {
         region: region.toDTO(),
         street: [street, detailAddress, specialInstructions],
         telephone: telephone,
-        customAttributes: [
-          CustomAttributeDTO(
-            code: CustomAttributeCode.stateCustom.value,
-            value: state,
-          ),
-          CustomAttributeDTO(
-            code: CustomAttributeCode.zoneCustom.value,
-            value: zone,
-          ),
-          CustomAttributeDTO(
-            code: CustomAttributeCode.cityCustom.value,
-            value: cityCustom,
-          ),
-          CustomAttributeDTO(
-            code: CustomAttributeCode.addressType.value,
-            value: category,
-          ),
-          CustomAttributeDTO(
-            code: CustomAttributeCode.areaCodeTelephone.value,
-            value: areaCodeTelephone,
-          ),
-          if (latitude != null)
-            CustomAttributeDTO(
-              code: CustomAttributeCode.latitude.value,
-              value: latitude!,
-            ),
-          if (longitude != null)
-            CustomAttributeDTO(
-              code: CustomAttributeCode.longitude.value,
-              value: longitude!,
-            ),
-        ],
       );
 }
 
@@ -86,17 +50,6 @@ extension MapperCustomerAddressDTO on CustomerAddressDTO {
         region: region.toDomain(),
         street: street.isNotEmpty ? street[0] : '',
         telephone: telephone,
-        areaCodeTelephone:
-            customAttributes.firstWhere((element) => element.code == CustomAttributeCode.areaCodeTelephone.value).value,
-        zone: customAttributes.firstWhere((element) => element.code == CustomAttributeCode.zoneCustom.value).value,
-        state: customAttributes.firstWhere((element) => element.code == CustomAttributeCode.stateCustom.value).value,
-        category: customAttributes.firstWhere((element) => element.code == CustomAttributeCode.addressType.value).value,
-        latitude:
-            customAttributes.firstWhereOrNull((element) => element.code == CustomAttributeCode.latitude.value)?.value,
-        longitude:
-            customAttributes.firstWhereOrNull((element) => element.code == CustomAttributeCode.longitude.value)?.value,
-        cityCustom:
-            customAttributes.firstWhere((element) => element.code == CustomAttributeCode.cityCustom.value).value,
         detailAddress: street.length > 1 ? street[1] : '',
         specialInstructions: street.length > 2 ? street[2] : '',
       );

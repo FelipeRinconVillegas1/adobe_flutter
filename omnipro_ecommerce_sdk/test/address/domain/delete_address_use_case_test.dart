@@ -20,7 +20,6 @@ void main() {
     addressEntity = CustomerAddressEntity(
       id: 1,
       specialInstructions: '',
-      cityCustom: 'Phoenix',
       city: 'Phoenix',
       countryCode: '',
       defaultBilling: false,
@@ -31,11 +30,7 @@ void main() {
       region: RegionEntity(region: 'Arizona', regionId: 1, code: ''),
       street: '123 Main Street',
       telephone: '7777777777',
-      areaCodeTelephone: '57',
-      category: 'Category',
-      zone: '',
       detailAddress: '',
-      state: '',
     );
   });
 

@@ -23,14 +23,16 @@ void main() {
     mockDataSource = MockSignUpDataSource();
     repository = SignUpRepositoryImpl(mockDataSource);
 
-    registerFallbackValue(CreateCustomerDTO(
+    registerFallbackValue(
+      CreateCustomerDTO(
         firstName: 'John',
         lastName: 'Doe',
         email: '',
         password: '',
         dateOfBirth: DateTime(2000),
         gender: 1,
-        customAttributes: []));
+      ),
+    );
   });
 
   group('createCustomer', () {
@@ -41,25 +43,24 @@ void main() {
       password: '',
       date: DateTime(2000),
       gender: 1,
-      customAttributes: [],
     );
     test('should return customer when data source returns customer dto', () async {
       // arrange
 
       final customerDto = CustomerDTO(
-          id: 1,
-          firstName: 'John',
-          lastName: 'Doe',
-          email: 'johndoe@test.com',
-          dateOfBirth: DateTime.now(),
-          customAttributes: []);
+        id: 1,
+        firstName: 'John',
+        lastName: 'Doe',
+        email: 'johndoe@test.com',
+        dateOfBirth: DateTime.now(),
+      );
       final customer = Customer(
-          id: 1,
-          firstName: 'John',
-          lastName: 'Doe',
-          email: 'johndoe@test.com',
-          dateOfBirth: DateTime.now(),
-          customAttributesRequired: {});
+        id: 1,
+        firstName: 'John',
+        lastName: 'Doe',
+        email: 'johndoe@test.com',
+        dateOfBirth: DateTime.now(),
+      );
       when(() => mockDataSource.createAccount(any())).thenAnswer((_) async => right(customerDto));
 
       // act
@@ -93,8 +94,9 @@ void main() {
       // Arrange
       const userCredentialDTO = UserCredentialResponseDTO(token: 'token', sub: 'uid', provider: providerAuthentication);
 
-      when(() => mockDataSource.getUserCredentialBySocialMedia(providerAuthentication))
-          .thenAnswer((_) async => const Right(userCredentialDTO));
+      when(
+        () => mockDataSource.getUserCredentialBySocialMedia(providerAuthentication),
+      ).thenAnswer((_) async => const Right(userCredentialDTO));
 
       // Act
       final result = await repository.getUserCredentialBySocialMedia(providerAuthentication);
@@ -107,8 +109,9 @@ void main() {
     test('should return an error when getting user credential by social media', () async {
       // Arrange
       final expectedError = ErrorHandlerInternal(errorMessage: 'ERROR');
-      when(() => mockDataSource.getUserCredentialBySocialMedia(providerAuthentication))
-          .thenAnswer((_) async => Left(expectedError));
+      when(
+        () => mockDataSource.getUserCredentialBySocialMedia(providerAuthentication),
+      ).thenAnswer((_) async => Left(expectedError));
 
       // Act
       final result = await repository.getUserCredentialBySocialMedia(providerAuthentication);

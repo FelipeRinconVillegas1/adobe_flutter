@@ -7,7 +7,7 @@ part of 'form_edit_profile_notifier.fr.dart';
 // **************************************************************************
 
 String _$formEditProfileNotifierHash() =>
-    r'44387be145f82c670555429187bbdd4a31dc8fea';
+    r'220101e55d76b7699f472a4c0660b0624a465cb2';
 
 /// See also [FormEditProfileNotifier].
 @ProviderFor(FormEditProfileNotifier)

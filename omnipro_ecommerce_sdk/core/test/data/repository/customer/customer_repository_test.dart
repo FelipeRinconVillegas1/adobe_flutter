@@ -34,7 +34,6 @@ void main() {
       lastName: 'Doe',
       email: 'email',
       dateOfBirth: DateTime(1990, 1, 1),
-      customAttributes: [],
     );
 
     // Mock of successful response from the datasource
@@ -68,12 +67,12 @@ void main() {
   test('updateCustomer should return Right(Customer) on successful response', () async {
     // Example data for the customer
     final customer = Customer(
-        firstName: 'John',
-        id: 1,
-        lastName: 'Doe',
-        email: 'john.doe@example.com',
-        dateOfBirth: DateTime(1990, 1, 1),
-        customAttributesRequired: {});
+      firstName: 'John',
+      id: 1,
+      lastName: 'Doe',
+      email: 'john.doe@example.com',
+      dateOfBirth: DateTime(1990, 1, 1),
+    );
 
     // Mock of successful response from the datasource
     final mockResponse = customer.toDTO();
@@ -92,12 +91,12 @@ void main() {
   test('updateCustomer should return Left(ErrorHandler) on error response', () async {
     // Example data for the customer
     final customer = Customer(
-        firstName: 'John',
-        id: 1,
-        lastName: 'Doe',
-        email: 'john.doe@example.com',
-        dateOfBirth: DateTime(1990, 1, 1),
-        customAttributesRequired: {});
+      firstName: 'John',
+      id: 1,
+      lastName: 'Doe',
+      email: 'john.doe@example.com',
+      dateOfBirth: DateTime(1990, 1, 1),
+    );
 
     // Mock of error response from the datasource
     final mockError = ErrorHandlerInternal(errorMessage: 'Error');

@@ -1,4 +1,3 @@
-import 'package:core/data/dto/custom_attribute_dto.fr.dart';
 import 'package:core/data/dto/user_credential_response_dto.fr.dart';
 import 'package:core/domain/entity/provider_auth.dart';
 import 'package:core/data/dto/customer_dto.fr.dart';
@@ -43,10 +42,7 @@ void main() {
         password: 'password',
         dateOfBirth: DateTime.now(),
         gender: 1,
-        customAttributes: [
-          const CustomAttributeDTO(code: 'country_code', value: 'MX'),
-          const CustomAttributeDTO(code: 'cellphone', value: '32923238'),
-        ]);
+    );
 
     final tCustomerDTO = CustomerDTO.fromJson({
       'email': 'test@test.com',

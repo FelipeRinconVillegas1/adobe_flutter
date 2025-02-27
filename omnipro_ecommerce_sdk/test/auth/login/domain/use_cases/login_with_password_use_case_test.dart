@@ -41,7 +41,6 @@ void main() {
         firstName: 'firstName',
         lastName: 'lastName',
         email: 'email',
-        customAttributesRequired: {},
         dateOfBirth: DateTime(1990, 1, 1));
     test('call with email and password should return Right(true) on successful login', () async {
       // Mock the necessary dependencies

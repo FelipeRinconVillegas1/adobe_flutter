@@ -22,7 +22,6 @@ void main() {
         id: 1,
         specialInstructions: '',
         city: 'Phoenix',
-        cityCustom: 'Phoenix',
         countryCode: '',
         defaultBilling: false,
         defaultShipping: false,
@@ -32,11 +31,7 @@ void main() {
         region: RegionEntity(region: 'Arizona', regionId: 2, code: 'code'),
         street: '123 Main Street',
         telephone: '7777777777',
-        areaCodeTelephone: '57',
-        category: 'home',
-        zone: '',
         detailAddress: '',
-        state: '',
       ),
     ];
   });

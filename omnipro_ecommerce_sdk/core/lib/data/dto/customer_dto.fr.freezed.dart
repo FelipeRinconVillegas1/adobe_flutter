@@ -32,9 +32,6 @@ mixin _$CustomerDTO {
   DateTime get dateOfBirth => throw _privateConstructorUsedError;
   int? get gender => throw _privateConstructorUsedError;
   List<WishListDTO> get wishlists => throw _privateConstructorUsedError;
-  @JsonKey(name: 'custom_attributes')
-  List<CustomAttributeDTO> get customAttributes =>
-      throw _privateConstructorUsedError;
   List<CustomerAddressDTO> get addresses => throw _privateConstructorUsedError;
 
   /// Serializes this CustomerDTO to a JSON map.
@@ -62,8 +59,6 @@ abstract class $CustomerDTOCopyWith<$Res> {
     @JsonKey(name: 'dob') DateTime dateOfBirth,
     int? gender,
     List<WishListDTO> wishlists,
-    @JsonKey(name: 'custom_attributes')
-    List<CustomAttributeDTO> customAttributes,
     List<CustomerAddressDTO> addresses,
   });
 }
@@ -90,7 +85,6 @@ class _$CustomerDTOCopyWithImpl<$Res, $Val extends CustomerDTO>
     Object? dateOfBirth = null,
     Object? gender = freezed,
     Object? wishlists = null,
-    Object? customAttributes = null,
     Object? addresses = null,
   }) {
     return _then(
@@ -130,11 +124,6 @@ class _$CustomerDTOCopyWithImpl<$Res, $Val extends CustomerDTO>
                     ? _value.wishlists
                     : wishlists // ignore: cast_nullable_to_non_nullable
                         as List<WishListDTO>,
-            customAttributes:
-                null == customAttributes
-                    ? _value.customAttributes
-                    : customAttributes // ignore: cast_nullable_to_non_nullable
-                        as List<CustomAttributeDTO>,
             addresses:
                 null == addresses
                     ? _value.addresses
@@ -163,8 +152,6 @@ abstract class _$$CustomerDTOImplCopyWith<$Res>
     @JsonKey(name: 'dob') DateTime dateOfBirth,
     int? gender,
     List<WishListDTO> wishlists,
-    @JsonKey(name: 'custom_attributes')
-    List<CustomAttributeDTO> customAttributes,
     List<CustomerAddressDTO> addresses,
   });
 }
@@ -190,7 +177,6 @@ class __$$CustomerDTOImplCopyWithImpl<$Res>
     Object? dateOfBirth = null,
     Object? gender = freezed,
     Object? wishlists = null,
-    Object? customAttributes = null,
     Object? addresses = null,
   }) {
     return _then(
@@ -230,11 +216,6 @@ class __$$CustomerDTOImplCopyWithImpl<$Res>
                 ? _value._wishlists
                 : wishlists // ignore: cast_nullable_to_non_nullable
                     as List<WishListDTO>,
-        customAttributes:
-            null == customAttributes
-                ? _value._customAttributes
-                : customAttributes // ignore: cast_nullable_to_non_nullable
-                    as List<CustomAttributeDTO>,
         addresses:
             null == addresses
                 ? _value._addresses
@@ -257,11 +238,8 @@ class _$CustomerDTOImpl implements _CustomerDTO {
     @JsonKey(name: 'dob') required this.dateOfBirth,
     this.gender,
     final List<WishListDTO> wishlists = const [],
-    @JsonKey(name: 'custom_attributes')
-    required final List<CustomAttributeDTO> customAttributes,
     final List<CustomerAddressDTO> addresses = const [],
   }) : _wishlists = wishlists,
-       _customAttributes = customAttributes,
        _addresses = addresses;
 
   factory _$CustomerDTOImpl.fromJson(Map<String, dynamic> json) =>
@@ -292,16 +270,6 @@ class _$CustomerDTOImpl implements _CustomerDTO {
     return EqualUnmodifiableListView(_wishlists);
   }
 
-  final List<CustomAttributeDTO> _customAttributes;
-  @override
-  @JsonKey(name: 'custom_attributes')
-  List<CustomAttributeDTO> get customAttributes {
-    if (_customAttributes is EqualUnmodifiableListView)
-      return _customAttributes;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_customAttributes);
-  }
-
   final List<CustomerAddressDTO> _addresses;
   @override
   @JsonKey()
@@ -313,7 +281,7 @@ class _$CustomerDTOImpl implements _CustomerDTO {
 
   @override
   String toString() {
-    return 'CustomerDTO(id: $id, firstName: $firstName, lastName: $lastName, email: $email, dateOfBirth: $dateOfBirth, gender: $gender, wishlists: $wishlists, customAttributes: $customAttributes, addresses: $addresses)';
+    return 'CustomerDTO(id: $id, firstName: $firstName, lastName: $lastName, email: $email, dateOfBirth: $dateOfBirth, gender: $gender, wishlists: $wishlists, addresses: $addresses)';
   }
 
   @override
@@ -335,10 +303,6 @@ class _$CustomerDTOImpl implements _CustomerDTO {
               _wishlists,
             ) &&
             const DeepCollectionEquality().equals(
-              other._customAttributes,
-              _customAttributes,
-            ) &&
-            const DeepCollectionEquality().equals(
               other._addresses,
               _addresses,
             ));
@@ -355,7 +319,6 @@ class _$CustomerDTOImpl implements _CustomerDTO {
     dateOfBirth,
     gender,
     const DeepCollectionEquality().hash(_wishlists),
-    const DeepCollectionEquality().hash(_customAttributes),
     const DeepCollectionEquality().hash(_addresses),
   );
 
@@ -382,8 +345,6 @@ abstract class _CustomerDTO implements CustomerDTO {
     @JsonKey(name: 'dob') required final DateTime dateOfBirth,
     final int? gender,
     final List<WishListDTO> wishlists,
-    @JsonKey(name: 'custom_attributes')
-    required final List<CustomAttributeDTO> customAttributes,
     final List<CustomerAddressDTO> addresses,
   }) = _$CustomerDTOImpl;
 
@@ -408,9 +369,6 @@ abstract class _CustomerDTO implements CustomerDTO {
   int? get gender;
   @override
   List<WishListDTO> get wishlists;
-  @override
-  @JsonKey(name: 'custom_attributes')
-  List<CustomAttributeDTO> get customAttributes;
   @override
   List<CustomerAddressDTO> get addresses;
 

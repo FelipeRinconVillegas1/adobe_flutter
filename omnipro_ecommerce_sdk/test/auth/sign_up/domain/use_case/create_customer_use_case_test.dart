@@ -34,7 +34,6 @@ void main() {
         id: 1,
         lastName: 'lastname',
         email: 'email',
-        customAttributesRequired: {},
         dateOfBirth: DateTime(1990, 1, 1));
 
     final dataCreateCustomer = CreateCustomerData(
@@ -44,7 +43,6 @@ void main() {
       password: '',
       date: DateTime(2000),
       gender: 1,
-      customAttributes: [],
     );
 
     test('should create a customer', () async {

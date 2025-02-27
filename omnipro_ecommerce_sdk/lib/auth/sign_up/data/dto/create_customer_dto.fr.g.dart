@@ -17,11 +17,6 @@ _$CreateCustomerDTOImpl _$$CreateCustomerDTOImplFromJson(
   dateOfBirth: const DateTimeConverterISO8601().fromJson(
     json['date_of_birth'] as String,
   ),
-  isSuscribed: json['is_subscribed'] as bool? ?? true,
-  customAttributes:
-      (json['custom_attributes'] as List<dynamic>)
-          .map((e) => CustomAttributeDTO.fromJson(e as Map<String, dynamic>))
-          .toList(),
 );
 
 Map<String, dynamic> _$$CreateCustomerDTOImplToJson(
@@ -35,7 +30,4 @@ Map<String, dynamic> _$$CreateCustomerDTOImplToJson(
   'date_of_birth': const DateTimeConverterISO8601().toJson(
     instance.dateOfBirth,
   ),
-  'is_subscribed': instance.isSuscribed,
-  'custom_attributes':
-      instance.customAttributes.map((e) => e.toJson()).toList(),
 };

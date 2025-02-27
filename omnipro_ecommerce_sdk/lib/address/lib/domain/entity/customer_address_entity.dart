@@ -12,16 +12,9 @@ class CustomerAddressEntity extends Equatable {
     required this.postcode,
     required this.defaultShipping,
     required this.defaultBilling,
-    required this.category,
     required this.specialInstructions,
-    required this.state,
     required this.city,
-    required this.zone,
     required this.detailAddress,
-    required this.areaCodeTelephone,
-    required this.cityCustom,
-    this.longitude,
-    this.latitude,
   });
 
   int id;
@@ -35,50 +28,34 @@ class CustomerAddressEntity extends Equatable {
   String? postcode;
   bool defaultShipping;
   bool defaultBilling;
-  String category;
 
   /// Street and detailAddress , specialInstructions COMPONENT THE STREET
   /// List<String> street = ['street', 'detailAddress', 'specialInstructions'];
   String street;
   String detailAddress;
   String specialInstructions;
-
-  /// City and zone are custom attributes
-  String state;
   String city;
-  String cityCustom;
-  String zone;
-  String? latitude;
-  String? longitude;
-  String areaCodeTelephone;
 
   String getAddressDescription() => showAddress;
 
   @override
   List<Object?> get props => [
-        id,
-        firstname,
-        lastname,
-        countryCode,
-        street,
-        telephone,
-        postcode,
-        city,
-        defaultShipping,
-        defaultBilling,
-        category,
-        city,
-        specialInstructions,
-        areaCodeTelephone,
-        detailAddress,
-        state,
-        zone,
-        latitude,
-        longitude,
-        cityCustom
-      ];
+    id,
+    firstname,
+    lastname,
+    countryCode,
+    street,
+    telephone,
+    postcode,
+    city,
+    defaultShipping,
+    defaultBilling,
+    city,
+    specialInstructions,
+    detailAddress,
+  ];
 
-  String get showAddress => '$street, $zone, $city.';
+  String get showAddress => '$street, $city.';
 
   CustomerAddressEntity copyWith({
     int? id,
@@ -97,14 +74,9 @@ class CustomerAddressEntity extends Equatable {
     String? city,
     String? zone,
     String? detailAddress,
-    String? areaCodeTelephone,
-    String? latitude,
-    String? longitude,
-    String? cityCustom,
   }) {
     return CustomerAddressEntity(
       id: id ?? this.id,
-      cityCustom: cityCustom ?? this.cityCustom,
       firstname: firstname ?? this.firstname,
       lastname: lastname ?? this.lastname,
       region: region ?? this.region,
@@ -114,15 +86,9 @@ class CustomerAddressEntity extends Equatable {
       postcode: postcode ?? this.postcode,
       defaultShipping: defaultShipping ?? this.defaultShipping,
       defaultBilling: defaultBilling ?? this.defaultBilling,
-      category: category ?? this.category,
       specialInstructions: specialInstructions ?? this.specialInstructions,
-      state: state ?? this.state,
       city: city ?? this.city,
-      zone: zone ?? this.zone,
       detailAddress: detailAddress ?? this.detailAddress,
-      areaCodeTelephone: areaCodeTelephone ?? this.areaCodeTelephone,
-      latitude: latitude ?? this.latitude,
-      longitude: longitude ?? this.longitude,
     );
   }
 
@@ -134,16 +100,11 @@ class CustomerAddressEntity extends Equatable {
         region.region == compareAddress?.region.region &&
         telephone == compareAddress?.telephone &&
         countryCode == compareAddress?.countryCode &&
-        postcode == compareAddress?.postcode &&
-        state == compareAddress?.state &&
-        latitude == compareAddress?.latitude &&
-        longitude == compareAddress?.longitude &&
-        zone == compareAddress?.zone);
+        postcode == compareAddress?.postcode);
   }
 }
 
 class RegionEntity extends Equatable {
-
   const RegionEntity({required this.region, required this.regionId, required this.code});
   final String region;
   final String code;

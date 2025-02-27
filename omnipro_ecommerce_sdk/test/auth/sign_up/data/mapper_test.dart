@@ -13,7 +13,7 @@ void main() {
         lastName: 'Doe',
         email: 'johndoe@example.com',
         dateOfBirth: DateTime(2000),
-        customAttributes: []);
+    );
 
     // Act
     final customer = customerDto.toDomain();
@@ -33,7 +33,6 @@ void main() {
       password: 'mypassword',
       date: DateTime(2000),
       gender: 1,
-      customAttributes: [],
     );
 
     // Act

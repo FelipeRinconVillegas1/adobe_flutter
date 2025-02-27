@@ -9,14 +9,8 @@ import 'package:core/network/graphql/graphql_service.dart';
 import 'package:core/utils/error_handler/error_handler.dart';
 import 'package:core/network/graphql/token_mutation.dart';
 import 'package:dartz/dartz.dart';
-import 'package:omnipro_ecommerce_sdk/auth/login/data/datasource/send_mutation.dart';
-import 'package:omnipro_ecommerce_sdk/auth/login/data/datasource/validate_sms_mutation.dart';
 import '../../../shared/data/identify_with_social_media.dart';
-import '../dto/customer_otp_status_dto.fr.dart';
 import '../dto/customer_tokens_dto.fr.dart';
-import '../dto/validate_customer_otp_dto.fr.dart';
-import 'is_email_available_query.dart';
-import 'is_phone_availiable_query.dart';
 import 'login_datasource.dart';
 import 'login_mutation.dart';
 
@@ -94,86 +88,6 @@ class LoginDatasourceImpl extends LoginDatasource {
       );
 
       return result.fold((l) => left(l), (json) => right(json.data?['requestPasswordResetEmail'] as bool));
-    });
-  }
-
-  @override
-  Future<Either<ErrorHandler, bool>> validateIfCustomerExistByEmail(String email) {
-    return secureServerCall(() async {
-      String query = isEmailAvailable(email);
-      final result = await _client.query(
-        query,
-      );
-
-      return result.fold(
-          (l) => left(l), (json) => right(json.data?['isEmailAvailable']?["is_email_available"] as bool));
-    });
-  }
-
-  @override
-  Future<Either<ErrorHandler, bool>> validateIfCustomerExistByPhone(String phone, String countryCode) {
-    return secureServerCall(() async {
-      String query = isPhoneAvailableQuery(phone, countryCode);
-      final result = await _client.query(
-        query,
-      );
-
-      return result.fold(
-          (l) => left(l), (json) => right(json.data?['isTelephoneAvailable']?["is_telephone_available"] as bool));
-    });
-  }
-
-  @override
-  Future<Either<ErrorHandler, CustomerOtpStatusDTO>> sendCode(
-    String phoneNumber,
-    String countryCode,
-    String hashSignature,
-    String email,
-  ) {
-    return secureServerCall(() async {
-      String query = sendMutation(
-        countryCode,
-        phoneNumber,
-        hashSignature,
-        email,
-      );
-      final result = await _client.mutation(
-        query,
-      );
-
-      return result.fold(
-        (l) => left(l),
-        (json) => right(
-          CustomerOtpStatusDTO.fromJson(json.data?['generateCustomerOtp']),
-        ),
-      );
-    });
-  }
-
-  @override
-  Future<Either<ErrorHandler, ValidateCustomerOtpDTO>> validateCode(
-    String phoneNumber,
-    String countryCode,
-    String otpCode,
-    String email,
-  ) {
-    return secureServerCall(() async {
-      String query = validateCodeMutation(
-        countryCode,
-        phoneNumber,
-        otpCode,
-        email,
-      );
-      final result = await _client.mutation(
-        query,
-      );
-
-      return result.fold(
-        (l) => left(l),
-        (json) => right(
-          ValidateCustomerOtpDTO.fromJson(json.data?['validateCustomerOtp']),
-        ),
-      );
     });
   }
 }

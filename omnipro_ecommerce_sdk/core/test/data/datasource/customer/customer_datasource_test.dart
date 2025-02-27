@@ -55,7 +55,6 @@ void main() {
       lastName: 'Doe',
       email: 'omnifelipe@yopmail.com',
       dateOfBirth: DateTime(1990, 1, 1),
-      customAttributes: [],
     );
 
     final mockResponse = {
@@ -88,7 +87,6 @@ void main() {
       lastName: 'Doe',
       email: 'john.doe@example.com',
       dateOfBirth: DateTime(1990, 1, 1),
-      customAttributes: [],
     );
 
     final mockError = ErrorHandlerInternal(errorMessage: 'Error');

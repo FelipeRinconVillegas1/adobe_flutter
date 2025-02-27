@@ -19,10 +19,6 @@ _$CustomerAddressDTOImpl _$$CustomerAddressDTOImplFromJson(
       const [],
   telephone: json['telephone'] as String,
   city: json['city'] as String,
-  customAttributes:
-      (json['custom_attributesV2'] as List<dynamic>)
-          .map((e) => CustomAttributeDTO.fromJson(e as Map<String, dynamic>))
-          .toList(),
   defaultShipping: json['default_shipping'] as bool? ?? false,
   defaultBilling: json['default_billing'] as bool? ?? false,
   postcode: json['postcode'] as String?,
@@ -39,8 +35,6 @@ Map<String, dynamic> _$$CustomerAddressDTOImplToJson(
   'street': instance.street,
   'telephone': instance.telephone,
   'city': instance.city,
-  'custom_attributesV2':
-      instance.customAttributes.map((e) => e.toJson()).toList(),
   'default_shipping': instance.defaultShipping,
   'default_billing': instance.defaultBilling,
   'postcode': instance.postcode,

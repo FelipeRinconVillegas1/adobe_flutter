@@ -18,18 +18,6 @@ dataQueryCustomerAddress() => '''
       telephone
       default_shipping
       default_billing
-      custom_attributesV2 {
-          code
-        ... on AttributeValue {
-          value
-        }
-        ... on AttributeSelectedOptions{
-            selected_options {
-                label
-                value
-            }
-        }
-      } 
 ''';
 
 getCustomerAddressesQuery() => '''

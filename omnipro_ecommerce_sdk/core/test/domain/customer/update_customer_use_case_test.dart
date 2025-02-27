@@ -31,8 +31,7 @@ void main() {
         id: 1,
         lastName: 'Doe',
         email: 'john.doe@example.com',
-        dateOfBirth: DateTime(1990, 1, 1),
-        customAttributesRequired: {});
+        dateOfBirth: DateTime(1990, 1, 1),);
 
     when(() => mockCustomerRepository.updateCustomer(customer)).thenAnswer((_) async => Right(customer));
 
@@ -54,8 +53,7 @@ void main() {
         firstName: 'John',
         lastName: 'Doe',
         email: 'john.doe@example.com',
-        dateOfBirth: DateTime(1990, 1, 1),
-        customAttributesRequired: {});
+        dateOfBirth: DateTime(1990, 1, 1),);
 
     final error = ErrorHandlerInternal(errorMessage: 'Error updating customer');
 

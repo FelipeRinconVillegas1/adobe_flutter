@@ -7,7 +7,7 @@ part of 'form_edit_mobile_number_notifier.fr.dart';
 // **************************************************************************
 
 String _$formEditMobileNumberNotifierHash() =>
-    r'47c648eeb2dfda528ffe48e827ed13ba435c74b8';
+    r'977549ad3e111c940c01d802c5fd29abfd3809dd';
 
 /// See also [FormEditMobileNumberNotifier].
 @ProviderFor(FormEditMobileNumberNotifier)

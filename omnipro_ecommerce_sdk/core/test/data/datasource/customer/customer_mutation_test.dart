@@ -14,7 +14,6 @@ void main() {
         lastName: 'Doe',
         email: 'john.doe@example.com',
         dateOfBirth: DateTime(1990, 1, 1),
-        customAttributes: [],
       );
 
       final expectedMutation = '''
@@ -24,7 +23,7 @@ void main() {
               firstname: "${newCustomer.firstName}"
               lastname: "${newCustomer.lastName}"
               is_subscribed: true
-              date_of_birth: "${const DateTimeConverterISO8601().toJson(newCustomer.dateOfBirth!)}",
+              date_of_birth: "${const DateTimeConverterISO8601().toJson(newCustomer.dateOfBirth)}",
               custom_attributes: []
             }
           ) {

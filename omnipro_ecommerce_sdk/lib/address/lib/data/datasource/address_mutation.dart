@@ -1,5 +1,4 @@
 import 'package:core/data/dto/customer_address_dto.fr.dart';
-import 'package:core/data/dto/custom_attribute_dto.fr.dart';
 
 import 'address_query.dart';
 
@@ -26,10 +25,9 @@ customerParamToMutation(CustomerAddressDTO customerAddressDTO) => '''
     lastname: "${customerAddressDTO.lastname}"
     default_shipping: ${customerAddressDTO.defaultShipping}
     default_billing:  ${customerAddressDTO.defaultBilling}
-    custom_attributesV2:  ${customerAddressDTO.customAttributes.toGraphql()}
 ''';
 
-createCustomerAddress(CustomerAddressDTO customerAddressDTO) => '''
+String createCustomerAddress(CustomerAddressDTO customerAddressDTO) => '''
 mutation createCustomerAddress() {
   createCustomerAddress(input: {
    ${customerParamToMutation(customerAddressDTO)}

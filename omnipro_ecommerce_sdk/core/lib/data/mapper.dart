@@ -1,5 +1,4 @@
 import 'package:core/data/dto/available_payment_method_dto.fr.dart';
-import 'package:core/data/dto/custom_attribute_dto.fr.dart';
 import 'package:core/data/dto/dropdown_manager/dropdown_option_dto.fr.dart';
 import 'package:core/data/dto/html/html_dto.fr.dart';
 import 'package:core/data/dto/localization_item_dto.fr.dart';
@@ -7,7 +6,6 @@ import 'package:core/data/dto/products_mapper.dart';
 import 'package:core/domain/entity/available_payment_method.dart';
 import 'package:core/domain/entity/bot_whatsapp.dart';
 import 'package:core/domain/entity/complement_share_product.dart';
-import 'package:core/domain/entity/custom_attribute.dart';
 import 'package:core/domain/entity/customer.fr.dart';
 import 'package:core/domain/entity/dropdown_manager/dropdown_option.dart';
 import 'package:core/domain/entity/html/html_entity.dart';
@@ -16,7 +14,6 @@ import 'package:core/domain/entity/localization_message.dart';
 import 'package:core/domain/entity/money.fr.dart';
 import 'package:core/domain/entity/session_data.dart';
 import 'package:core/domain/entity/user_credential_response.dart';
-import 'package:core/utils/custom_attribute_code.dart';
 import 'package:omnipro_ecommerce_sdk/address/lib/data/repository/address_mapper.dart';
 import '../domain/entity/delete_account/delete_customer_input.dart';
 import '../domain/entity/stores/warehouse_address_entity.fr.dart';
@@ -30,7 +27,6 @@ import 'dto/delete_account/delete_customer_input_dto.fr.dart';
 import 'dto/localization_message_dto.fr.dart';
 import 'dto/money_dto.fr.dart';
 import 'dto/money_info_dto.fr.dart';
-import 'dto/orders/order_edited_dto.fr.dart';
 import 'dto/session_data_dto.fr.dart';
 import 'dto/shipping_methods_dto.fr.dart';
 import 'dto/user_credential_response_dto.fr.dart';
@@ -88,10 +84,6 @@ extension CustomerMapper on Customer {
         dateOfBirth: dateOfBirth,
         wishlists: wishlists.map((e) => e.toDTO()).toList(),
         gender: gender,
-        customAttributes: [
-          ...customAttributesRequired.values.map((e) => e.toDTO()).toList(),
-          ...customAttributesOptionals.values.map((e) => e.toDTO()).toList(),
-        ],
         addresses: addresses.map((e) => e.toDTO()).toList(),
       );
 }
@@ -105,18 +97,6 @@ extension CustomerDTOMapper on CustomerDTO {
         dateOfBirth: dateOfBirth,
         gender: gender,
         wishlists: wishlists.map((e) => e.toDomain()).toList(),
-        customAttributesRequired: customAttributesRequired.map((key, value) => MapEntry(
-            key,
-            CustomAttribute(
-              code: CustomAttributeCode.fromString(value.code),
-              value: value.value,
-            ))),
-        customAttributesOptionals: customAttributesOptionals.map((key, value) => MapEntry(
-            key,
-            CustomAttribute(
-              code: CustomAttributeCode.fromString(value.code),
-              value: value.value,
-            ))),
         addresses: addresses.map((e) => e.toDomain()).toList(),
       );
 }
@@ -261,13 +241,6 @@ extension HtmlDTOMapper on HtmlDTO {
         metaTitle: metaTitle,
         metaDescription: metaDescription,
         metaKeywords: metaKeywords,
-      );
-}
-
-extension CustomAttributeMapper on CustomAttribute {
-  CustomAttributeDTO toDTO() => CustomAttributeDTO(
-        code: code.value,
-        value: value,
       );
 }
 

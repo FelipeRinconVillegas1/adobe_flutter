@@ -38,7 +38,6 @@ void main() {
         id: 1,
         lastName: 'lastName',
         email: 'email',
-        customAttributesRequired: {},
         dateOfBirth: DateTime(1990, 1, 1));
     registerFallbackValue(sessionData);
 
@@ -74,7 +73,6 @@ void main() {
           lastName: 'lastName',
           id: 1,
           email: 'email',
-          customAttributesRequired: {},
           dateOfBirth: DateTime(1990, 1, 1));
       registerFallbackValue(sessionData);
 

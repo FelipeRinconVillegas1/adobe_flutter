@@ -28,7 +28,6 @@ String customerQuery({bool needReturnWishList = true}) {
   return '''
     customer {
         ${customerBaseQuery.call()}
-        ${customAttributesQuery.call()}
         ${needReturnWishList ? wishlistsQuery.call() : ''}
         addresses {
          ${dataQueryCustomerAddress()}
@@ -40,7 +39,6 @@ String customerQuery({bool needReturnWishList = true}) {
 String customerContentQuery() {
   return '''
     ${customerBaseQuery.call()}
-    ${customAttributesQuery.call()}
     addresses {
       ${dataQueryCustomerAddress()}
         }
@@ -85,21 +83,4 @@ String wishlistsQuery() {
       }
     }
 ''';
-}
-
-String customAttributesQuery() {
-  return '''
-      custom_attributes {
-          code
-        ... on AttributeValue {
-          value
-        }
-        ... on AttributeSelectedOptions{
-            selected_options {
-                label
-                value
-            }
-        }
-      }
-  ''';
 }
