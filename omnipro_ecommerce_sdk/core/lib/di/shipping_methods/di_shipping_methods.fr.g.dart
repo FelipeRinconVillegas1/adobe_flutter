@@ -6,26 +6,6 @@ part of 'di_shipping_methods.fr.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getShippingMethodsUseCaseHash() =>
-    r'b8e559535910de7b131abc5bfc912d03db4e64d8';
-
-/// See also [getShippingMethodsUseCase].
-@ProviderFor(getShippingMethodsUseCase)
-final getShippingMethodsUseCaseProvider =
-    Provider<GetShippingMethodsUseCase>.internal(
-      getShippingMethodsUseCase,
-      name: r'getShippingMethodsUseCaseProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$getShippingMethodsUseCaseHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef GetShippingMethodsUseCaseRef = ProviderRef<GetShippingMethodsUseCase>;
 String _$getShippingMethodUseCaseHash() =>
     r'9439f50b968a323bfa0fb67cd8747024d1c3cd5a';
 
@@ -87,7 +67,7 @@ final shippingMethodsRepositoryProvider =
 // ignore: unused_element
 typedef ShippingMethodsRepositoryRef = ProviderRef<ShippingMethodsRepository>;
 String _$shippingMethodsDataSourceHash() =>
-    r'c4968f0f0b9c58f5c00f933822cb9e39737d9574';
+    r'03db0588996d8819991e62928fe97fe432d86a97';
 
 /// See also [shippingMethodsDataSource].
 @ProviderFor(shippingMethodsDataSource)

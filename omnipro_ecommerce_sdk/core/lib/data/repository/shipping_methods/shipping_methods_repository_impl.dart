@@ -11,12 +11,6 @@ class ShippingMethodsRepositoryImpl implements ShippingMethodsRepository {
   final ShippingMethodsDataSource _shippingMethodsDataSource;
 
   @override
-  Future<Either<ErrorHandler, ShippingMethodsEntity>> getShippingMethods() async {
-    final result = await _shippingMethodsDataSource.getShippingMethods();
-    return result.fold((l) => left(l), (r) => right(r.toDomain()));
-  }
-
-  @override
   Future<Either<ErrorHandler, ShippingMethodItemEntity?>> getShippingMethodSelected() async {
     final result = await _shippingMethodsDataSource.getShippingMethodSelected();
     return result.fold((l) => left(l), (r) => right(r?.toDomain()));
