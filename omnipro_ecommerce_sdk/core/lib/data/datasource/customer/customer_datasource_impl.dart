@@ -4,7 +4,6 @@ import 'package:core/data/dto/delete_account/delete_customer_input_dto.fr.dart';
 import 'package:core/network/graphql/graphql_service.dart';
 import 'package:core/utils/error_handler/error_handler.dart';
 import 'package:dartz/dartz.dart';
-
 import 'customer_datasource.dart';
 import 'customer_mutation.dart';
 import 'customer_query.dart';

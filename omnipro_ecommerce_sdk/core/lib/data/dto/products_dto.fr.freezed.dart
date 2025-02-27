@@ -530,9 +530,6 @@ mixin _$ProductsItemsDTO {
   String get typeId => throw _privateConstructorUsedError;
   String? get upc => throw _privateConstructorUsedError;
   int? get marca => throw _privateConstructorUsedError;
-  @JsonKey(name: 'informacion_nutricional')
-  String? get informacionNutricional => throw _privateConstructorUsedError;
-  String? get ingredientes => throw _privateConstructorUsedError;
   @JsonKey(name: 'brand_name')
   String? get brandName => throw _privateConstructorUsedError;
   @JsonKey(name: 'min_sale_qty')
@@ -567,7 +564,6 @@ mixin _$ProductsItemsDTO {
   String? get salesUnitOfMeasure => throw _privateConstructorUsedError;
   @JsonKey(name: 'stock_status')
   String? get stockStatus => throw _privateConstructorUsedError;
-  String? get composicion => throw _privateConstructorUsedError;
   @JsonKey(name: 'related_products')
   List<ProductsRelatedProductsDTO> get relatedProducts =>
       throw _privateConstructorUsedError;
@@ -609,8 +605,6 @@ abstract class $ProductsItemsDTOCopyWith<$Res> {
     @JsonKey(name: 'type_id') String typeId,
     String? upc,
     int? marca,
-    @JsonKey(name: 'informacion_nutricional') String? informacionNutricional,
-    String? ingredientes,
     @JsonKey(name: 'brand_name') String? brandName,
     @JsonKey(name: 'min_sale_qty') double minSaleQty,
     double margin,
@@ -631,7 +625,6 @@ abstract class $ProductsItemsDTOCopyWith<$Res> {
     @JsonKey(name: 'price_range') ProductsPriceRangeDTO? priceRange,
     @JsonKey(name: 'sales_unit_of_measure') String? salesUnitOfMeasure,
     @JsonKey(name: 'stock_status') String? stockStatus,
-    String? composicion,
     @JsonKey(name: 'related_products')
     List<ProductsRelatedProductsDTO> relatedProducts,
     @JsonKey(name: 'upsell_products')
@@ -672,8 +665,6 @@ class _$ProductsItemsDTOCopyWithImpl<$Res, $Val extends ProductsItemsDTO>
     Object? typeId = null,
     Object? upc = freezed,
     Object? marca = freezed,
-    Object? informacionNutricional = freezed,
-    Object? ingredientes = freezed,
     Object? brandName = freezed,
     Object? minSaleQty = null,
     Object? margin = null,
@@ -694,7 +685,6 @@ class _$ProductsItemsDTOCopyWithImpl<$Res, $Val extends ProductsItemsDTO>
     Object? priceRange = freezed,
     Object? salesUnitOfMeasure = freezed,
     Object? stockStatus = freezed,
-    Object? composicion = freezed,
     Object? relatedProducts = null,
     Object? upsellProducts = null,
     Object? crosssellProducts = null,
@@ -734,16 +724,6 @@ class _$ProductsItemsDTOCopyWithImpl<$Res, $Val extends ProductsItemsDTO>
                     ? _value.marca
                     : marca // ignore: cast_nullable_to_non_nullable
                         as int?,
-            informacionNutricional:
-                freezed == informacionNutricional
-                    ? _value.informacionNutricional
-                    : informacionNutricional // ignore: cast_nullable_to_non_nullable
-                        as String?,
-            ingredientes:
-                freezed == ingredientes
-                    ? _value.ingredientes
-                    : ingredientes // ignore: cast_nullable_to_non_nullable
-                        as String?,
             brandName:
                 freezed == brandName
                     ? _value.brandName
@@ -843,11 +823,6 @@ class _$ProductsItemsDTOCopyWithImpl<$Res, $Val extends ProductsItemsDTO>
                 freezed == stockStatus
                     ? _value.stockStatus
                     : stockStatus // ignore: cast_nullable_to_non_nullable
-                        as String?,
-            composicion:
-                freezed == composicion
-                    ? _value.composicion
-                    : composicion // ignore: cast_nullable_to_non_nullable
                         as String?,
             relatedProducts:
                 null == relatedProducts
@@ -969,8 +944,6 @@ abstract class _$$ProductsItemsDTOImplCopyWith<$Res>
     @JsonKey(name: 'type_id') String typeId,
     String? upc,
     int? marca,
-    @JsonKey(name: 'informacion_nutricional') String? informacionNutricional,
-    String? ingredientes,
     @JsonKey(name: 'brand_name') String? brandName,
     @JsonKey(name: 'min_sale_qty') double minSaleQty,
     double margin,
@@ -991,7 +964,6 @@ abstract class _$$ProductsItemsDTOImplCopyWith<$Res>
     @JsonKey(name: 'price_range') ProductsPriceRangeDTO? priceRange,
     @JsonKey(name: 'sales_unit_of_measure') String? salesUnitOfMeasure,
     @JsonKey(name: 'stock_status') String? stockStatus,
-    String? composicion,
     @JsonKey(name: 'related_products')
     List<ProductsRelatedProductsDTO> relatedProducts,
     @JsonKey(name: 'upsell_products')
@@ -1036,8 +1008,6 @@ class __$$ProductsItemsDTOImplCopyWithImpl<$Res>
     Object? typeId = null,
     Object? upc = freezed,
     Object? marca = freezed,
-    Object? informacionNutricional = freezed,
-    Object? ingredientes = freezed,
     Object? brandName = freezed,
     Object? minSaleQty = null,
     Object? margin = null,
@@ -1058,7 +1028,6 @@ class __$$ProductsItemsDTOImplCopyWithImpl<$Res>
     Object? priceRange = freezed,
     Object? salesUnitOfMeasure = freezed,
     Object? stockStatus = freezed,
-    Object? composicion = freezed,
     Object? relatedProducts = null,
     Object? upsellProducts = null,
     Object? crosssellProducts = null,
@@ -1098,16 +1067,6 @@ class __$$ProductsItemsDTOImplCopyWithImpl<$Res>
                 ? _value.marca
                 : marca // ignore: cast_nullable_to_non_nullable
                     as int?,
-        informacionNutricional:
-            freezed == informacionNutricional
-                ? _value.informacionNutricional
-                : informacionNutricional // ignore: cast_nullable_to_non_nullable
-                    as String?,
-        ingredientes:
-            freezed == ingredientes
-                ? _value.ingredientes
-                : ingredientes // ignore: cast_nullable_to_non_nullable
-                    as String?,
         brandName:
             freezed == brandName
                 ? _value.brandName
@@ -1208,11 +1167,6 @@ class __$$ProductsItemsDTOImplCopyWithImpl<$Res>
                 ? _value.stockStatus
                 : stockStatus // ignore: cast_nullable_to_non_nullable
                     as String?,
-        composicion:
-            freezed == composicion
-                ? _value.composicion
-                : composicion // ignore: cast_nullable_to_non_nullable
-                    as String?,
         relatedProducts:
             null == relatedProducts
                 ? _value._relatedProducts
@@ -1259,8 +1213,6 @@ class _$ProductsItemsDTOImpl implements _ProductsItemsDTO {
     @JsonKey(name: 'type_id') required this.typeId,
     this.upc,
     this.marca,
-    @JsonKey(name: 'informacion_nutricional') this.informacionNutricional,
-    this.ingredientes,
     @JsonKey(name: 'brand_name') this.brandName,
     @JsonKey(name: 'min_sale_qty') required this.minSaleQty,
     this.margin = 0,
@@ -1282,7 +1234,6 @@ class _$ProductsItemsDTOImpl implements _ProductsItemsDTO {
     @JsonKey(name: 'price_range') this.priceRange,
     @JsonKey(name: 'sales_unit_of_measure') this.salesUnitOfMeasure,
     @JsonKey(name: 'stock_status') this.stockStatus,
-    this.composicion,
     @JsonKey(name: 'related_products')
     final List<ProductsRelatedProductsDTO> relatedProducts = const [],
     @JsonKey(name: 'upsell_products')
@@ -1318,11 +1269,6 @@ class _$ProductsItemsDTOImpl implements _ProductsItemsDTO {
   final String? upc;
   @override
   final int? marca;
-  @override
-  @JsonKey(name: 'informacion_nutricional')
-  final String? informacionNutricional;
-  @override
-  final String? ingredientes;
   @override
   @JsonKey(name: 'brand_name')
   final String? brandName;
@@ -1403,8 +1349,6 @@ class _$ProductsItemsDTOImpl implements _ProductsItemsDTO {
   @override
   @JsonKey(name: 'stock_status')
   final String? stockStatus;
-  @override
-  final String? composicion;
   final List<ProductsRelatedProductsDTO> _relatedProducts;
   @override
   @JsonKey(name: 'related_products')
@@ -1457,7 +1401,7 @@ class _$ProductsItemsDTOImpl implements _ProductsItemsDTO {
 
   @override
   String toString() {
-    return 'ProductsItemsDTO(id: $id, name: $name, sku: $sku, typeId: $typeId, upc: $upc, marca: $marca, informacionNutricional: $informacionNutricional, ingredientes: $ingredientes, brandName: $brandName, minSaleQty: $minSaleQty, margin: $margin, uid: $uid, urlKey: $urlKey, specialPrice: $specialPrice, isCatalogExtended: $isCatalogExtended, description: $description, image: $image, tags: $tags, mediaGallery: $mediaGallery, variants: $variants, smallImage: $smallImage, ribbons: $ribbons, ratingSummary: $ratingSummary, reviewCount: $reviewCount, taxAmount: $taxAmount, priceRange: $priceRange, salesUnitOfMeasure: $salesUnitOfMeasure, stockStatus: $stockStatus, composicion: $composicion, relatedProducts: $relatedProducts, upsellProducts: $upsellProducts, crosssellProducts: $crosssellProducts, shortDescription: $shortDescription, associatedProducts: $associatedProducts, categories: $categories)';
+    return 'ProductsItemsDTO(id: $id, name: $name, sku: $sku, typeId: $typeId, upc: $upc, marca: $marca, brandName: $brandName, minSaleQty: $minSaleQty, margin: $margin, uid: $uid, urlKey: $urlKey, specialPrice: $specialPrice, isCatalogExtended: $isCatalogExtended, description: $description, image: $image, tags: $tags, mediaGallery: $mediaGallery, variants: $variants, smallImage: $smallImage, ribbons: $ribbons, ratingSummary: $ratingSummary, reviewCount: $reviewCount, taxAmount: $taxAmount, priceRange: $priceRange, salesUnitOfMeasure: $salesUnitOfMeasure, stockStatus: $stockStatus, relatedProducts: $relatedProducts, upsellProducts: $upsellProducts, crosssellProducts: $crosssellProducts, shortDescription: $shortDescription, associatedProducts: $associatedProducts, categories: $categories)';
   }
 
   @override
@@ -1471,10 +1415,6 @@ class _$ProductsItemsDTOImpl implements _ProductsItemsDTO {
             (identical(other.typeId, typeId) || other.typeId == typeId) &&
             (identical(other.upc, upc) || other.upc == upc) &&
             (identical(other.marca, marca) || other.marca == marca) &&
-            (identical(other.informacionNutricional, informacionNutricional) ||
-                other.informacionNutricional == informacionNutricional) &&
-            (identical(other.ingredientes, ingredientes) ||
-                other.ingredientes == ingredientes) &&
             (identical(other.brandName, brandName) ||
                 other.brandName == brandName) &&
             (identical(other.minSaleQty, minSaleQty) ||
@@ -1512,8 +1452,6 @@ class _$ProductsItemsDTOImpl implements _ProductsItemsDTO {
                 other.salesUnitOfMeasure == salesUnitOfMeasure) &&
             (identical(other.stockStatus, stockStatus) ||
                 other.stockStatus == stockStatus) &&
-            (identical(other.composicion, composicion) ||
-                other.composicion == composicion) &&
             const DeepCollectionEquality().equals(
               other._relatedProducts,
               _relatedProducts,
@@ -1548,8 +1486,6 @@ class _$ProductsItemsDTOImpl implements _ProductsItemsDTO {
     typeId,
     upc,
     marca,
-    informacionNutricional,
-    ingredientes,
     brandName,
     minSaleQty,
     margin,
@@ -1570,7 +1506,6 @@ class _$ProductsItemsDTOImpl implements _ProductsItemsDTO {
     priceRange,
     salesUnitOfMeasure,
     stockStatus,
-    composicion,
     const DeepCollectionEquality().hash(_relatedProducts),
     const DeepCollectionEquality().hash(_upsellProducts),
     const DeepCollectionEquality().hash(_crosssellProducts),
@@ -1604,9 +1539,6 @@ abstract class _ProductsItemsDTO implements ProductsItemsDTO {
     @JsonKey(name: 'type_id') required final String typeId,
     final String? upc,
     final int? marca,
-    @JsonKey(name: 'informacion_nutricional')
-    final String? informacionNutricional,
-    final String? ingredientes,
     @JsonKey(name: 'brand_name') final String? brandName,
     @JsonKey(name: 'min_sale_qty') required final double minSaleQty,
     final double margin,
@@ -1628,7 +1560,6 @@ abstract class _ProductsItemsDTO implements ProductsItemsDTO {
     @JsonKey(name: 'price_range') final ProductsPriceRangeDTO? priceRange,
     @JsonKey(name: 'sales_unit_of_measure') final String? salesUnitOfMeasure,
     @JsonKey(name: 'stock_status') final String? stockStatus,
-    final String? composicion,
     @JsonKey(name: 'related_products')
     final List<ProductsRelatedProductsDTO> relatedProducts,
     @JsonKey(name: 'upsell_products')
@@ -1657,11 +1588,6 @@ abstract class _ProductsItemsDTO implements ProductsItemsDTO {
   String? get upc;
   @override
   int? get marca;
-  @override
-  @JsonKey(name: 'informacion_nutricional')
-  String? get informacionNutricional;
-  @override
-  String? get ingredientes;
   @override
   @JsonKey(name: 'brand_name')
   String? get brandName;
@@ -1715,8 +1641,6 @@ abstract class _ProductsItemsDTO implements ProductsItemsDTO {
   @override
   @JsonKey(name: 'stock_status')
   String? get stockStatus;
-  @override
-  String? get composicion;
   @override
   @JsonKey(name: 'related_products')
   List<ProductsRelatedProductsDTO> get relatedProducts;

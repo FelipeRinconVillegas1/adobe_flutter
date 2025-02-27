@@ -5,9 +5,6 @@ String queryItemProduct() => '''
       min_sale_qty
       marca
       brand_name
-      informacion_nutricional
-      ingredientes
-      composicion
       margin
       tax_amount{
         id

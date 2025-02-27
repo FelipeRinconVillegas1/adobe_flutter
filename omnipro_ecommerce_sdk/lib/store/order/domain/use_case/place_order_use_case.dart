@@ -8,15 +8,15 @@ import '../../data/repository/order_repository.dart';
 import '../entity/order.dart';
 
 class PlaceOrderUseCase {
-  final OrderRepository _orderRepository;
-  final GetCartIdUseCase _getCartIdUseCase;
-  final SecureStorageRepository _secureStorage;
-
   PlaceOrderUseCase(
     this._orderRepository,
     this._getCartIdUseCase,
     this._secureStorage,
   );
+
+  final OrderRepository _orderRepository;
+  final GetCartIdUseCase _getCartIdUseCase;
+  final SecureStorageRepository _secureStorage;
 
   /// Place order with cart id
   /// if cart id is null get cart id from getCartIdUseCase

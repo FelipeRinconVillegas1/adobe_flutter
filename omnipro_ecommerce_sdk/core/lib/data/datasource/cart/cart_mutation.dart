@@ -3,9 +3,7 @@ import 'package:core/data/dto/cart/config_shipping_method_dto.fr.dart';
 import 'package:core/data/dto/cart/send_tip_dto.dart';
 import 'package:core/data/dto/cart/update_cart_items_dto.fr.dart';
 import 'package:core/data/dto/cart/add_product_to_cart_dto.fr.dart';
-import 'package:core/domain/entity/customer.fr.dart';
 import '../../../domain/entity/cart/input_set_payment_method_on_cart_entity.fr.dart';
-import '../../../domain/entity/stores/warehouse_address_entity.fr.dart';
 import 'cart_query.dart';
 
 // __  __ _    _ _______    _______ _____ ____  _   _
@@ -141,7 +139,7 @@ String setBillingAddressesOnCartMutation(String cartId, CustomerAddressDTO order
 ''';
 
 String setShippingMethodsOnCartMutation(String cartId, ConfigShippingMethodDTO shippingMethodDTO) => '''
-    mutation {
+  mutation {
   setShippingMethodsOnCart(input: {
     cart_id: "$cartId"
     shipping_methods: [
@@ -245,18 +243,6 @@ mutation {
         item_ids: [${cartItemIds.join(",")}]
     ) {
         ${queryGetCartInfo()}
-    }
-}
-''';
-
-String setOmsOptionsInCartMutation(String cartId) => '''
-mutation SetOmsOptionsInCart {
-    setOmsOptionsInCart(
-        input: {
-            cart_id: "$cartId"
-        }
-    ) {
-        cart_id
     }
 }
 ''';

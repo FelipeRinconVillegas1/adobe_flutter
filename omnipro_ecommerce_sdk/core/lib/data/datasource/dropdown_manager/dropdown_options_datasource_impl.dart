@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:core/data/datasource/remote_config_datasource.dart';
 import 'package:core/data/dto/dropdown_manager/dropdown_option_dto.fr.dart';
 import 'package:core/domain/entity/dropdown_manager/options_dropdown_names.dart';
@@ -8,14 +7,14 @@ import 'package:dartz/dartz.dart';
 import 'dropdown_options_datasource.dart';
 
 class DropdownOptionsDatasourceImpl implements DropdownOptionsDatasource {
-  final RemoteConfigDataSource _remoteCondigService;
+  DropdownOptionsDatasourceImpl(this._remoteConfigService);
 
-  DropdownOptionsDatasourceImpl(this._remoteCondigService);
+  final RemoteConfigDataSource _remoteConfigService;
 
   @override
   Either<ErrorHandler, List<DropdownOptionDTO>> getRemoteOptions(DropdownOptionType optionsName) {
     try {
-      String jsonResult = _remoteCondigService.getString(optionsName.value);
+      String jsonResult = _remoteConfigService.getString(optionsName.value);
 
       if (jsonResult.isNotEmpty) {
         final Map<String, dynamic> json = jsonDecode(jsonResult);

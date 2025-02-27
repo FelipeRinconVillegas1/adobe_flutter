@@ -32,10 +32,10 @@ abstract class SearchProductRepository {
 }
 
 class SearchProductRepositoryImpl implements SearchProductRepository {
+  SearchProductRepositoryImpl(this._searchProductDataSource, this._remoteConfigDataSource);
+
   final SearchProductDataSource _searchProductDataSource;
   final RemoteConfigDataSource _remoteConfigDataSource;
-
-  SearchProductRepositoryImpl(this._searchProductDataSource, this._remoteConfigDataSource);
 
   @override
   Future<Either<ErrorHandler, ProductsSearch>> getProductsByName(String productName) async {

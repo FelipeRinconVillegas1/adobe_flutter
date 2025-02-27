@@ -2,7 +2,7 @@
 ///░█─░█ ░█─░█ ░█▀▀▀ ░█▄▄▀ ░█▄▄▄█
 ///─▀▀█▄ ─▀▄▄▀ ░█▄▄▄ ░█─░█ ──░█──
 
-getOrdersQuery() => '''
+String getOrdersQuery() => '''
 query (\$pageSize: Int, \$currentPage: Int, \$sort: CustomerOrderSortInput, \$filter: CustomerOrdersFilterInput){
   customer {
     orders(

@@ -495,11 +495,6 @@ mixin _$ProductsItems {
   set margin(double value) => throw _privateConstructorUsedError;
   String get typeId => throw _privateConstructorUsedError;
   set typeId(String value) => throw _privateConstructorUsedError;
-  String? get informacionNutricional => throw _privateConstructorUsedError;
-  set informacionNutricional(String? value) =>
-      throw _privateConstructorUsedError;
-  String? get ingredientes => throw _privateConstructorUsedError;
-  set ingredientes(String? value) => throw _privateConstructorUsedError;
   int? get marca => throw _privateConstructorUsedError;
   set marca(int? value) => throw _privateConstructorUsedError;
   List<String>? get labels => throw _privateConstructorUsedError;
@@ -522,8 +517,6 @@ mixin _$ProductsItems {
   set uid(String? value) => throw _privateConstructorUsedError;
   String? get urlKey => throw _privateConstructorUsedError;
   set urlKey(String? value) => throw _privateConstructorUsedError;
-  String? get composicion => throw _privateConstructorUsedError;
-  set composicion(String? value) => throw _privateConstructorUsedError;
   double? get specialPrice => throw _privateConstructorUsedError;
   set specialPrice(double? value) => throw _privateConstructorUsedError;
   List<ProductsVariants> get variants => throw _privateConstructorUsedError;
@@ -605,8 +598,6 @@ abstract class $ProductsItemsCopyWith<$Res> {
     double minSaleQty,
     double margin,
     String typeId,
-    String? informacionNutricional,
-    String? ingredientes,
     int? marca,
     List<String>? labels,
     String? type,
@@ -618,7 +609,6 @@ abstract class $ProductsItemsCopyWith<$Res> {
     List<String> tags,
     String? uid,
     String? urlKey,
-    String? composicion,
     double? specialPrice,
     List<ProductsVariants> variants,
     ProductsDescription? description,
@@ -668,8 +658,6 @@ class _$ProductsItemsCopyWithImpl<$Res, $Val extends ProductsItems>
     Object? minSaleQty = null,
     Object? margin = null,
     Object? typeId = null,
-    Object? informacionNutricional = freezed,
-    Object? ingredientes = freezed,
     Object? marca = freezed,
     Object? labels = freezed,
     Object? type = freezed,
@@ -681,7 +669,6 @@ class _$ProductsItemsCopyWithImpl<$Res, $Val extends ProductsItems>
     Object? tags = null,
     Object? uid = freezed,
     Object? urlKey = freezed,
-    Object? composicion = freezed,
     Object? specialPrice = freezed,
     Object? variants = null,
     Object? description = freezed,
@@ -726,16 +713,6 @@ class _$ProductsItemsCopyWithImpl<$Res, $Val extends ProductsItems>
                     ? _value.typeId
                     : typeId // ignore: cast_nullable_to_non_nullable
                         as String,
-            informacionNutricional:
-                freezed == informacionNutricional
-                    ? _value.informacionNutricional
-                    : informacionNutricional // ignore: cast_nullable_to_non_nullable
-                        as String?,
-            ingredientes:
-                freezed == ingredientes
-                    ? _value.ingredientes
-                    : ingredientes // ignore: cast_nullable_to_non_nullable
-                        as String?,
             marca:
                 freezed == marca
                     ? _value.marca
@@ -790,11 +767,6 @@ class _$ProductsItemsCopyWithImpl<$Res, $Val extends ProductsItems>
                 freezed == urlKey
                     ? _value.urlKey
                     : urlKey // ignore: cast_nullable_to_non_nullable
-                        as String?,
-            composicion:
-                freezed == composicion
-                    ? _value.composicion
-                    : composicion // ignore: cast_nullable_to_non_nullable
                         as String?,
             specialPrice:
                 freezed == specialPrice
@@ -989,8 +961,6 @@ abstract class _$$ProductsItemsImplCopyWith<$Res>
     double minSaleQty,
     double margin,
     String typeId,
-    String? informacionNutricional,
-    String? ingredientes,
     int? marca,
     List<String>? labels,
     String? type,
@@ -1002,7 +972,6 @@ abstract class _$$ProductsItemsImplCopyWith<$Res>
     List<String> tags,
     String? uid,
     String? urlKey,
-    String? composicion,
     double? specialPrice,
     List<ProductsVariants> variants,
     ProductsDescription? description,
@@ -1056,8 +1025,6 @@ class __$$ProductsItemsImplCopyWithImpl<$Res>
     Object? minSaleQty = null,
     Object? margin = null,
     Object? typeId = null,
-    Object? informacionNutricional = freezed,
-    Object? ingredientes = freezed,
     Object? marca = freezed,
     Object? labels = freezed,
     Object? type = freezed,
@@ -1069,7 +1036,6 @@ class __$$ProductsItemsImplCopyWithImpl<$Res>
     Object? tags = null,
     Object? uid = freezed,
     Object? urlKey = freezed,
-    Object? composicion = freezed,
     Object? specialPrice = freezed,
     Object? variants = null,
     Object? description = freezed,
@@ -1114,16 +1080,6 @@ class __$$ProductsItemsImplCopyWithImpl<$Res>
                 ? _value.typeId
                 : typeId // ignore: cast_nullable_to_non_nullable
                     as String,
-        informacionNutricional:
-            freezed == informacionNutricional
-                ? _value.informacionNutricional
-                : informacionNutricional // ignore: cast_nullable_to_non_nullable
-                    as String?,
-        ingredientes:
-            freezed == ingredientes
-                ? _value.ingredientes
-                : ingredientes // ignore: cast_nullable_to_non_nullable
-                    as String?,
         marca:
             freezed == marca
                 ? _value.marca
@@ -1178,11 +1134,6 @@ class __$$ProductsItemsImplCopyWithImpl<$Res>
             freezed == urlKey
                 ? _value.urlKey
                 : urlKey // ignore: cast_nullable_to_non_nullable
-                    as String?,
-        composicion:
-            freezed == composicion
-                ? _value.composicion
-                : composicion // ignore: cast_nullable_to_non_nullable
                     as String?,
         specialPrice:
             freezed == specialPrice
@@ -1303,8 +1254,6 @@ class _$ProductsItemsImpl implements _ProductsItems {
     required this.minSaleQty,
     required this.margin,
     required this.typeId,
-    this.informacionNutricional,
-    this.ingredientes,
     this.marca,
     this.labels,
     this.type,
@@ -1316,7 +1265,6 @@ class _$ProductsItemsImpl implements _ProductsItems {
     required this.tags,
     this.uid,
     this.urlKey,
-    this.composicion,
     this.specialPrice,
     this.variants = const [],
     this.description,
@@ -1352,10 +1300,6 @@ class _$ProductsItemsImpl implements _ProductsItems {
   @override
   String typeId;
   @override
-  String? informacionNutricional;
-  @override
-  String? ingredientes;
-  @override
   int? marca;
   @override
   List<String>? labels;
@@ -1377,8 +1321,6 @@ class _$ProductsItemsImpl implements _ProductsItems {
   String? uid;
   @override
   String? urlKey;
-  @override
-  String? composicion;
   @override
   double? specialPrice;
   @override
@@ -1435,7 +1377,7 @@ class _$ProductsItemsImpl implements _ProductsItems {
 
   @override
   String toString() {
-    return 'ProductsItems(id: $id, minSaleQty: $minSaleQty, margin: $margin, typeId: $typeId, informacionNutricional: $informacionNutricional, ingredientes: $ingredientes, marca: $marca, labels: $labels, type: $type, measureUnit: $measureUnit, brandName: $brandName, upc: $upc, name: $name, sku: $sku, tags: $tags, uid: $uid, urlKey: $urlKey, composicion: $composicion, specialPrice: $specialPrice, variants: $variants, description: $description, image: $image, smallImage: $smallImage, mediaGallery: $mediaGallery, ratingSummary: $ratingSummary, reviewCount: $reviewCount, priceRange: $priceRange, salesUnitOfMeasure: $salesUnitOfMeasure, stockStatus: $stockStatus, shortDescription: $shortDescription, taxAmount: $taxAmount, ribbons: $ribbons, categories: $categories, relatedProducts: $relatedProducts, upsellProducts: $upsellProducts, crosssellProducts: $crosssellProducts, associatedProducts: $associatedProducts, isCatalogExtended: $isCatalogExtended, quantity: $quantity)';
+    return 'ProductsItems(id: $id, minSaleQty: $minSaleQty, margin: $margin, typeId: $typeId, marca: $marca, labels: $labels, type: $type, measureUnit: $measureUnit, brandName: $brandName, upc: $upc, name: $name, sku: $sku, tags: $tags, uid: $uid, urlKey: $urlKey, specialPrice: $specialPrice, variants: $variants, description: $description, image: $image, smallImage: $smallImage, mediaGallery: $mediaGallery, ratingSummary: $ratingSummary, reviewCount: $reviewCount, priceRange: $priceRange, salesUnitOfMeasure: $salesUnitOfMeasure, stockStatus: $stockStatus, shortDescription: $shortDescription, taxAmount: $taxAmount, ribbons: $ribbons, categories: $categories, relatedProducts: $relatedProducts, upsellProducts: $upsellProducts, crosssellProducts: $crosssellProducts, associatedProducts: $associatedProducts, isCatalogExtended: $isCatalogExtended, quantity: $quantity)';
   }
 
   /// Create a copy of ProductsItems
@@ -1458,8 +1400,6 @@ abstract class _ProductsItems implements ProductsItems {
     required double minSaleQty,
     required double margin,
     required String typeId,
-    String? informacionNutricional,
-    String? ingredientes,
     int? marca,
     List<String>? labels,
     String? type,
@@ -1471,7 +1411,6 @@ abstract class _ProductsItems implements ProductsItems {
     required List<String> tags,
     String? uid,
     String? urlKey,
-    String? composicion,
     double? specialPrice,
     List<ProductsVariants> variants,
     ProductsDescription? description,
@@ -1511,12 +1450,6 @@ abstract class _ProductsItems implements ProductsItems {
   String get typeId;
   set typeId(String value);
   @override
-  String? get informacionNutricional;
-  set informacionNutricional(String? value);
-  @override
-  String? get ingredientes;
-  set ingredientes(String? value);
-  @override
   int? get marca;
   set marca(int? value);
   @override
@@ -1549,9 +1482,6 @@ abstract class _ProductsItems implements ProductsItems {
   @override
   String? get urlKey;
   set urlKey(String? value);
-  @override
-  String? get composicion;
-  set composicion(String? value);
   @override
   double? get specialPrice;
   set specialPrice(double? value);

@@ -5,9 +5,9 @@ import 'package:dartz/dartz.dart';
 import '../../data/repository/search_product_respository.dart';
 
 class GetProductsByNameUseCase {
-  final SearchProductRepository _searchProductRepository;
-
   GetProductsByNameUseCase(this._searchProductRepository);
+
+  final SearchProductRepository _searchProductRepository;
 
   Future<Either<ErrorHandler, ProductsSearch>> call(String productName) async {
     try {

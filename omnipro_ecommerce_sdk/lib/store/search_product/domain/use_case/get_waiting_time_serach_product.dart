@@ -4,9 +4,9 @@ import 'package:dartz/dartz.dart';
 import '../../data/repository/search_product_respository.dart';
 
 class GetWaitingTimeSearchProductsUseCase {
-  final SearchProductRepository _searchProductRepository;
-
   GetWaitingTimeSearchProductsUseCase(this._searchProductRepository);
+
+  final SearchProductRepository _searchProductRepository;
 
   Future<Either<ErrorHandler, int>> call() async {
     try {

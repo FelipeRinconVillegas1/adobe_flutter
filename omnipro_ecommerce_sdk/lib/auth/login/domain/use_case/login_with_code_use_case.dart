@@ -8,11 +8,10 @@ import '../../data/repository/auth_repository.dart';
 
 /// Create a new session for the customer,saving the token in the secure storage.
 class LoginWithCodeUseCase {
+  LoginWithCodeUseCase(this._loginRepository, this._saveCustomer);
 
   final AuthRepository _loginRepository;
   final SaveCustomerInLocalUseCase _saveCustomer;
-
-  LoginWithCodeUseCase(this._loginRepository, this._saveCustomer);
 
   Future<Either<ErrorHandler, Customer>> call({
     required String phoneNumber,

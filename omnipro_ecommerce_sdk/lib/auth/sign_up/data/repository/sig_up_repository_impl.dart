@@ -11,9 +11,9 @@ import 'sign_up_repository.dart';
 
 /// SigUp repository implementation for the sign up feature
 class SignUpRepositoryImpl extends SignUpRepository {
-  final SignUpDataSource _signUpDataSource;
-
   SignUpRepositoryImpl(this._signUpDataSource);
+
+  final SignUpDataSource _signUpDataSource;
 
   @override
   Future<Either<ErrorHandler, Customer>> createCustomer(CreateCustomerData createCustomer) async {

@@ -37,8 +37,6 @@ class ProductsItems with _$ProductsItems {
       required double minSaleQty,
       required double margin,
       required String typeId,
-      String? informacionNutricional,
-      String? ingredientes,
       int? marca,
       List<String>? labels,
       String? type,
@@ -50,7 +48,6 @@ class ProductsItems with _$ProductsItems {
       required List<String> tags,
       String? uid,
       String? urlKey,
-      String? composicion,
       double? specialPrice,
       @Default([]) List<ProductsVariants> variants,
       ProductsDescription? description,
@@ -82,10 +79,6 @@ extension ProductsItemsTax on ProductsItems {
       return taxAmount.value;
     }
     return 0;
-  }
-
-  bool isRecipe() {
-    return typeId == "recipe";
   }
 }
 

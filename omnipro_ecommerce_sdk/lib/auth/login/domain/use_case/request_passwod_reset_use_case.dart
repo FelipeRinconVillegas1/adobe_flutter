@@ -3,9 +3,9 @@ import 'package:dartz/dartz.dart';
 import '../../data/repository/auth_repository.dart';
 
 class RequestPasswordResetUseCase {
-  final AuthRepository _authRepository;
-
   RequestPasswordResetUseCase(this._authRepository);
+
+  final AuthRepository _authRepository;
 
   Future<Either<ErrorHandler, bool>> call(String email) async {
     return _authRepository.requestPasswordResetEmail(email);

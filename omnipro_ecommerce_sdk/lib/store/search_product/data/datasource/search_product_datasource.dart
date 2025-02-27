@@ -3,11 +3,11 @@ import 'package:core/data/dto/products_dto.fr.dart';
 import 'package:core/data/dto/products_search_dto.fr.dart';
 import 'package:core/network/graphql/graphql_service.dart';
 import 'package:core/utils/error_handler/error_handler.dart';
-import 'package:graphql/src/core/query_result.dart';
 import 'package:dartz/dartz.dart';
 import 'package:omnipro_ecommerce_sdk/store/search_product/data/datasource/product_query.dart';
 import '../dto/popular_search.fr.dart';
 import '../dto/recent_search.fr.dart';
+import 'package:graphql/src/core/query_result.dart';
 
 abstract class SearchProductDataSource {
   Future<Either<ErrorHandler, ProductsSearchDTO>> getProductsByName(String productName);

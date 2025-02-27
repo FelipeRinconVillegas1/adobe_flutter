@@ -54,8 +54,6 @@ _$ProductsItemsImpl _$$ProductsItemsImplFromJson(
   minSaleQty: (json['minSaleQty'] as num).toDouble(),
   margin: (json['margin'] as num).toDouble(),
   typeId: json['typeId'] as String,
-  informacionNutricional: json['informacionNutricional'] as String?,
-  ingredientes: json['ingredientes'] as String?,
   marca: (json['marca'] as num?)?.toInt(),
   labels: (json['labels'] as List<dynamic>?)?.map((e) => e as String).toList(),
   type: json['type'] as String?,
@@ -67,7 +65,6 @@ _$ProductsItemsImpl _$$ProductsItemsImplFromJson(
   tags: (json['tags'] as List<dynamic>).map((e) => e as String).toList(),
   uid: json['uid'] as String?,
   urlKey: json['urlKey'] as String?,
-  composicion: json['composicion'] as String?,
   specialPrice: (json['specialPrice'] as num?)?.toDouble(),
   variants:
       (json['variants'] as List<dynamic>?)
@@ -158,8 +155,6 @@ Map<String, dynamic> _$$ProductsItemsImplToJson(
   'minSaleQty': instance.minSaleQty,
   'margin': instance.margin,
   'typeId': instance.typeId,
-  'informacionNutricional': instance.informacionNutricional,
-  'ingredientes': instance.ingredientes,
   'marca': instance.marca,
   'labels': instance.labels,
   'type': instance.type,
@@ -171,7 +166,6 @@ Map<String, dynamic> _$$ProductsItemsImplToJson(
   'tags': instance.tags,
   'uid': instance.uid,
   'urlKey': instance.urlKey,
-  'composicion': instance.composicion,
   'specialPrice': instance.specialPrice,
   'variants': instance.variants.map((e) => e.toJson()).toList(),
   'description': instance.description?.toJson(),

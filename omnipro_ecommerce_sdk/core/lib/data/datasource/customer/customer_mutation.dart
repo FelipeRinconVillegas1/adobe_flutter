@@ -13,7 +13,7 @@ import 'customer_query.dart';
 
 /// Mutation update customer.
 /// The newCustomer.dateOfBirth is not nullable because it is required in the form.
-updateCustomerMutation(CustomerDTO newCustomer) => '''
+String updateCustomerMutation(CustomerDTO newCustomer) => '''
  mutation {
   updateCustomerV2(
     input: {

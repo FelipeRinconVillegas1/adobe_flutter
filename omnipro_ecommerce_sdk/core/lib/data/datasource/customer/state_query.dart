@@ -2,7 +2,7 @@
 ///░█─░█ ░█─░█ ░█▀▀▀ ░█▄▄▀ ░█▄▄▄█
 ///─▀▀█▄ ─▀▄▄▀ ░█▄▄▄ ░█─░█ ──░█──
 
-getStatesByIdCountryQuery(String idCountry) => '''
+String getStatesByIdCountryQuery(String idCountry) => '''
 query getStatesQuery(){
   country(id: "$idCountry") {
         available_regions {

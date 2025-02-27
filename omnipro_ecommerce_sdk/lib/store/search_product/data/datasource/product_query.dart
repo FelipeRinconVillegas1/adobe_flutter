@@ -72,7 +72,6 @@ query getProductsquery(\$filter: ProductAttributeFilterInput, \$pageSize: Int
         count
       }
     }
-  
     items {
       name
       sku
@@ -85,13 +84,11 @@ query getProductsquery(\$filter: ProductAttributeFilterInput, \$pageSize: Int
         name
         sku
       }
-
       upsell_products {
         uid
         name
         sku
       }
-
       crosssell_products {
         uid
         name

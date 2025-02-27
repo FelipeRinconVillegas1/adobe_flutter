@@ -59,8 +59,6 @@ _$ProductsItemsDTOImpl _$$ProductsItemsDTOImplFromJson(
   typeId: json['type_id'] as String,
   upc: json['upc'] as String?,
   marca: (json['marca'] as num?)?.toInt(),
-  informacionNutricional: json['informacion_nutricional'] as String?,
-  ingredientes: json['ingredientes'] as String?,
   brandName: json['brand_name'] as String?,
   minSaleQty: (json['min_sale_qty'] as num).toDouble(),
   margin: (json['margin'] as num?)?.toDouble() ?? 0,
@@ -113,7 +111,6 @@ _$ProductsItemsDTOImpl _$$ProductsItemsDTOImplFromJson(
           ),
   salesUnitOfMeasure: json['sales_unit_of_measure'] as String?,
   stockStatus: json['stock_status'] as String?,
-  composicion: json['composicion'] as String?,
   relatedProducts:
       (json['related_products'] as List<dynamic>?)
           ?.map(
@@ -165,8 +162,6 @@ Map<String, dynamic> _$$ProductsItemsDTOImplToJson(
   'type_id': instance.typeId,
   'upc': instance.upc,
   'marca': instance.marca,
-  'informacion_nutricional': instance.informacionNutricional,
-  'ingredientes': instance.ingredientes,
   'brand_name': instance.brandName,
   'min_sale_qty': instance.minSaleQty,
   'margin': instance.margin,
@@ -187,7 +182,6 @@ Map<String, dynamic> _$$ProductsItemsDTOImplToJson(
   'price_range': instance.priceRange?.toJson(),
   'sales_unit_of_measure': instance.salesUnitOfMeasure,
   'stock_status': instance.stockStatus,
-  'composicion': instance.composicion,
   'related_products': instance.relatedProducts.map((e) => e.toJson()).toList(),
   'upsell_products': instance.upsellProducts.map((e) => e.toJson()).toList(),
   'crosssell_products':

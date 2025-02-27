@@ -3,7 +3,6 @@ import 'package:core/domain/entity/money.fr.dart';
 import 'package:core/domain/entity/products_search_entity.dart';
 import 'package:omnipro_ecommerce_sdk/store/search_product/data/dto/popular_search.fr.dart';
 import 'package:omnipro_ecommerce_sdk/store/search_product/data/dto/recent_search.fr.dart';
-
 import '../../domain/entity/item_popular.dart';
 import '../../domain/entity/item_recent.dart';
 

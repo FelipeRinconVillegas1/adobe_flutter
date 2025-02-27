@@ -21,11 +21,11 @@ import 'login_datasource.dart';
 import 'login_mutation.dart';
 
 class LoginDatasourceImpl extends LoginDatasource {
+  LoginDatasourceImpl(this._client, this._secureStorageDatasource, this._identifyWithSocialMedia);
+
   final GraphQLService _client;
   final SecureStorageDatasource _secureStorageDatasource;
   final IdentifyWithSocialMedia _identifyWithSocialMedia;
-
-  LoginDatasourceImpl(this._client, this._secureStorageDatasource, this._identifyWithSocialMedia);
 
   @override
   Future<Either<ErrorHandler, CustomerTokensDTO>> login(String email, String password) async {
