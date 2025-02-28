@@ -23,6 +23,9 @@ UrlsOms _$UrlsOmsFromJson(Map<String, dynamic> json) {
 mixin _$UrlsOms {
   String get urlBase => throw _privateConstructorUsedError;
   String get urlResourceAvailability => throw _privateConstructorUsedError;
+  String get urlResourceCheckSlot_1 => throw _privateConstructorUsedError;
+  String get urlResourceCheckSlot_2 => throw _privateConstructorUsedError;
+  String get urlResourceGetJob => throw _privateConstructorUsedError;
 
   /// Serializes this UrlsOms to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,7 +41,13 @@ abstract class $UrlsOmsCopyWith<$Res> {
   factory $UrlsOmsCopyWith(UrlsOms value, $Res Function(UrlsOms) then) =
       _$UrlsOmsCopyWithImpl<$Res, UrlsOms>;
   @useResult
-  $Res call({String urlBase, String urlResourceAvailability});
+  $Res call({
+    String urlBase,
+    String urlResourceAvailability,
+    String urlResourceCheckSlot_1,
+    String urlResourceCheckSlot_2,
+    String urlResourceGetJob,
+  });
 }
 
 /// @nodoc
@@ -55,7 +64,13 @@ class _$UrlsOmsCopyWithImpl<$Res, $Val extends UrlsOms>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? urlBase = null, Object? urlResourceAvailability = null}) {
+  $Res call({
+    Object? urlBase = null,
+    Object? urlResourceAvailability = null,
+    Object? urlResourceCheckSlot_1 = null,
+    Object? urlResourceCheckSlot_2 = null,
+    Object? urlResourceGetJob = null,
+  }) {
     return _then(
       _value.copyWith(
             urlBase:
@@ -67,6 +82,21 @@ class _$UrlsOmsCopyWithImpl<$Res, $Val extends UrlsOms>
                 null == urlResourceAvailability
                     ? _value.urlResourceAvailability
                     : urlResourceAvailability // ignore: cast_nullable_to_non_nullable
+                        as String,
+            urlResourceCheckSlot_1:
+                null == urlResourceCheckSlot_1
+                    ? _value.urlResourceCheckSlot_1
+                    : urlResourceCheckSlot_1 // ignore: cast_nullable_to_non_nullable
+                        as String,
+            urlResourceCheckSlot_2:
+                null == urlResourceCheckSlot_2
+                    ? _value.urlResourceCheckSlot_2
+                    : urlResourceCheckSlot_2 // ignore: cast_nullable_to_non_nullable
+                        as String,
+            urlResourceGetJob:
+                null == urlResourceGetJob
+                    ? _value.urlResourceGetJob
+                    : urlResourceGetJob // ignore: cast_nullable_to_non_nullable
                         as String,
           )
           as $Val,
@@ -82,7 +112,13 @@ abstract class _$$UrlsOmsImplCopyWith<$Res> implements $UrlsOmsCopyWith<$Res> {
   ) = __$$UrlsOmsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String urlBase, String urlResourceAvailability});
+  $Res call({
+    String urlBase,
+    String urlResourceAvailability,
+    String urlResourceCheckSlot_1,
+    String urlResourceCheckSlot_2,
+    String urlResourceGetJob,
+  });
 }
 
 /// @nodoc
@@ -98,7 +134,13 @@ class __$$UrlsOmsImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? urlBase = null, Object? urlResourceAvailability = null}) {
+  $Res call({
+    Object? urlBase = null,
+    Object? urlResourceAvailability = null,
+    Object? urlResourceCheckSlot_1 = null,
+    Object? urlResourceCheckSlot_2 = null,
+    Object? urlResourceGetJob = null,
+  }) {
     return _then(
       _$UrlsOmsImpl(
         urlBase:
@@ -111,6 +153,21 @@ class __$$UrlsOmsImplCopyWithImpl<$Res>
                 ? _value.urlResourceAvailability
                 : urlResourceAvailability // ignore: cast_nullable_to_non_nullable
                     as String,
+        urlResourceCheckSlot_1:
+            null == urlResourceCheckSlot_1
+                ? _value.urlResourceCheckSlot_1
+                : urlResourceCheckSlot_1 // ignore: cast_nullable_to_non_nullable
+                    as String,
+        urlResourceCheckSlot_2:
+            null == urlResourceCheckSlot_2
+                ? _value.urlResourceCheckSlot_2
+                : urlResourceCheckSlot_2 // ignore: cast_nullable_to_non_nullable
+                    as String,
+        urlResourceGetJob:
+            null == urlResourceGetJob
+                ? _value.urlResourceGetJob
+                : urlResourceGetJob // ignore: cast_nullable_to_non_nullable
+                    as String,
       ),
     );
   }
@@ -122,6 +179,9 @@ class _$UrlsOmsImpl implements _UrlsOms {
   const _$UrlsOmsImpl({
     required this.urlBase,
     required this.urlResourceAvailability,
+    required this.urlResourceCheckSlot_1,
+    required this.urlResourceCheckSlot_2,
+    required this.urlResourceGetJob,
   });
 
   factory _$UrlsOmsImpl.fromJson(Map<String, dynamic> json) =>
@@ -131,10 +191,16 @@ class _$UrlsOmsImpl implements _UrlsOms {
   final String urlBase;
   @override
   final String urlResourceAvailability;
+  @override
+  final String urlResourceCheckSlot_1;
+  @override
+  final String urlResourceCheckSlot_2;
+  @override
+  final String urlResourceGetJob;
 
   @override
   String toString() {
-    return 'UrlsOms(urlBase: $urlBase, urlResourceAvailability: $urlResourceAvailability)';
+    return 'UrlsOms(urlBase: $urlBase, urlResourceAvailability: $urlResourceAvailability, urlResourceCheckSlot_1: $urlResourceCheckSlot_1, urlResourceCheckSlot_2: $urlResourceCheckSlot_2, urlResourceGetJob: $urlResourceGetJob)';
   }
 
   @override
@@ -147,13 +213,25 @@ class _$UrlsOmsImpl implements _UrlsOms {
                   other.urlResourceAvailability,
                   urlResourceAvailability,
                 ) ||
-                other.urlResourceAvailability == urlResourceAvailability));
+                other.urlResourceAvailability == urlResourceAvailability) &&
+            (identical(other.urlResourceCheckSlot_1, urlResourceCheckSlot_1) ||
+                other.urlResourceCheckSlot_1 == urlResourceCheckSlot_1) &&
+            (identical(other.urlResourceCheckSlot_2, urlResourceCheckSlot_2) ||
+                other.urlResourceCheckSlot_2 == urlResourceCheckSlot_2) &&
+            (identical(other.urlResourceGetJob, urlResourceGetJob) ||
+                other.urlResourceGetJob == urlResourceGetJob));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, urlBase, urlResourceAvailability);
+  int get hashCode => Object.hash(
+    runtimeType,
+    urlBase,
+    urlResourceAvailability,
+    urlResourceCheckSlot_1,
+    urlResourceCheckSlot_2,
+    urlResourceGetJob,
+  );
 
   /// Create a copy of UrlsOms
   /// with the given fields replaced by the non-null parameter values.
@@ -173,6 +251,9 @@ abstract class _UrlsOms implements UrlsOms {
   const factory _UrlsOms({
     required final String urlBase,
     required final String urlResourceAvailability,
+    required final String urlResourceCheckSlot_1,
+    required final String urlResourceCheckSlot_2,
+    required final String urlResourceGetJob,
   }) = _$UrlsOmsImpl;
 
   factory _UrlsOms.fromJson(Map<String, dynamic> json) = _$UrlsOmsImpl.fromJson;
@@ -181,6 +262,12 @@ abstract class _UrlsOms implements UrlsOms {
   String get urlBase;
   @override
   String get urlResourceAvailability;
+  @override
+  String get urlResourceCheckSlot_1;
+  @override
+  String get urlResourceCheckSlot_2;
+  @override
+  String get urlResourceGetJob;
 
   /// Create a copy of UrlsOms
   /// with the given fields replaced by the non-null parameter values.

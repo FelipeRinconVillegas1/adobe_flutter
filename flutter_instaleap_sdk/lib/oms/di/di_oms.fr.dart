@@ -8,6 +8,8 @@ import '../core/rest/api_client_http.dart';
 import '../data/datasource/interceptor_client_http.dart';
 import '../data/repository/oms_repository_impl.dart';
 import '../domain/use_case/check_availability_time_slots_use_case.dart';
+import '../domain/use_case/check_slot_use_case.dart';
+import '../domain/use_case/get_job_information_use_case.dart';
 
 part 'di_oms.fr.g.dart';
 
@@ -44,4 +46,14 @@ OmsRepository omsRepository(OmsRepositoryRef ref) {
 @Riverpod(keepAlive: true)
 CheckAvailabilityTimeSlotsUseCase checkAvailabilityTimeSlotsUseCase(CheckAvailabilityTimeSlotsUseCaseRef ref) {
   return CheckAvailabilityTimeSlotsUseCase(ref.watch(omsRepositoryProvider));
+}
+
+@Riverpod(keepAlive: true)
+CheckSlotUseCase checkSlotUseCase(CheckSlotUseCaseRef ref) {
+  return CheckSlotUseCase(ref.watch(omsRepositoryProvider));
+}
+
+@Riverpod(keepAlive: true)
+GetJobInformationUseCase getJobInformationUseCase(GetJobInformationUseCaseRef ref) {
+  return GetJobInformationUseCase(ref.watch(omsRepositoryProvider));
 }

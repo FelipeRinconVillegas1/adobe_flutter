@@ -1,10 +1,9 @@
-library oms_omni_plugin;
+library;
 
 import 'package:flutter_instaleap_sdk/singleton_setup_configuration.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../data/datasource/api_credential_datasource.dart';
 import '../data/datasource/url_oms_datasource.dart';
-import '../di/di_oms.fr.dart';
 import '../domain/entity/api_credential.fr.dart';
 import '../domain/entity/oms_configuration.fr.dart';
 import '../domain/entity/urls_oms.fr.dart';
@@ -25,7 +24,10 @@ class UrlsOmsDatasourceImpl implements UrlsOmsDatasource {
   UrlsOms getUrlsOms() {
     return const UrlsOms(
       urlBase: "https://api.xandar.instaleap.io",
-      urlResourceAvailability: "jobs/availability/v2"
+      urlResourceAvailability: "/jobs/availability/v2",
+      urlResourceCheckSlot_1: "/jobs/availability/",
+      urlResourceCheckSlot_2: "/check",
+      urlResourceGetJob: "/jobs/"
     );
   }
 }

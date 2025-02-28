@@ -136,5 +136,43 @@ final checkAvailabilityTimeSlotsUseCaseProvider =
 // ignore: unused_element
 typedef CheckAvailabilityTimeSlotsUseCaseRef =
     ProviderRef<CheckAvailabilityTimeSlotsUseCase>;
+String _$checkSlotUseCaseHash() => r'72e06039e1f3ba6e844863733d2b1ce81cd7a081';
+
+/// See also [checkSlotUseCase].
+@ProviderFor(checkSlotUseCase)
+final checkSlotUseCaseProvider = Provider<CheckSlotUseCase>.internal(
+  checkSlotUseCase,
+  name: r'checkSlotUseCaseProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$checkSlotUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef CheckSlotUseCaseRef = ProviderRef<CheckSlotUseCase>;
+String _$getJobInformationUseCaseHash() =>
+    r'46967288e78c9d1a8c79f614d36db7c3995e0c47';
+
+/// See also [getJobInformationUseCase].
+@ProviderFor(getJobInformationUseCase)
+final getJobInformationUseCaseProvider =
+    Provider<GetJobInformationUseCase>.internal(
+      getJobInformationUseCase,
+      name: r'getJobInformationUseCaseProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$getJobInformationUseCaseHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef GetJobInformationUseCaseRef = ProviderRef<GetJobInformationUseCase>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

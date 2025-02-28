@@ -23,19 +23,25 @@ JobAvailabilityPayload _$JobAvailabilityPayloadFromJson(
 
 /// @nodoc
 mixin _$JobAvailabilityPayload {
+  @JsonKey(name: 'currency_code')
   String get currencyCode => throw _privateConstructorUsedError;
   String get start => throw _privateConstructorUsedError;
   String get end => throw _privateConstructorUsedError;
+  @JsonKey(name: 'slot_size')
   int get slotSize => throw _privateConstructorUsedError;
+  @JsonKey(name: 'minimum_slot_size')
   int? get minimumSlotSize => throw _privateConstructorUsedError; // Optional
+  @JsonKey(name: 'operational_models_priority')
   List<String> get operationalModelsPriority =>
       throw _privateConstructorUsedError;
   bool? get fallback =>
       throw _privateConstructorUsedError; // Optional, with default value false
+  @JsonKey(name: 'store_reference')
   String get storeReference => throw _privateConstructorUsedError;
   Origin get origin => throw _privateConstructorUsedError; // Origin object
   Destination get destination =>
       throw _privateConstructorUsedError; // Destination object
+  @JsonKey(name: 'job_items')
   List<JobItem> get jobItems => throw _privateConstructorUsedError;
 
   /// Serializes this JobAvailabilityPayload to a JSON map.
@@ -56,17 +62,18 @@ abstract class $JobAvailabilityPayloadCopyWith<$Res> {
   ) = _$JobAvailabilityPayloadCopyWithImpl<$Res, JobAvailabilityPayload>;
   @useResult
   $Res call({
-    String currencyCode,
+    @JsonKey(name: 'currency_code') String currencyCode,
     String start,
     String end,
-    int slotSize,
-    int? minimumSlotSize,
+    @JsonKey(name: 'slot_size') int slotSize,
+    @JsonKey(name: 'minimum_slot_size') int? minimumSlotSize,
+    @JsonKey(name: 'operational_models_priority')
     List<String> operationalModelsPriority,
     bool? fallback,
-    String storeReference,
+    @JsonKey(name: 'store_reference') String storeReference,
     Origin origin,
     Destination destination,
-    List<JobItem> jobItems,
+    @JsonKey(name: 'job_items') List<JobItem> jobItems,
   });
 
   $OriginCopyWith<$Res> get origin;
@@ -196,17 +203,18 @@ abstract class _$$JobAvailabilityPayloadImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    String currencyCode,
+    @JsonKey(name: 'currency_code') String currencyCode,
     String start,
     String end,
-    int slotSize,
-    int? minimumSlotSize,
+    @JsonKey(name: 'slot_size') int slotSize,
+    @JsonKey(name: 'minimum_slot_size') int? minimumSlotSize,
+    @JsonKey(name: 'operational_models_priority')
     List<String> operationalModelsPriority,
     bool? fallback,
-    String storeReference,
+    @JsonKey(name: 'store_reference') String storeReference,
     Origin origin,
     Destination destination,
-    List<JobItem> jobItems,
+    @JsonKey(name: 'job_items') List<JobItem> jobItems,
   });
 
   @override
@@ -308,17 +316,18 @@ class __$$JobAvailabilityPayloadImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$JobAvailabilityPayloadImpl implements _JobAvailabilityPayload {
   const _$JobAvailabilityPayloadImpl({
-    required this.currencyCode,
+    @JsonKey(name: 'currency_code') required this.currencyCode,
     required this.start,
     required this.end,
-    required this.slotSize,
-    this.minimumSlotSize,
+    @JsonKey(name: 'slot_size') required this.slotSize,
+    @JsonKey(name: 'minimum_slot_size') this.minimumSlotSize,
+    @JsonKey(name: 'operational_models_priority')
     required final List<String> operationalModelsPriority,
     this.fallback,
-    required this.storeReference,
+    @JsonKey(name: 'store_reference') required this.storeReference,
     required this.origin,
     required this.destination,
-    required final List<JobItem> jobItems,
+    @JsonKey(name: 'job_items') required final List<JobItem> jobItems,
   }) : _operationalModelsPriority = operationalModelsPriority,
        _jobItems = jobItems;
 
@@ -326,19 +335,23 @@ class _$JobAvailabilityPayloadImpl implements _JobAvailabilityPayload {
       _$$JobAvailabilityPayloadImplFromJson(json);
 
   @override
+  @JsonKey(name: 'currency_code')
   final String currencyCode;
   @override
   final String start;
   @override
   final String end;
   @override
+  @JsonKey(name: 'slot_size')
   final int slotSize;
   @override
+  @JsonKey(name: 'minimum_slot_size')
   final int? minimumSlotSize;
   // Optional
   final List<String> _operationalModelsPriority;
   // Optional
   @override
+  @JsonKey(name: 'operational_models_priority')
   List<String> get operationalModelsPriority {
     if (_operationalModelsPriority is EqualUnmodifiableListView)
       return _operationalModelsPriority;
@@ -350,6 +363,7 @@ class _$JobAvailabilityPayloadImpl implements _JobAvailabilityPayload {
   final bool? fallback;
   // Optional, with default value false
   @override
+  @JsonKey(name: 'store_reference')
   final String storeReference;
   @override
   final Origin origin;
@@ -360,6 +374,7 @@ class _$JobAvailabilityPayloadImpl implements _JobAvailabilityPayload {
   final List<JobItem> _jobItems;
   // Destination object
   @override
+  @JsonKey(name: 'job_items')
   List<JobItem> get jobItems {
     if (_jobItems is EqualUnmodifiableListView) return _jobItems;
     // ignore: implicit_dynamic_type
@@ -435,43 +450,50 @@ class _$JobAvailabilityPayloadImpl implements _JobAvailabilityPayload {
 
 abstract class _JobAvailabilityPayload implements JobAvailabilityPayload {
   const factory _JobAvailabilityPayload({
-    required final String currencyCode,
+    @JsonKey(name: 'currency_code') required final String currencyCode,
     required final String start,
     required final String end,
-    required final int slotSize,
-    final int? minimumSlotSize,
+    @JsonKey(name: 'slot_size') required final int slotSize,
+    @JsonKey(name: 'minimum_slot_size') final int? minimumSlotSize,
+    @JsonKey(name: 'operational_models_priority')
     required final List<String> operationalModelsPriority,
     final bool? fallback,
-    required final String storeReference,
+    @JsonKey(name: 'store_reference') required final String storeReference,
     required final Origin origin,
     required final Destination destination,
-    required final List<JobItem> jobItems,
+    @JsonKey(name: 'job_items') required final List<JobItem> jobItems,
   }) = _$JobAvailabilityPayloadImpl;
 
   factory _JobAvailabilityPayload.fromJson(Map<String, dynamic> json) =
       _$JobAvailabilityPayloadImpl.fromJson;
 
   @override
+  @JsonKey(name: 'currency_code')
   String get currencyCode;
   @override
   String get start;
   @override
   String get end;
   @override
+  @JsonKey(name: 'slot_size')
   int get slotSize;
   @override
+  @JsonKey(name: 'minimum_slot_size')
   int? get minimumSlotSize; // Optional
   @override
+  @JsonKey(name: 'operational_models_priority')
   List<String> get operationalModelsPriority;
   @override
   bool? get fallback; // Optional, with default value false
   @override
+  @JsonKey(name: 'store_reference')
   String get storeReference;
   @override
   Origin get origin; // Origin object
   @override
   Destination get destination; // Destination object
   @override
+  @JsonKey(name: 'job_items')
   List<JobItem> get jobItems;
 
   /// Create a copy of JobAvailabilityPayload
@@ -490,11 +512,13 @@ Origin _$OriginFromJson(Map<String, dynamic> json) {
 mixin _$Origin {
   String get name => throw _privateConstructorUsedError; // Required
   String get address => throw _privateConstructorUsedError; // Required
+  @JsonKey(name: 'address_two')
   String? get addressTwo => throw _privateConstructorUsedError; // Nullable
   String? get description => throw _privateConstructorUsedError; // Nullable
   String? get country => throw _privateConstructorUsedError; // Nullable
   String? get city => throw _privateConstructorUsedError; // Nullable
   String? get state => throw _privateConstructorUsedError; // Nullable
+  @JsonKey(name: 'zip_code')
   String? get zipCode => throw _privateConstructorUsedError; // Nullable
   double get latitude => throw _privateConstructorUsedError; // Required
   double get longitude => throw _privateConstructorUsedError;
@@ -516,12 +540,12 @@ abstract class $OriginCopyWith<$Res> {
   $Res call({
     String name,
     String address,
-    String? addressTwo,
+    @JsonKey(name: 'address_two') String? addressTwo,
     String? description,
     String? country,
     String? city,
     String? state,
-    String? zipCode,
+    @JsonKey(name: 'zip_code') String? zipCode,
     double latitude,
     double longitude,
   });
@@ -622,12 +646,12 @@ abstract class _$$OriginImplCopyWith<$Res> implements $OriginCopyWith<$Res> {
   $Res call({
     String name,
     String address,
-    String? addressTwo,
+    @JsonKey(name: 'address_two') String? addressTwo,
     String? description,
     String? country,
     String? city,
     String? state,
-    String? zipCode,
+    @JsonKey(name: 'zip_code') String? zipCode,
     double latitude,
     double longitude,
   });
@@ -721,12 +745,12 @@ class _$OriginImpl implements _Origin {
   const _$OriginImpl({
     required this.name,
     required this.address,
-    this.addressTwo,
+    @JsonKey(name: 'address_two') this.addressTwo,
     this.description,
     this.country,
     this.city,
     this.state,
-    this.zipCode,
+    @JsonKey(name: 'zip_code') this.zipCode,
     required this.latitude,
     required this.longitude,
   });
@@ -741,6 +765,7 @@ class _$OriginImpl implements _Origin {
   final String address;
   // Required
   @override
+  @JsonKey(name: 'address_two')
   final String? addressTwo;
   // Nullable
   @override
@@ -756,6 +781,7 @@ class _$OriginImpl implements _Origin {
   final String? state;
   // Nullable
   @override
+  @JsonKey(name: 'zip_code')
   final String? zipCode;
   // Nullable
   @override
@@ -824,12 +850,12 @@ abstract class _Origin implements Origin {
   const factory _Origin({
     required final String name,
     required final String address,
-    final String? addressTwo,
+    @JsonKey(name: 'address_two') final String? addressTwo,
     final String? description,
     final String? country,
     final String? city,
     final String? state,
-    final String? zipCode,
+    @JsonKey(name: 'zip_code') final String? zipCode,
     required final double latitude,
     required final double longitude,
   }) = _$OriginImpl;
@@ -841,6 +867,7 @@ abstract class _Origin implements Origin {
   @override
   String get address; // Required
   @override
+  @JsonKey(name: 'address_two')
   String? get addressTwo; // Nullable
   @override
   String? get description; // Nullable
@@ -851,6 +878,7 @@ abstract class _Origin implements Origin {
   @override
   String? get state; // Nullable
   @override
+  @JsonKey(name: 'zip_code')
   String? get zipCode; // Nullable
   @override
   double get latitude; // Required
@@ -873,11 +901,13 @@ Destination _$DestinationFromJson(Map<String, dynamic> json) {
 mixin _$Destination {
   String get name => throw _privateConstructorUsedError; // Required
   String get address => throw _privateConstructorUsedError; // Required
+  @JsonKey(name: 'address_two')
   String? get addressTwo => throw _privateConstructorUsedError; // Nullable
   String? get description => throw _privateConstructorUsedError; // Nullable
   String? get country => throw _privateConstructorUsedError; // Nullable
   String? get city => throw _privateConstructorUsedError; // Nullable
   String? get state => throw _privateConstructorUsedError; // Nullable
+  @JsonKey(name: 'zip_code')
   String? get zipCode => throw _privateConstructorUsedError; // Nullable
   double get latitude => throw _privateConstructorUsedError; // Required
   double get longitude => throw _privateConstructorUsedError;
@@ -902,12 +932,12 @@ abstract class $DestinationCopyWith<$Res> {
   $Res call({
     String name,
     String address,
-    String? addressTwo,
+    @JsonKey(name: 'address_two') String? addressTwo,
     String? description,
     String? country,
     String? city,
     String? state,
-    String? zipCode,
+    @JsonKey(name: 'zip_code') String? zipCode,
     double latitude,
     double longitude,
   });
@@ -1009,12 +1039,12 @@ abstract class _$$DestinationImplCopyWith<$Res>
   $Res call({
     String name,
     String address,
-    String? addressTwo,
+    @JsonKey(name: 'address_two') String? addressTwo,
     String? description,
     String? country,
     String? city,
     String? state,
-    String? zipCode,
+    @JsonKey(name: 'zip_code') String? zipCode,
     double latitude,
     double longitude,
   });
@@ -1108,12 +1138,12 @@ class _$DestinationImpl implements _Destination {
   const _$DestinationImpl({
     required this.name,
     required this.address,
-    this.addressTwo,
+    @JsonKey(name: 'address_two') this.addressTwo,
     this.description,
     this.country,
     this.city,
     this.state,
-    this.zipCode,
+    @JsonKey(name: 'zip_code') this.zipCode,
     required this.latitude,
     required this.longitude,
   });
@@ -1128,6 +1158,7 @@ class _$DestinationImpl implements _Destination {
   final String address;
   // Required
   @override
+  @JsonKey(name: 'address_two')
   final String? addressTwo;
   // Nullable
   @override
@@ -1143,6 +1174,7 @@ class _$DestinationImpl implements _Destination {
   final String? state;
   // Nullable
   @override
+  @JsonKey(name: 'zip_code')
   final String? zipCode;
   // Nullable
   @override
@@ -1211,12 +1243,12 @@ abstract class _Destination implements Destination {
   const factory _Destination({
     required final String name,
     required final String address,
-    final String? addressTwo,
+    @JsonKey(name: 'address_two') final String? addressTwo,
     final String? description,
     final String? country,
     final String? city,
     final String? state,
-    final String? zipCode,
+    @JsonKey(name: 'zip_code') final String? zipCode,
     required final double latitude,
     required final double longitude,
   }) = _$DestinationImpl;
@@ -1229,6 +1261,7 @@ abstract class _Destination implements Destination {
   @override
   String get address; // Required
   @override
+  @JsonKey(name: 'address_two')
   String? get addressTwo; // Nullable
   @override
   String? get description; // Nullable
@@ -1239,6 +1272,7 @@ abstract class _Destination implements Destination {
   @override
   String? get state; // Nullable
   @override
+  @JsonKey(name: 'zip_code')
   String? get zipCode; // Nullable
   @override
   double get latitude; // Required
@@ -1261,17 +1295,21 @@ JobItem _$JobItemFromJson(Map<String, dynamic> json) {
 mixin _$JobItem {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'photo_url')
   String? get photoUrl => throw _privateConstructorUsedError;
   String get unit => throw _privateConstructorUsedError;
+  @JsonKey(name: 'sub_unit')
   String get subUnit => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
+  @JsonKey(name: 'sub_quantity')
   int get subQuantity => throw _privateConstructorUsedError;
+  @JsonKey(name: 'quantity_found_limits')
   QuantityFoundLimits? get quantityFoundLimits =>
       throw _privateConstructorUsedError; // Optional
   List<String>? get barcodes => throw _privateConstructorUsedError; // Nullable
   double? get weight => throw _privateConstructorUsedError; // Nullable
-  double get volume => throw _privateConstructorUsedError;
-  Dimensions get dimensions => throw _privateConstructorUsedError;
+  double? get volume => throw _privateConstructorUsedError;
+  Dimensions? get dimensions => throw _privateConstructorUsedError;
   double get price => throw _privateConstructorUsedError;
   String? get comment => throw _privateConstructorUsedError;
   Attributes get attributes => throw _privateConstructorUsedError;
@@ -1293,23 +1331,24 @@ abstract class $JobItemCopyWith<$Res> {
   $Res call({
     String id,
     String name,
-    String? photoUrl,
+    @JsonKey(name: 'photo_url') String? photoUrl,
     String unit,
-    String subUnit,
+    @JsonKey(name: 'sub_unit') String subUnit,
     int quantity,
-    int subQuantity,
+    @JsonKey(name: 'sub_quantity') int subQuantity,
+    @JsonKey(name: 'quantity_found_limits')
     QuantityFoundLimits? quantityFoundLimits,
     List<String>? barcodes,
     double? weight,
-    double volume,
-    Dimensions dimensions,
+    double? volume,
+    Dimensions? dimensions,
     double price,
     String? comment,
     Attributes attributes,
   });
 
   $QuantityFoundLimitsCopyWith<$Res>? get quantityFoundLimits;
-  $DimensionsCopyWith<$Res> get dimensions;
+  $DimensionsCopyWith<$Res>? get dimensions;
   $AttributesCopyWith<$Res> get attributes;
 }
 
@@ -1338,8 +1377,8 @@ class _$JobItemCopyWithImpl<$Res, $Val extends JobItem>
     Object? quantityFoundLimits = freezed,
     Object? barcodes = freezed,
     Object? weight = freezed,
-    Object? volume = null,
-    Object? dimensions = null,
+    Object? volume = freezed,
+    Object? dimensions = freezed,
     Object? price = null,
     Object? comment = freezed,
     Object? attributes = null,
@@ -1397,15 +1436,15 @@ class _$JobItemCopyWithImpl<$Res, $Val extends JobItem>
                     : weight // ignore: cast_nullable_to_non_nullable
                         as double?,
             volume:
-                null == volume
+                freezed == volume
                     ? _value.volume
                     : volume // ignore: cast_nullable_to_non_nullable
-                        as double,
+                        as double?,
             dimensions:
-                null == dimensions
+                freezed == dimensions
                     ? _value.dimensions
                     : dimensions // ignore: cast_nullable_to_non_nullable
-                        as Dimensions,
+                        as Dimensions?,
             price:
                 null == price
                     ? _value.price
@@ -1446,8 +1485,12 @@ class _$JobItemCopyWithImpl<$Res, $Val extends JobItem>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $DimensionsCopyWith<$Res> get dimensions {
-    return $DimensionsCopyWith<$Res>(_value.dimensions, (value) {
+  $DimensionsCopyWith<$Res>? get dimensions {
+    if (_value.dimensions == null) {
+      return null;
+    }
+
+    return $DimensionsCopyWith<$Res>(_value.dimensions!, (value) {
       return _then(_value.copyWith(dimensions: value) as $Val);
     });
   }
@@ -1474,16 +1517,17 @@ abstract class _$$JobItemImplCopyWith<$Res> implements $JobItemCopyWith<$Res> {
   $Res call({
     String id,
     String name,
-    String? photoUrl,
+    @JsonKey(name: 'photo_url') String? photoUrl,
     String unit,
-    String subUnit,
+    @JsonKey(name: 'sub_unit') String subUnit,
     int quantity,
-    int subQuantity,
+    @JsonKey(name: 'sub_quantity') int subQuantity,
+    @JsonKey(name: 'quantity_found_limits')
     QuantityFoundLimits? quantityFoundLimits,
     List<String>? barcodes,
     double? weight,
-    double volume,
-    Dimensions dimensions,
+    double? volume,
+    Dimensions? dimensions,
     double price,
     String? comment,
     Attributes attributes,
@@ -1492,7 +1536,7 @@ abstract class _$$JobItemImplCopyWith<$Res> implements $JobItemCopyWith<$Res> {
   @override
   $QuantityFoundLimitsCopyWith<$Res>? get quantityFoundLimits;
   @override
-  $DimensionsCopyWith<$Res> get dimensions;
+  $DimensionsCopyWith<$Res>? get dimensions;
   @override
   $AttributesCopyWith<$Res> get attributes;
 }
@@ -1521,8 +1565,8 @@ class __$$JobItemImplCopyWithImpl<$Res>
     Object? quantityFoundLimits = freezed,
     Object? barcodes = freezed,
     Object? weight = freezed,
-    Object? volume = null,
-    Object? dimensions = null,
+    Object? volume = freezed,
+    Object? dimensions = freezed,
     Object? price = null,
     Object? comment = freezed,
     Object? attributes = null,
@@ -1580,15 +1624,15 @@ class __$$JobItemImplCopyWithImpl<$Res>
                 : weight // ignore: cast_nullable_to_non_nullable
                     as double?,
         volume:
-            null == volume
+            freezed == volume
                 ? _value.volume
                 : volume // ignore: cast_nullable_to_non_nullable
-                    as double,
+                    as double?,
         dimensions:
-            null == dimensions
+            freezed == dimensions
                 ? _value.dimensions
                 : dimensions // ignore: cast_nullable_to_non_nullable
-                    as Dimensions,
+                    as Dimensions?,
         price:
             null == price
                 ? _value.price
@@ -1615,16 +1659,16 @@ class _$JobItemImpl implements _JobItem {
   const _$JobItemImpl({
     required this.id,
     required this.name,
-    this.photoUrl,
+    @JsonKey(name: 'photo_url') this.photoUrl,
     required this.unit,
-    required this.subUnit,
+    @JsonKey(name: 'sub_unit') required this.subUnit,
     required this.quantity,
-    required this.subQuantity,
-    this.quantityFoundLimits,
+    @JsonKey(name: 'sub_quantity') required this.subQuantity,
+    @JsonKey(name: 'quantity_found_limits') this.quantityFoundLimits,
     final List<String>? barcodes,
     this.weight,
-    required this.volume,
-    required this.dimensions,
+    this.volume,
+    this.dimensions,
     required this.price,
     this.comment,
     required this.attributes,
@@ -1638,16 +1682,20 @@ class _$JobItemImpl implements _JobItem {
   @override
   final String name;
   @override
+  @JsonKey(name: 'photo_url')
   final String? photoUrl;
   @override
   final String unit;
   @override
+  @JsonKey(name: 'sub_unit')
   final String subUnit;
   @override
   final int quantity;
   @override
+  @JsonKey(name: 'sub_quantity')
   final int subQuantity;
   @override
+  @JsonKey(name: 'quantity_found_limits')
   final QuantityFoundLimits? quantityFoundLimits;
   // Optional
   final List<String>? _barcodes;
@@ -1666,9 +1714,9 @@ class _$JobItemImpl implements _JobItem {
   final double? weight;
   // Nullable
   @override
-  final double volume;
+  final double? volume;
   @override
-  final Dimensions dimensions;
+  final Dimensions? dimensions;
   @override
   final double price;
   @override
@@ -1748,16 +1796,17 @@ abstract class _JobItem implements JobItem {
   const factory _JobItem({
     required final String id,
     required final String name,
-    final String? photoUrl,
+    @JsonKey(name: 'photo_url') final String? photoUrl,
     required final String unit,
-    required final String subUnit,
+    @JsonKey(name: 'sub_unit') required final String subUnit,
     required final int quantity,
-    required final int subQuantity,
+    @JsonKey(name: 'sub_quantity') required final int subQuantity,
+    @JsonKey(name: 'quantity_found_limits')
     final QuantityFoundLimits? quantityFoundLimits,
     final List<String>? barcodes,
     final double? weight,
-    required final double volume,
-    required final Dimensions dimensions,
+    final double? volume,
+    final Dimensions? dimensions,
     required final double price,
     final String? comment,
     required final Attributes attributes,
@@ -1770,25 +1819,29 @@ abstract class _JobItem implements JobItem {
   @override
   String get name;
   @override
+  @JsonKey(name: 'photo_url')
   String? get photoUrl;
   @override
   String get unit;
   @override
+  @JsonKey(name: 'sub_unit')
   String get subUnit;
   @override
   int get quantity;
   @override
+  @JsonKey(name: 'sub_quantity')
   int get subQuantity;
   @override
+  @JsonKey(name: 'quantity_found_limits')
   QuantityFoundLimits? get quantityFoundLimits; // Optional
   @override
   List<String>? get barcodes; // Nullable
   @override
   double? get weight; // Nullable
   @override
-  double get volume;
+  double? get volume;
   @override
-  Dimensions get dimensions;
+  Dimensions? get dimensions;
   @override
   double get price;
   @override
@@ -2178,6 +2231,7 @@ mixin _$Attributes {
   String get plu => throw _privateConstructorUsedError;
   String get ean => throw _privateConstructorUsedError;
   String get location => throw _privateConstructorUsedError;
+  @JsonKey(name: 'picking_index')
   String get pickingIndex => throw _privateConstructorUsedError;
 
   /// Serializes this Attributes to a JSON map.
@@ -2202,7 +2256,7 @@ abstract class $AttributesCopyWith<$Res> {
     String plu,
     String ean,
     String location,
-    String pickingIndex,
+    @JsonKey(name: 'picking_index') String pickingIndex,
   });
 }
 
@@ -2274,7 +2328,7 @@ abstract class _$$AttributesImplCopyWith<$Res>
     String plu,
     String ean,
     String location,
-    String pickingIndex,
+    @JsonKey(name: 'picking_index') String pickingIndex,
   });
 }
 
@@ -2338,7 +2392,7 @@ class _$AttributesImpl implements _Attributes {
     required this.plu,
     required this.ean,
     required this.location,
-    required this.pickingIndex,
+    @JsonKey(name: 'picking_index') required this.pickingIndex,
   });
 
   factory _$AttributesImpl.fromJson(Map<String, dynamic> json) =>
@@ -2353,6 +2407,7 @@ class _$AttributesImpl implements _Attributes {
   @override
   final String location;
   @override
+  @JsonKey(name: 'picking_index')
   final String pickingIndex;
 
   @override
@@ -2400,7 +2455,7 @@ abstract class _Attributes implements Attributes {
     required final String plu,
     required final String ean,
     required final String location,
-    required final String pickingIndex,
+    @JsonKey(name: 'picking_index') required final String pickingIndex,
   }) = _$AttributesImpl;
 
   factory _Attributes.fromJson(Map<String, dynamic> json) =
@@ -2415,6 +2470,7 @@ abstract class _Attributes implements Attributes {
   @override
   String get location;
   @override
+  @JsonKey(name: 'picking_index')
   String get pickingIndex;
 
   /// Create a copy of Attributes
