@@ -22,11 +22,11 @@ dependencies:
   flutter_secure_storage: ^9.2.4
   logger: ^1.3.0
   omni_adobe_core:
-    path: ../../omnipro_ecommerce_sdk_flutter/omni_adobe_core
-    #git:
-      #path: omni_adobe_core
-      #url: git@github.com:omni-pro/omnipro_ecommerce_sdk_flutter.git
-      #ref: production
+    #path: ../../omnipro_ecommerce_sdk_flutter/omni_adobe_core
+    git:
+      path: omni_adobe_core
+      url: git@github.com:omni-pro/omnipro_ecommerce_sdk_flutter.git
+      ref: production
 
 dev_dependencies:
   flutter_test:
