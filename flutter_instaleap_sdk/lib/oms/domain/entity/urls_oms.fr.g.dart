@@ -6,8 +6,21 @@ part of 'urls_oms.fr.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$UrlsOmsImpl _$$UrlsOmsImplFromJson(Map<String, dynamic> json) =>
-    _$UrlsOmsImpl(
+_$UrlsOmsGRAPHQLImpl _$$UrlsOmsGRAPHQLImplFromJson(Map<String, dynamic> json) =>
+    _$UrlsOmsGRAPHQLImpl(
+      urlBase: json['urlBase'] as String,
+      urlResourceCheckSlot: json['urlResourceCheckSlot'] as String,
+    );
+
+Map<String, dynamic> _$$UrlsOmsGRAPHQLImplToJson(
+  _$UrlsOmsGRAPHQLImpl instance,
+) => <String, dynamic>{
+  'urlBase': instance.urlBase,
+  'urlResourceCheckSlot': instance.urlResourceCheckSlot,
+};
+
+_$UrlsOmsRESTImpl _$$UrlsOmsRESTImplFromJson(Map<String, dynamic> json) =>
+    _$UrlsOmsRESTImpl(
       urlBase: json['urlBase'] as String,
       urlResourceAvailability: json['urlResourceAvailability'] as String,
       urlResourceCheckSlot_1: json['urlResourceCheckSlot_1'] as String,
@@ -15,7 +28,7 @@ _$UrlsOmsImpl _$$UrlsOmsImplFromJson(Map<String, dynamic> json) =>
       urlResourceGetJob: json['urlResourceGetJob'] as String,
     );
 
-Map<String, dynamic> _$$UrlsOmsImplToJson(_$UrlsOmsImpl instance) =>
+Map<String, dynamic> _$$UrlsOmsRESTImplToJson(_$UrlsOmsRESTImpl instance) =>
     <String, dynamic>{
       'urlBase': instance.urlBase,
       'urlResourceAvailability': instance.urlResourceAvailability,

@@ -1,5 +1,5 @@
-import 'package:flutter_instaleap_sdk/oms/domain/entity/api_credential.fr.dart';
+import '../../domain/entity/api_credential_rest.fr.dart';
 
 abstract class ApiCredentialDatasource {
-  ApiCredential getCredential();
+  ApiCredentialREST getCredential();
 }

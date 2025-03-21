@@ -9,10 +9,10 @@ part of 'oms_configuration.fr.dart';
 _$OmsConfigurationImpl _$$OmsConfigurationImplFromJson(
   Map<String, dynamic> json,
 ) => _$OmsConfigurationImpl(
-  apiCredential: ApiCredential.fromJson(
+  apiCredential: ApiCredentialREST.fromJson(
     json['apiCredential'] as Map<String, dynamic>,
   ),
-  urlsOms: UrlsOms.fromJson(json['urlsOms'] as Map<String, dynamic>),
+  urlsOms: UrlsOmsREST.fromJson(json['urlsOms'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$$OmsConfigurationImplToJson(

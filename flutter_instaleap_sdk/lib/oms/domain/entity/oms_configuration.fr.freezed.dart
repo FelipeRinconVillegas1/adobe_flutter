@@ -21,8 +21,8 @@ OmsConfiguration _$OmsConfigurationFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$OmsConfiguration {
-  ApiCredential get apiCredential => throw _privateConstructorUsedError;
-  UrlsOms get urlsOms => throw _privateConstructorUsedError;
+  ApiCredentialREST get apiCredential => throw _privateConstructorUsedError;
+  UrlsOmsREST get urlsOms => throw _privateConstructorUsedError;
 
   /// Serializes this OmsConfiguration to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,10 +41,10 @@ abstract class $OmsConfigurationCopyWith<$Res> {
     $Res Function(OmsConfiguration) then,
   ) = _$OmsConfigurationCopyWithImpl<$Res, OmsConfiguration>;
   @useResult
-  $Res call({ApiCredential apiCredential, UrlsOms urlsOms});
+  $Res call({ApiCredentialREST apiCredential, UrlsOmsREST urlsOms});
 
-  $ApiCredentialCopyWith<$Res> get apiCredential;
-  $UrlsOmsCopyWith<$Res> get urlsOms;
+  $ApiCredentialRESTCopyWith<$Res> get apiCredential;
+  $UrlsOmsRESTCopyWith<$Res> get urlsOms;
 }
 
 /// @nodoc
@@ -68,12 +68,12 @@ class _$OmsConfigurationCopyWithImpl<$Res, $Val extends OmsConfiguration>
                 null == apiCredential
                     ? _value.apiCredential
                     : apiCredential // ignore: cast_nullable_to_non_nullable
-                        as ApiCredential,
+                        as ApiCredentialREST,
             urlsOms:
                 null == urlsOms
                     ? _value.urlsOms
                     : urlsOms // ignore: cast_nullable_to_non_nullable
-                        as UrlsOms,
+                        as UrlsOmsREST,
           )
           as $Val,
     );
@@ -83,8 +83,8 @@ class _$OmsConfigurationCopyWithImpl<$Res, $Val extends OmsConfiguration>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ApiCredentialCopyWith<$Res> get apiCredential {
-    return $ApiCredentialCopyWith<$Res>(_value.apiCredential, (value) {
+  $ApiCredentialRESTCopyWith<$Res> get apiCredential {
+    return $ApiCredentialRESTCopyWith<$Res>(_value.apiCredential, (value) {
       return _then(_value.copyWith(apiCredential: value) as $Val);
     });
   }
@@ -93,8 +93,8 @@ class _$OmsConfigurationCopyWithImpl<$Res, $Val extends OmsConfiguration>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UrlsOmsCopyWith<$Res> get urlsOms {
-    return $UrlsOmsCopyWith<$Res>(_value.urlsOms, (value) {
+  $UrlsOmsRESTCopyWith<$Res> get urlsOms {
+    return $UrlsOmsRESTCopyWith<$Res>(_value.urlsOms, (value) {
       return _then(_value.copyWith(urlsOms: value) as $Val);
     });
   }
@@ -109,12 +109,12 @@ abstract class _$$OmsConfigurationImplCopyWith<$Res>
   ) = __$$OmsConfigurationImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ApiCredential apiCredential, UrlsOms urlsOms});
+  $Res call({ApiCredentialREST apiCredential, UrlsOmsREST urlsOms});
 
   @override
-  $ApiCredentialCopyWith<$Res> get apiCredential;
+  $ApiCredentialRESTCopyWith<$Res> get apiCredential;
   @override
-  $UrlsOmsCopyWith<$Res> get urlsOms;
+  $UrlsOmsRESTCopyWith<$Res> get urlsOms;
 }
 
 /// @nodoc
@@ -137,12 +137,12 @@ class __$$OmsConfigurationImplCopyWithImpl<$Res>
             null == apiCredential
                 ? _value.apiCredential
                 : apiCredential // ignore: cast_nullable_to_non_nullable
-                    as ApiCredential,
+                    as ApiCredentialREST,
         urlsOms:
             null == urlsOms
                 ? _value.urlsOms
                 : urlsOms // ignore: cast_nullable_to_non_nullable
-                    as UrlsOms,
+                    as UrlsOmsREST,
       ),
     );
   }
@@ -160,9 +160,9 @@ class _$OmsConfigurationImpl implements _OmsConfiguration {
       _$$OmsConfigurationImplFromJson(json);
 
   @override
-  final ApiCredential apiCredential;
+  final ApiCredentialREST apiCredential;
   @override
-  final UrlsOms urlsOms;
+  final UrlsOmsREST urlsOms;
 
   @override
   String toString() {
@@ -202,17 +202,17 @@ class _$OmsConfigurationImpl implements _OmsConfiguration {
 
 abstract class _OmsConfiguration implements OmsConfiguration {
   const factory _OmsConfiguration({
-    required final ApiCredential apiCredential,
-    required final UrlsOms urlsOms,
+    required final ApiCredentialREST apiCredential,
+    required final UrlsOmsREST urlsOms,
   }) = _$OmsConfigurationImpl;
 
   factory _OmsConfiguration.fromJson(Map<String, dynamic> json) =
       _$OmsConfigurationImpl.fromJson;
 
   @override
-  ApiCredential get apiCredential;
+  ApiCredentialREST get apiCredential;
   @override
-  UrlsOms get urlsOms;
+  UrlsOmsREST get urlsOms;
 
   /// Create a copy of OmsConfiguration
   /// with the given fields replaced by the non-null parameter values.

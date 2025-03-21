@@ -1,6 +1,3 @@
-import 'package:flutter/foundation.dart';
-
-import 'oms/core/loggers/logger_oms.dart';
 import 'oms/domain/entity/oms_configuration.fr.dart';
 
 class SingletonSetupConfiguration {
@@ -15,7 +12,6 @@ class SingletonSetupConfiguration {
 
   factory SingletonSetupConfiguration.init({required OmsConfiguration omsConfiguration}) {
     _instance._omsConfiguration = omsConfiguration.copyWith();
-    LoggerOms().init(isDebug: kDebugMode);
     return _instance;
   }
 

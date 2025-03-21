@@ -4,19 +4,29 @@ part 'urls_oms.fr.freezed.dart';
 part 'urls_oms.fr.g.dart';
 
 @freezed
-class UrlsOms with _$UrlsOms {
-  const factory UrlsOms({
+class UrlsOmsGRAPHQL with _$UrlsOmsGRAPHQL {
+  const factory UrlsOmsGRAPHQL({
+    required String urlBase,
+    required String urlResourceCheckSlot,
+  }) = _UrlsOmsGRAPHQL;
+
+  factory UrlsOmsGRAPHQL.fromJson(Map<String, Object?> json) => _$UrlsOmsGRAPHQLFromJson(json);
+}
+
+@freezed
+class UrlsOmsREST with _$UrlsOmsREST {
+  const factory UrlsOmsREST({
     required String urlBase,
     required String urlResourceAvailability,
     required String urlResourceCheckSlot_1,
     required String urlResourceCheckSlot_2,
     required String urlResourceGetJob
-  }) = _UrlsOms;
+  }) = _UrlsOmsREST;
 
-  factory UrlsOms.fromJson(Map<String, Object?> json) => _$UrlsOmsFromJson(json);
+  factory UrlsOmsREST.fromJson(Map<String, Object?> json) => _$UrlsOmsRESTFromJson(json);
 }
 
-extension UrlsOmsExtension on UrlsOms {
+extension UrlsOmsExtension on UrlsOmsREST {
   String getUrlCheckSlot(String slotId) {
     return "$urlBase$urlResourceCheckSlot_1$slotId$urlResourceCheckSlot_2";
   }

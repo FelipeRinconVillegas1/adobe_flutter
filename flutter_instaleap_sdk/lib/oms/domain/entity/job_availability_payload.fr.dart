@@ -16,7 +16,7 @@ class JobAvailabilityPayload with _$JobAvailabilityPayload {
     @JsonKey(name: 'store_reference') required String storeReference,
     required Origin origin, // Origin object
     required Destination destination, // Destination object
-    @JsonKey(name: 'job_items') required List<JobItem> jobItems, // List of JobItems
+    @JsonKey(name: 'job_items') required List<JobItem> jobItems, // List of JobItemsº
   }) = _JobAvailabilityPayload;
 
   factory JobAvailabilityPayload.fromJson(Map<String, dynamic> json) => _$JobAvailabilityPayloadFromJson(json);
