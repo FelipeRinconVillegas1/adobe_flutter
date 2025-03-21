@@ -24,7 +24,10 @@ OmsDatasource omsDatasourceSource(OmsDatasourceSourceRef ref) {
 
 @Riverpod(keepAlive: true)
 OmsRepository omsRepository(OmsRepositoryRef ref) {
-  return OmsRepositoryImpl(restDataSource: ref.watch(omsDatasourceSourceProvider),graphqlDataSource: ref.watch(omsDatasourceSourceProvider));
+  return OmsRepositoryImpl(
+    restDataSource: ref.watch(omsDatasourceSourceProvider),
+    graphqlDataSource: ref.watch(omsDatasourceSourceGraphQlProvider),
+  );
 }
 
 @Riverpod(keepAlive: true)
